@@ -10,6 +10,20 @@ receives only admitted values. This contract guarantees lexical substring
 presence, while answer performance, memory availability, and reader cost are
 measured separately.
 
+## Pipeline and evaluation scope
+
+The full ADMIT pipeline checks and repairs proposed values, locates a matching
+source span, links the admitted value and excerpt to its evidence pointer, and
+provides the record to later agent steps. Failed admission keeps the value out
+of reusable memory while retaining the original tentative output under MFC/OFO.
+
+The standalone engine implements the admission stage. The primary policy
+comparisons use value-only ADMIT to isolate that stage. Separate provenance
+controls compare the span-aware path with value-only memory and an equal-length
+window control; their records and recomputation scripts are included here.
+Support spans are quoted source evidence. The lexical guarantee applies to the
+admitted answer-value field.
+
 ## Contents
 
 - `code/admit_admission_engine.py`: model-independent admission interface,
