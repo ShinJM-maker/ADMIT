@@ -12,7 +12,9 @@ shared), fo_s (fail-open, all records shared), ad_s (ADMIT, all records shared),
 only records whose value matches a fact or answer of their own question). A later question needs
 a fact that an earlier question of its stream needed. Conditions: available (all cards searchable)
 and revoked (the cards of those facts are removed from the later question's searches).
-A published record is "wrong" if its value matches no fact or answer of its question.
+The reference-nonmatch rate counts published records whose value matches no reference
+fact or answer of their source question; it is not a semantic-error rate. Legacy
+JSON field names retain "wrong" for compatibility.
 
 Relation check: results/shared_memory_relation_check_20261103.jsonl, one row per fo_s record of
 MuSiQue (condition, qid, record index into that row's published list). p_yes_8b / p_yes_32b:

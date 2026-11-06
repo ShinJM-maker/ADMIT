@@ -514,15 +514,17 @@ facts an earlier question needed are removed from the later question's
 searches). EM on later questions: substring EM on MuSiQue, official EM on
 TAT-QA.
 
-| Dataset | Sources | n | None | FO | ADMIT | Oracle | ADMIT - FO | Oracle - FO | Wrong shared (FO) |
+| Dataset | Sources | n | None | FO | ADMIT | Oracle | ADMIT - FO | Oracle - FO | Nonmatch (FO) |
 |---|---|---:|---:|---:|---:|---:|---|---|---:|
 | MuSiQue | revoked | 900 | 11.22 | 28.67 | 28.11 | 33.67 | -0.56 [-2.37, 1.16] | 5.00 [2.07, 8.19] | 51.50 |
 | MuSiQue | available | 900 | 32.11 | 38.44 | 37.44 | 46.22 | -1.00 [-3.29, 1.47] | 7.78 [3.61, 12.25] | 47.76 |
 | TAT-QA | revoked | 800 | 7.38 | 14.62 | 14.62 | 14.75 | 0.00 [-1.01, 0.99] | 0.12 [-1.24, 1.42] | 52.27 |
 | TAT-QA | available | 800 | 19.00 | 20.50 | 20.50 | 20.75 | 0.00 [-0.93, 0.98] | 0.25 [-1.10, 1.60] | 51.38 |
 
-98.1 to 98.7% of the wrong shared fail-open records occur in their support
-span, so lexical admission keeps them. A relation check (does the card state
+Nonmatch denotes shared records whose values match no reference fact or answer
+of their source question. In 98.1 to 98.7% of these fail-open records, the value
+occurs in the support span delivered for the write, so it passes the lexical
+check. Reference nonmatch alone does not establish semantic incorrectness. A relation check (does the card state
 that the value answers the sub-question; Qwen3-VL-8B and Qwen3-VL-32B) separates
 step-matched wrong values on MuSiQue with AUC 0.69 to 0.72 and records repeated
 by a wrong later answer with AUC 0.56 to 0.64.
