@@ -99,12 +99,12 @@ python code/verify_saved_diagnostics.py   # write-level and gate-span diagnostic
 
 | Paper section | Script |
 |---|---|
-| Sec. 6.2, injected-value replay | `recompute_injected_value_replay.py` |
-| Sec. 6.2, support spans; App. B.12-B.13 | `recompute_support_spans.py`, `recompute_anytime_agent.py`, `recompute_window_control.py` |
-| Sec. 6.2, multi-hop search; App. B.14 | `recompute_multihop_final_check.py`, `recompute_multihop_improved_agent.py`, `recompute_frames_contamination.py` |
-| App. B.9-B.10 | `recompute_withheld_accuracy.py`, `recompute_distractor_audit.py` |
-| Where withholding raises answer scores; App. B.15 | `recompute_withholding_gains.py` |
-| Memory shared across questions; App. B.16 | `recompute_shared_memory.py` |
+| Sec. 6.2, injected-value replay; App. B.10 | `recompute_injected_value_replay.py` |
+| Sec. 6.4, support spans; App. B.11-B.12 | `recompute_support_spans.py`, `recompute_anytime_agent.py`, `recompute_window_control.py` |
+| Sec. 6.2, multi-hop search; App. B.13 | `recompute_multihop_final_check.py`, `recompute_multihop_improved_agent.py`, `recompute_frames_contamination.py` |
+| App. B.8-B.9 | `recompute_withheld_accuracy.py`, `recompute_distractor_audit.py` |
+| Memory shared across questions; App. B.14 | `recompute_shared_memory.py` |
+| Sec. 6.4, refusal repair (Table 3b); App. B.15 | `recompute_refusal_repair.py` |
 | App. E-F audits | `recompute_supplementary_audits.py` |
 
 Each script prints the recomputed values and ends with `OK`.
@@ -127,6 +127,7 @@ export ADMIT_WORK=$PWD/work                # outputs
 | Table 1 and Sec. 6.2-6.3 (dynamic agents, 900 trajectories per policy) | `GPUS="0 1 2 3" bash scripts/run_dynamic.sh` |
 | Static control (Sec. 6.1), SupportRouter and App. D.3 | `GPUS="0 1 2 3" bash scripts/run_static.sh` |
 | Tables 4-5 (portability) | `experiments/portability/run_terminal.py`, `run_datasets.py` |
+| Refusal repair (Table 3b, App. B.15) | `experiments/refusal_repair/run_dynamic_rr.py --family admit` and `--family failopen`; `run_portability_rr.py` |
 
 `run_dynamic.sh` writes `work/dynamic/SUMMARY.json` with substring EM, reader calls per question,
 contamination, and NO_COMMIT rate per policy and agent, plus paired bootstrap differences against

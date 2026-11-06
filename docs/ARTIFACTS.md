@@ -297,7 +297,7 @@ ADMIT in none.
 ## Anytime document agents (2026-10-31, 2026-11-01)
 
 Documents arrive one per step and cannot be reopened, so memory is the only
-carrier of earlier evidence (App. B.13). The released records support the
+carrier of earlier evidence (App. B.12). The released records support the
 appendix's outcome measures for each agent: final (step 4) substring EM, each
 dataset's official metric (DUDE ANLS, TAT-QA F1, MMLongBench-Doc typed score),
 and answer accuracy, the substring EM among non-refused final answers. Storing
@@ -628,3 +628,30 @@ scope, audit-record completeness, and structured-write prevalence:
 qid-cluster intervals with the original seeds, replays every official TAT-QA
 derivation with an arithmetic-only parser, recounts the derived-value flags,
 and checks the remaining counts against the appendix. No model call is made.
+
+## Refusal repair (2026-11-06)
+
+`results/refusal_repair_20261106/` holds the compact rows behind Table 3(b) and
+App. B.15. Refusal repair gives an initial refusal one RepairRead; the repaired
+value is admitted only if it is a non-refusal that passes the same lexical
+check, otherwise the refusal record stays.
+
+- `dynamic_refusal_repair_900.jsonl`: one row per (qid, agent) of the 300-qid
+  dynamic sample with substring EM and reader calls under ADMIT, ADMIT+R,
+  fail-open, and fail-open+R. The 335 ADMIT and 334 fail-open pairs whose
+  trajectory records an initial refusal were rerun with and without the rule
+  (`admit_rerun`, `failopen_rerun`, with replication flags against Table 1);
+  the other pairs are identical under both arms by construction.
+- `terminal_refusal_repair.jsonl`: one row per (upstream, qid) of the
+  18-upstream terminal replay; the 1,766 initial refusals carry the repaired
+  outcome and one extra reader call.
+- `datasets_refusal_repair.jsonl`: one row per qid of the typed PlanRAG
+  transfer with substring EM, reader calls, the official per-question score
+  (DUDE ANLS, TAT-QA F1, MMLongBench-Doc generalized accuracy), and the
+  MMLongBench-Doc Not answerable flag.
+
+`python code/recompute_refusal_repair.py` recomputes the dynamic, terminal, and
+dataset results with the paired qid bootstrap (10,000 resamples, seed 0) and
+checks them against the paper. The runs themselves are
+`experiments/refusal_repair/run_dynamic_rr.py` (pairs in
+`configs/refusal_repair_pairs.json`) and `run_portability_rr.py`.
