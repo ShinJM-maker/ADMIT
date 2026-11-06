@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-20",
+  "model_calls_added": 0,
+  "policy": "preserve_all_vanilla_memory_output_only_repair",
+  "definition": "Post-hoc support checking and RepairRead update only the output; all Vanilla memory writes, including the pre-repair terminal write, remain unchanged.",
+  "counts": {
+    "typed_rows": 422,
+    "typed_terminal_metadata_changed": 11,
+    "contaminated": 177,
+    "react_contaminated": 37,
+    "typed_contaminated": 122,
+    "legacy_rows": 478,
+    "legacy_contaminated": 55,
+    "legacy_unsupported_binary_terminals": 3,
+    "changed_vs_previous_release": 9,
+    "planrag_contaminated": 101,
+    "autogen_contaminated": 39,
+    "changed_typed_vs_previous_release": 6,
+    "changed_legacy_vs_previous_release": 3
+  },
+  "source_sha256": {
+    "typed_comparator_final_support_retry_900.jsonl": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1",
+    "all_public_writes.jsonl": "123d1a23371a094355ca2fdb98cf23da03bb0c9b341fcd219eebca8d9fc8e7cb",
+    "react_per_qid.jsonl": "a5b7994e203e1a76846f8ebd2f808b4e1201288b6d876d966accec7f29937114",
+    "planrag_per_qid.jsonl": "9c77c26821ceec5d65a87df4865d76492f5a3a3486aabbea9a2c56179122896a",
+    "autogen_per_qid.jsonl": "2055dfc32f82b4b7923538366601450580928e4689fe7dc6ebec312f8bfdcf78"
+  },
+  "compact_artifact": "final_support_memory_contract_20261020.jsonl",
+  "compact_sha256": "b38649788104faa86d01e319c3f3c54391403cdb32a9f165f76310e5e7bdc8d0",
+  "generations_primary_scores_calls_and_intermediate_records_unchanged": true,
+  "normalization": "Derived terminal metadata is normalized to the retained Vanilla state; raw trajectory files remain immutable.",
+  "legacy_support_rule": "Exact-reader substring annotations, with no binary-answer exception.",
+  "normalized_artifact": "typed_comparator_final_support_retry_preserve_vanilla_900.jsonl",
+  "normalized_sha256": "a84e661a779b2876bda7caf336595d88345327d7d2cfee3a2be3aa8966bcbd45",
+  "generation_source": {
+    "artifact_id": "typed_comparator_final_support_retry_900.jsonl",
+    "sha256": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1"
+  }
+}

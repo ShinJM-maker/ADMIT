@@ -1,0 +1,691 @@
+{
+ "description": "Fail-open PlanRAG trajectories with at least one injected value that does not match the reference. Rates are percentages over trajectories; random withholding removes as many writes as ADMIT withholds.",
+ "n_records": 1130,
+ "cells": [
+  {
+   "study": "consumer",
+   "dataset": "M3DocVQA",
+   "inject_p": 0.2,
+   "env": "blocked",
+   "n": 30,
+   "failopen": {
+    "em": 10.0,
+    "refused": 10.0,
+    "repeats_wrong": 40.0,
+    "query_has_wrong": 13.33
+   },
+   "admit": {
+    "em": 10.0,
+    "refused": 30.0,
+    "repeats_wrong": 0.0,
+    "query_has_wrong": 0.0
+   },
+   "random": {
+    "em": 3.33,
+    "refused": 40.0,
+    "repeats_wrong": 13.33,
+    "query_has_wrong": 23.33
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "DUDE",
+   "inject_p": 0.1,
+   "env": "available",
+   "n": 14,
+   "failopen": {
+    "em": 35.71,
+    "refused": 14.29,
+    "repeats_wrong": 0.0
+   },
+   "admit": {
+    "em": 28.57,
+    "refused": 7.14,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 30.95,
+    "refused": 21.43,
+    "repeats_wrong": 0.0
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "DUDE",
+   "inject_p": 0.1,
+   "env": "blocked",
+   "n": 14,
+   "failopen": {
+    "em": 7.14,
+    "refused": 28.57,
+    "repeats_wrong": 35.71
+   },
+   "admit": {
+    "em": 14.29,
+    "refused": 64.29,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 4.76,
+    "refused": 57.14,
+    "repeats_wrong": 11.9
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "DUDE",
+   "inject_p": 0.2,
+   "env": "available",
+   "n": 28,
+   "failopen": {
+    "em": 32.14,
+    "refused": 10.71,
+    "repeats_wrong": 7.14
+   },
+   "admit": {
+    "em": 32.14,
+    "refused": 7.14,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 33.33,
+    "refused": 10.71,
+    "repeats_wrong": 0.0
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "DUDE",
+   "inject_p": 0.2,
+   "env": "blocked",
+   "n": 28,
+   "failopen": {
+    "em": 10.71,
+    "refused": 21.43,
+    "repeats_wrong": 35.71
+   },
+   "admit": {
+    "em": 21.43,
+    "refused": 50.0,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 11.9,
+    "refused": 48.81,
+    "repeats_wrong": 13.1
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "DUDE",
+   "inject_p": 0.4,
+   "env": "available",
+   "n": 59,
+   "failopen": {
+    "em": 32.2,
+    "refused": 8.47,
+    "repeats_wrong": 11.86
+   },
+   "admit": {
+    "em": 32.2,
+    "refused": 10.17,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 32.77,
+    "refused": 10.17,
+    "repeats_wrong": 5.08
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "DUDE",
+   "inject_p": 0.4,
+   "env": "blocked",
+   "n": 59,
+   "failopen": {
+    "em": 13.56,
+    "refused": 15.25,
+    "repeats_wrong": 35.59
+   },
+   "admit": {
+    "em": 18.64,
+    "refused": 49.15,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 10.73,
+    "refused": 51.41,
+    "repeats_wrong": 10.17
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "MMLongBench-Doc",
+   "inject_p": 0.1,
+   "env": "available",
+   "n": 6,
+   "failopen": {
+    "em": 33.33,
+    "refused": 16.67,
+    "repeats_wrong": 0.0
+   },
+   "admit": {
+    "em": 33.33,
+    "refused": 16.67,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 33.33,
+    "refused": 16.67,
+    "repeats_wrong": 0.0
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "MMLongBench-Doc",
+   "inject_p": 0.1,
+   "env": "blocked",
+   "n": 6,
+   "failopen": {
+    "em": 16.67,
+    "refused": 33.33,
+    "repeats_wrong": 16.67
+   },
+   "admit": {
+    "em": 16.67,
+    "refused": 66.67,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 16.67,
+    "refused": 55.56,
+    "repeats_wrong": 5.56
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "MMLongBench-Doc",
+   "inject_p": 0.2,
+   "env": "available",
+   "n": 18,
+   "failopen": {
+    "em": 22.22,
+    "refused": 16.67,
+    "repeats_wrong": 0.0
+   },
+   "admit": {
+    "em": 22.22,
+    "refused": 22.22,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 22.22,
+    "refused": 25.93,
+    "repeats_wrong": 1.85
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "MMLongBench-Doc",
+   "inject_p": 0.2,
+   "env": "blocked",
+   "n": 18,
+   "failopen": {
+    "em": 11.11,
+    "refused": 22.22,
+    "repeats_wrong": 16.67
+   },
+   "admit": {
+    "em": 11.11,
+    "refused": 66.67,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 7.41,
+    "refused": 70.37,
+    "repeats_wrong": 3.7
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "MMLongBench-Doc",
+   "inject_p": 0.4,
+   "env": "available",
+   "n": 43,
+   "failopen": {
+    "em": 25.58,
+    "refused": 13.95,
+    "repeats_wrong": 6.98
+   },
+   "admit": {
+    "em": 27.91,
+    "refused": 20.93,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 27.91,
+    "refused": 22.48,
+    "repeats_wrong": 0.78
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "MMLongBench-Doc",
+   "inject_p": 0.4,
+   "env": "blocked",
+   "n": 43,
+   "failopen": {
+    "em": 6.98,
+    "refused": 20.93,
+    "repeats_wrong": 27.91
+   },
+   "admit": {
+    "em": 9.3,
+    "refused": 58.14,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 6.98,
+    "refused": 58.91,
+    "repeats_wrong": 8.53
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "TAT-QA",
+   "inject_p": 0.1,
+   "env": "available",
+   "n": 43,
+   "failopen": {
+    "em": 32.56,
+    "refused": 9.3,
+    "repeats_wrong": 0.0
+   },
+   "admit": {
+    "em": 37.21,
+    "refused": 4.65,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 35.66,
+    "refused": 6.2,
+    "repeats_wrong": 0.0
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "TAT-QA",
+   "inject_p": 0.1,
+   "env": "blocked",
+   "n": 43,
+   "failopen": {
+    "em": 6.98,
+    "refused": 9.3,
+    "repeats_wrong": 11.63
+   },
+   "admit": {
+    "em": 11.63,
+    "refused": 48.84,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 10.08,
+    "refused": 46.51,
+    "repeats_wrong": 8.53
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "TAT-QA",
+   "inject_p": 0.2,
+   "env": "available",
+   "n": 87,
+   "failopen": {
+    "em": 42.53,
+    "refused": 8.05,
+    "repeats_wrong": 1.15
+   },
+   "admit": {
+    "em": 47.13,
+    "refused": 4.6,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 48.28,
+    "refused": 6.13,
+    "repeats_wrong": 0.0
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "TAT-QA",
+   "inject_p": 0.2,
+   "env": "blocked",
+   "n": 87,
+   "failopen": {
+    "em": 8.05,
+    "refused": 13.79,
+    "repeats_wrong": 12.64
+   },
+   "admit": {
+    "em": 10.34,
+    "refused": 52.87,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 9.2,
+    "refused": 48.28,
+    "repeats_wrong": 8.81
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "TAT-QA",
+   "inject_p": 0.4,
+   "env": "available",
+   "n": 152,
+   "failopen": {
+    "em": 41.45,
+    "refused": 7.24,
+    "repeats_wrong": 0.0
+   },
+   "admit": {
+    "em": 47.37,
+    "refused": 4.61,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 47.59,
+    "refused": 6.14,
+    "repeats_wrong": 0.44
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "TAT-QA",
+   "inject_p": 0.4,
+   "env": "blocked",
+   "n": 152,
+   "failopen": {
+    "em": 9.21,
+    "refused": 11.18,
+    "repeats_wrong": 16.45
+   },
+   "admit": {
+    "em": 9.87,
+    "refused": 50.0,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 7.68,
+    "refused": 45.18,
+    "repeats_wrong": 7.68
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "pooled",
+   "inject_p": 0.1,
+   "env": "available",
+   "n": 63,
+   "failopen": {
+    "em": 33.33,
+    "refused": 11.11,
+    "repeats_wrong": 0.0
+   },
+   "admit": {
+    "em": 34.92,
+    "refused": 6.35,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 34.39,
+    "refused": 10.58,
+    "repeats_wrong": 0.0
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "pooled",
+   "inject_p": 0.1,
+   "env": "blocked",
+   "n": 63,
+   "failopen": {
+    "em": 7.94,
+    "refused": 15.87,
+    "repeats_wrong": 17.46
+   },
+   "admit": {
+    "em": 12.7,
+    "refused": 53.97,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 9.52,
+    "refused": 49.74,
+    "repeats_wrong": 8.99
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "pooled",
+   "inject_p": 0.2,
+   "env": "available",
+   "n": 133,
+   "failopen": {
+    "em": 37.59,
+    "refused": 9.77,
+    "repeats_wrong": 2.26
+   },
+   "admit": {
+    "em": 40.6,
+    "refused": 7.52,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 41.6,
+    "refused": 9.77,
+    "repeats_wrong": 0.25
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "pooled",
+   "inject_p": 0.2,
+   "env": "blocked",
+   "n": 133,
+   "failopen": {
+    "em": 9.02,
+    "refused": 16.54,
+    "repeats_wrong": 18.05
+   },
+   "admit": {
+    "em": 12.78,
+    "refused": 54.14,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 9.52,
+    "refused": 51.38,
+    "repeats_wrong": 9.02
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "pooled",
+   "inject_p": 0.4,
+   "env": "available",
+   "n": 254,
+   "failopen": {
+    "em": 36.61,
+    "refused": 8.66,
+    "repeats_wrong": 3.94
+   },
+   "admit": {
+    "em": 40.55,
+    "refused": 8.66,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 40.81,
+    "refused": 9.84,
+    "repeats_wrong": 1.57
+   }
+  },
+  {
+   "study": "portability",
+   "dataset": "pooled",
+   "inject_p": 0.4,
+   "env": "blocked",
+   "n": 254,
+   "failopen": {
+    "em": 9.84,
+    "refused": 13.78,
+    "repeats_wrong": 22.83
+   },
+   "admit": {
+    "em": 11.81,
+    "refused": 51.18,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 8.27,
+    "refused": 48.95,
+    "repeats_wrong": 8.4
+   }
+  },
+  {
+   "study": "reader",
+   "dataset": "M3DocVQA",
+   "inject_p": 0.1,
+   "env": "available",
+   "n": 17,
+   "failopen": {
+    "em": 23.53,
+    "refused": 5.88,
+    "repeats_wrong": 11.76
+   },
+   "admit": {
+    "em": 23.53,
+    "refused": 5.88,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 19.61,
+    "refused": 11.76,
+    "repeats_wrong": 11.76
+   }
+  },
+  {
+   "study": "reader",
+   "dataset": "M3DocVQA",
+   "inject_p": 0.1,
+   "env": "blocked",
+   "n": 17,
+   "failopen": {
+    "em": 11.76,
+    "refused": 11.76,
+    "repeats_wrong": 17.65
+   },
+   "admit": {
+    "em": 11.76,
+    "refused": 23.53,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 5.88,
+    "refused": 31.37,
+    "repeats_wrong": 17.65
+   }
+  },
+  {
+   "study": "reader",
+   "dataset": "M3DocVQA",
+   "inject_p": 0.2,
+   "env": "available",
+   "n": 30,
+   "failopen": {
+    "em": 26.67,
+    "refused": 3.33,
+    "repeats_wrong": 26.67
+   },
+   "admit": {
+    "em": 26.67,
+    "refused": 6.67,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 30.0,
+    "refused": 10.0,
+    "repeats_wrong": 4.44
+   }
+  },
+  {
+   "study": "reader",
+   "dataset": "M3DocVQA",
+   "inject_p": 0.2,
+   "env": "blocked",
+   "n": 30,
+   "failopen": {
+    "em": 10.0,
+    "refused": 10.0,
+    "repeats_wrong": 40.0
+   },
+   "admit": {
+    "em": 10.0,
+    "refused": 30.0,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 5.56,
+    "refused": 37.78,
+    "repeats_wrong": 15.56
+   }
+  },
+  {
+   "study": "reader",
+   "dataset": "M3DocVQA",
+   "inject_p": 0.4,
+   "env": "available",
+   "n": 53,
+   "failopen": {
+    "em": 26.42,
+    "refused": 9.43,
+    "repeats_wrong": 32.08
+   },
+   "admit": {
+    "em": 33.96,
+    "refused": 16.98,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 32.08,
+    "refused": 19.5,
+    "repeats_wrong": 7.55
+   }
+  },
+  {
+   "study": "reader",
+   "dataset": "M3DocVQA",
+   "inject_p": 0.4,
+   "env": "blocked",
+   "n": 53,
+   "failopen": {
+    "em": 9.43,
+    "refused": 16.98,
+    "repeats_wrong": 43.4
+   },
+   "admit": {
+    "em": 11.32,
+    "refused": 41.51,
+    "repeats_wrong": 0.0
+   },
+   "random": {
+    "em": 6.92,
+    "refused": 45.91,
+    "repeats_wrong": 12.58
+   }
+  }
+ ]
+}

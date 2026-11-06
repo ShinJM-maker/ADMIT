@@ -1,0 +1,63 @@
+{
+  "status": "gate diagnostic on final ADMIT content writes; original gate/actions/outputs unchanged",
+  "normalization": "lowercase; trim and collapse whitespace",
+  "boundary_test": "Unicode word boundaries at both ends of normalized character substring; at least one bounded occurrence suffices",
+  "numeric_interior_test": "numeric value has no bounded occurrence and every occurrence adjoins a digit",
+  "groups": {
+    "all": {
+      "n": 1318,
+      "interior_only": 44,
+      "numeric_interior_only": 0
+    },
+    "intermediate": {
+      "n": 763,
+      "interior_only": 22,
+      "numeric_interior_only": 0
+    },
+    "terminal": {
+      "n": 555,
+      "interior_only": 22,
+      "numeric_interior_only": 0
+    },
+    "yesno": {
+      "n": 92,
+      "interior_only": 32,
+      "numeric_interior_only": 0
+    },
+    "numeric": {
+      "n": 211,
+      "interior_only": 1,
+      "numeric_interior_only": 0
+    },
+    "short_numeric": {
+      "n": 199,
+      "interior_only": 1,
+      "numeric_interior_only": 0
+    }
+  },
+  "unique_packets": 620,
+  "recorded_hashes_verified": 323,
+  "admitted_write_population": 1321,
+  "unresolved_packet_records": [
+    {
+      "agent": "planrag",
+      "qid": "0ffc318235d60a9934bfec7afd36c9a7",
+      "write_index": 1,
+      "terminal": false
+    },
+    {
+      "agent": "planrag",
+      "qid": "c0693d2bfc20d1b9c1b4054b7bdabcae",
+      "write_index": 1,
+      "terminal": false
+    },
+    {
+      "agent": "planrag",
+      "qid": "c7b0f4a0bce4148f29dbb78be8e8efbd",
+      "write_index": 1,
+      "terminal": false
+    }
+  ],
+  "saved_packet_differs_from_prior_reconstruction": 16,
+  "trajectory_interior_only": 27
+}

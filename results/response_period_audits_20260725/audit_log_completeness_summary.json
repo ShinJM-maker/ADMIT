@@ -1,0 +1,44 @@
+{
+ "description": "Response-period audit-record completeness for the 900 ADMIT trajectories of the same-runtime exact-reader replay, and source-level checks that later steps in each agent read only admitted values. Heuristic multi-value flags are surface patterns used to select writes for the structured decomposition audit.",
+ "scope": "full-900 same-runtime exact-reader ADMIT replay",
+ "trajectories": 900,
+ "audit_completeness": {
+  "writes": 2508,
+  "candidate": 2508,
+  "admit_reason": 2508,
+  "final_source": 2508,
+  "memory_source": 2508,
+  "packet_hash": 2508,
+  "terminal_writes": 900,
+  "terminal_output_value": 900
+ },
+ "closure_contract": {
+  "react_future_context_uses_committed": true,
+  "planrag_future_context_uses_committed": true,
+  "autogen_future_context_uses_committed": true,
+  "pre_admission_raw_candidate_is_separately_recorded": true,
+  "terminal_output_is_separately_recorded": true
+ },
+ "schema_prevalence": {
+  "writes": 2508,
+  "heuristic_multi_value": 172,
+  "has_conjunction": 44,
+  "has_list_delimiter": 108,
+  "multiple_numbers": 46,
+  "refusal": 958,
+  "by_agent": {
+   "react": {
+    "writes": 865,
+    "heuristic_multi_value": 56
+   },
+   "autogen": {
+    "writes": 743,
+    "heuristic_multi_value": 47
+   },
+   "planrag": {
+    "writes": 900,
+    "heuristic_multi_value": 69
+   }
+  }
+ }
+}

@@ -1,0 +1,364 @@
+[
+  {
+    "agent": "react",
+    "qid": "0a3f11f52480bbebf67bcc761cf3f095",
+    "different_metrics": {
+      "calls_q": [
+        2.0,
+        3.0
+      ]
+    },
+    "different_trace_fields": [
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs"
+    ]
+  },
+  {
+    "agent": "react",
+    "qid": "2f34ec15d30206535baa99d709903307",
+    "different_metrics": {
+      "calls_q": [
+        2.0,
+        3.0
+      ]
+    },
+    "different_trace_fields": [
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs"
+    ]
+  },
+  {
+    "agent": "react",
+    "qid": "55a8521c8d80b20fab7ee5b766503643",
+    "different_metrics": {
+      "no_commit": [
+        0.0,
+        1.0
+      ],
+      "calls_q": [
+        5.0,
+        7.0
+      ]
+    },
+    "different_trace_fields": [
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs"
+    ]
+  },
+  {
+    "agent": "react",
+    "qid": "782b7cd2730063d3406269f49f3abea5",
+    "different_metrics": {
+      "calls_q": [
+        2.0,
+        3.0
+      ]
+    },
+    "different_trace_fields": [
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs"
+    ]
+  },
+  {
+    "agent": "react",
+    "qid": "798c37330ee5a8c495ce2987eea1c3ea",
+    "different_metrics": {
+      "calls_q": [
+        2.0,
+        3.0
+      ]
+    },
+    "different_trace_fields": [
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs"
+    ]
+  },
+  {
+    "agent": "react",
+    "qid": "9bdbdd8480e11bf72484a7e69b7339fe",
+    "different_metrics": {
+      "calls_q": [
+        4.0,
+        2.0
+      ]
+    },
+    "different_trace_fields": [
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs"
+    ]
+  },
+  {
+    "agent": "react",
+    "qid": "f2def8c149eac4debb187a7057243177",
+    "different_metrics": {
+      "raw_em": [
+        1.0,
+        0.0
+      ]
+    },
+    "different_trace_fields": [
+      "final_reader_output"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "1c2794793d9e7b8e78da1a030c463caa",
+    "different_metrics": {
+      "raw_em": [
+        0.0,
+        1.0
+      ]
+    },
+    "different_trace_fields": [
+      "initial_reader_outputs",
+      "final_reader_output"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "2b3ba8169721eecc9e1c6fc5bf59fe93",
+    "different_metrics": {
+      "calls_q": [
+        5.0,
+        6.0
+      ]
+    },
+    "different_trace_fields": [
+      "plan",
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs",
+      "final_packet",
+      "final_repair_output"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "4208cf3ce3392da60fcb29c52861f2dc",
+    "different_metrics": {
+      "calls_q": [
+        4.0,
+        3.0
+      ]
+    },
+    "different_trace_fields": [
+      "plan",
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs",
+      "final_packet"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "5bd72bfba4f8e712f3dec278cdec9ccf",
+    "different_metrics": {
+      "no_commit": [
+        0.0,
+        1.0
+      ],
+      "calls_q": [
+        4.0,
+        5.0
+      ]
+    },
+    "different_trace_fields": [
+      "plan",
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs",
+      "final_packet"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "6557e5999ca79abbeae9335bb38eecf9",
+    "different_metrics": {
+      "no_commit": [
+        1.0,
+        0.0
+      ],
+      "calls_q": [
+        4.0,
+        3.0
+      ]
+    },
+    "different_trace_fields": [
+      "plan",
+      "retrieval_queries",
+      "pack_card_ids",
+      "final_packet",
+      "final_reader_output",
+      "final_repair_output"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "6a304cb24a40342a0612036581a9c7d1",
+    "different_metrics": {
+      "no_commit": [
+        0.0,
+        1.0
+      ],
+      "calls_q": [
+        3.0,
+        4.0
+      ]
+    },
+    "different_trace_fields": [
+      "plan",
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs",
+      "final_packet"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "6fbdb97b4d29571b4667d8c9cd499885",
+    "different_metrics": {
+      "calls_q": [
+        5.0,
+        4.0
+      ]
+    },
+    "different_trace_fields": [
+      "repair_outputs",
+      "final_reader_output",
+      "final_repair_output"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "980740c12a63bd6b934647e7f84a5a4f",
+    "different_metrics": {
+      "calls_q": [
+        3.0,
+        4.0
+      ]
+    },
+    "different_trace_fields": [
+      "final_reader_output",
+      "final_repair_output"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "ac104fb00b1d0b1870538358e9b5c850",
+    "different_metrics": {
+      "calls_q": [
+        3.0,
+        4.0
+      ]
+    },
+    "different_trace_fields": [
+      "plan",
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "final_reader_output",
+      "final_repair_output"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "b7ef08d72ad4f1bc8482db9ce503b758",
+    "different_metrics": {
+      "no_commit": [
+        0.0,
+        1.0
+      ]
+    },
+    "different_trace_fields": [
+      "plan",
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs",
+      "final_reader_output"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "e587c73af292fb40bf0dbfec2c2894e2",
+    "different_metrics": {
+      "calls_q": [
+        5.0,
+        4.0
+      ]
+    },
+    "different_trace_fields": [
+      "final_reader_output",
+      "final_repair_output"
+    ]
+  },
+  {
+    "agent": "planrag",
+    "qid": "ed57bcf2022e972f7984e6db02bbbe19",
+    "different_metrics": {
+      "no_commit": [
+        1.0,
+        0.0
+      ],
+      "calls_q": [
+        4.0,
+        3.0
+      ]
+    },
+    "different_trace_fields": [
+      "plan",
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "final_packet",
+      "final_reader_output",
+      "final_repair_output"
+    ]
+  },
+  {
+    "agent": "autogen",
+    "qid": "f2def8c149eac4debb187a7057243177",
+    "different_metrics": {
+      "raw_em": [
+        1.0,
+        0.0
+      ]
+    },
+    "different_trace_fields": [
+      "initial_reader_outputs",
+      "final_reader_output"
+    ]
+  },
+  {
+    "agent": "autogen",
+    "qid": "f356667690a995336f76344d097bb595",
+    "different_metrics": {
+      "calls_q": [
+        2.0,
+        3.0
+      ]
+    },
+    "different_trace_fields": [
+      "retrieval_queries",
+      "pack_card_ids",
+      "initial_reader_outputs",
+      "repair_outputs"
+    ]
+  }
+]

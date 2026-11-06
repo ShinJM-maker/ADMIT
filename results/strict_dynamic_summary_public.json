@@ -1,0 +1,1194 @@
+{
+  "freeze_date": "2026-08-07",
+  "contract": "typed FACT/STATUS store; factual consumers read FACT projection only; contamination includes intermediate and terminal memory writes",
+  "public_verification": {
+    "scope": "The included compact per-qid files verify every aggregate and paired point estimate. Full typed trajectory artifacts named within each arm are upstream provenance records and are not redistributed.",
+    "comparator": {
+      "artifact_id": "strict_comparator_per_qid.jsonl",
+      "sha256": "9c86d58650f96d09bdc034fcec8509f999dc83b95523599e84551f6e1a6534f5"
+    },
+    "component": {
+      "artifact_id": "strict_component_per_qid.jsonl",
+      "sha256": "f258f214ec39a13248a3867b4a30fb530ec9175a7af685e7960768f41fa41bb6"
+    }
+  },
+  "rerun_scope": {
+    "contract": "typed FACT/STATUS store; factual consumers read FACT projection only",
+    "selection": "union of pairs with an intermediate refusal or NO_COMMIT in any frozen arm",
+    "comparator": {
+      "union_pairs": 422,
+      "by_agent": {
+        "autogen": 124,
+        "react": 126,
+        "planrag": 172
+      },
+      "affected_by_arm": {
+        "cavec_mfc": 418,
+        "cavec_paper": 353,
+        "cavec_h1_hard_refuse": 418,
+        "final_support_retry": 338
+      }
+    },
+    "component": {
+      "union_pairs": 451,
+      "by_agent": {
+        "autogen": 130,
+        "planrag": 189,
+        "react": 132
+      },
+      "affected_by_arm": {
+        "gate_only": 449,
+        "gate_repair": 415,
+        "full_admit": 411
+      }
+    }
+  },
+  "runtime_audit": {
+    "typed_trajectory_rows": 3041,
+    "validation": "all rerun rows contain typed intermediate and final records",
+    "intermediate_record_counts": {
+      "STATUS/REFUSAL": 2953,
+      "FACT": 1264,
+      "STATUS/NO_COMMIT": 481
+    },
+    "final_record_counts": {
+      "STATUS/REFUSAL": 1825,
+      "FACT": 865,
+      "STATUS/NO_COMMIT": 351
+    },
+    "contract_equivalent_reuse_pairs": {
+      "comparator": 478,
+      "component": 449
+    }
+  },
+  "comparator": {
+    "arms": {
+      "final_support_retry": {
+        "typed_rerun_pairs": 422,
+        "artifact": "typed_comparator_final_support_retry_preserve_vanilla_900.jsonl",
+        "sha256": "a84e661a779b2876bda7caf336595d88345327d7d2cfee3a2be3aa8966bcbd45",
+        "metrics": {
+          "react": {
+            "n": 300,
+            "raw_em": 0.34,
+            "contamination": 0.12333333333333334,
+            "no_commit": 0.0,
+            "calls_q": 2.23,
+            "final_refusal": 0.31333333333333335
+          },
+          "planrag": {
+            "n": 300,
+            "raw_em": 0.33,
+            "contamination": 0.33666666666666667,
+            "no_commit": 0.0,
+            "calls_q": 3.27,
+            "final_refusal": 0.22333333333333333
+          },
+          "autogen": {
+            "n": 300,
+            "raw_em": 0.3433333333333333,
+            "contamination": 0.13,
+            "no_commit": 0.0,
+            "calls_q": 2.243333333333333,
+            "final_refusal": 0.2966666666666667
+          },
+          "pooled": {
+            "n": 900,
+            "raw_em": 0.3377777777777778,
+            "contamination": 0.19666666666666666,
+            "no_commit": 0.0,
+            "calls_q": 2.581111111111111,
+            "final_refusal": 0.2777777777777778
+          }
+        },
+        "generation_source": {
+          "artifact_id": "typed_comparator_final_support_retry_900.jsonl",
+          "sha256": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1"
+        },
+        "terminal_memory_policy": "preserve_all_vanilla_memory_output_only_repair"
+      },
+      "cavec_paper": {
+        "typed_rerun_pairs": 422,
+        "artifact": "typed_comparator_cavec_paper_900.jsonl",
+        "sha256": "777163c99e23ecff94a11e2ded119a021efe20925a7238b3f1ddda00618d560d",
+        "metrics": {
+          "react": {
+            "n": 300,
+            "raw_em": 0.33666666666666667,
+            "contamination": 0.09333333333333334,
+            "no_commit": 0.0,
+            "calls_q": 2.34,
+            "final_refusal": 0.31333333333333335
+          },
+          "planrag": {
+            "n": 300,
+            "raw_em": 0.3333333333333333,
+            "contamination": 0.22,
+            "no_commit": 0.0,
+            "calls_q": 3.4466666666666668,
+            "final_refusal": 0.22
+          },
+          "autogen": {
+            "n": 300,
+            "raw_em": 0.34,
+            "contamination": 0.09666666666666666,
+            "no_commit": 0.0,
+            "calls_q": 2.3766666666666665,
+            "final_refusal": 0.2966666666666667
+          },
+          "pooled": {
+            "n": 900,
+            "raw_em": 0.33666666666666667,
+            "contamination": 0.13666666666666666,
+            "no_commit": 0.0,
+            "calls_q": 2.721111111111111,
+            "final_refusal": 0.27666666666666667
+          }
+        }
+      },
+      "cavec_h1_hard_refuse": {
+        "typed_rerun_pairs": 422,
+        "artifact": "typed_comparator_cavec_h1_hard_refuse_900.jsonl",
+        "sha256": "78e5dd6af5ec0a539a22a7ee8b7898bec78f3e936d9dd565ee2cd1408aeb0eaf",
+        "metrics": {
+          "react": {
+            "n": 300,
+            "raw_em": 0.28,
+            "contamination": 0.0,
+            "no_commit": 0.0,
+            "calls_q": 2.3866666666666667,
+            "final_refusal": 0.4
+          },
+          "planrag": {
+            "n": 300,
+            "raw_em": 0.26666666666666666,
+            "contamination": 0.0,
+            "no_commit": 0.0,
+            "calls_q": 3.4366666666666665,
+            "final_refusal": 0.36666666666666664
+          },
+          "autogen": {
+            "n": 300,
+            "raw_em": 0.27666666666666667,
+            "contamination": 0.0,
+            "no_commit": 0.0,
+            "calls_q": 2.4,
+            "final_refusal": 0.38666666666666666
+          },
+          "pooled": {
+            "n": 900,
+            "raw_em": 0.27444444444444444,
+            "contamination": 0.0,
+            "no_commit": 0.0,
+            "calls_q": 2.741111111111111,
+            "final_refusal": 0.3844444444444444
+          }
+        }
+      },
+      "cavec_mfc": {
+        "typed_rerun_pairs": 422,
+        "artifact": "typed_comparator_cavec_mfc_900.jsonl",
+        "sha256": "fd08096f34466dccbc3d021065da3c6bd31525f5fb1dfed17414812d9cca28eb",
+        "metrics": {
+          "react": {
+            "n": 300,
+            "raw_em": 0.33666666666666667,
+            "contamination": 0.0,
+            "no_commit": 0.09333333333333334,
+            "calls_q": 2.3833333333333333,
+            "final_refusal": 0.31333333333333335
+          },
+          "planrag": {
+            "n": 300,
+            "raw_em": 0.3233333333333333,
+            "contamination": 0.0,
+            "no_commit": 0.21333333333333335,
+            "calls_q": 3.4233333333333333,
+            "final_refusal": 0.22333333333333333
+          },
+          "autogen": {
+            "n": 300,
+            "raw_em": 0.33,
+            "contamination": 0.0,
+            "no_commit": 0.09666666666666666,
+            "calls_q": 2.4,
+            "final_refusal": 0.3
+          },
+          "pooled": {
+            "n": 900,
+            "raw_em": 0.33,
+            "contamination": 0.0,
+            "no_commit": 0.13444444444444445,
+            "calls_q": 2.7355555555555555,
+            "final_refusal": 0.2788888888888889
+          }
+        }
+      }
+    }
+  },
+  "component": {
+    "arms": {
+      "gate_only": {
+        "typed_rerun_pairs": 451,
+        "artifact": "typed_component_gate_only_900.jsonl",
+        "sha256": "adaa13a3695f9b445f610a2dfae39cee08116ab956a95f417d5467de9f04507e",
+        "metrics": {
+          "react": {
+            "n": 300,
+            "raw_em": 0.3333333333333333,
+            "contamination": 0.0,
+            "no_commit": 0.12,
+            "calls_q": 2.1333333333333333,
+            "final_refusal": 0.31333333333333335
+          },
+          "planrag": {
+            "n": 300,
+            "raw_em": 0.33666666666666667,
+            "contamination": 0.0,
+            "no_commit": 0.33666666666666667,
+            "calls_q": 3.0,
+            "final_refusal": 0.23333333333333334
+          },
+          "autogen": {
+            "n": 300,
+            "raw_em": 0.33,
+            "contamination": 0.0,
+            "no_commit": 0.12666666666666668,
+            "calls_q": 2.1233333333333335,
+            "final_refusal": 0.3
+          },
+          "pooled": {
+            "n": 900,
+            "raw_em": 0.3333333333333333,
+            "contamination": 0.0,
+            "no_commit": 0.19444444444444445,
+            "calls_q": 2.418888888888889,
+            "final_refusal": 0.2822222222222222
+          }
+        }
+      },
+      "gate_repair": {
+        "typed_rerun_pairs": 451,
+        "artifact": "typed_component_gate_repair_900.jsonl",
+        "sha256": "a884e3af40c932886cfcef3e6127490b2d0e74072ea0431f4fb3ae84d19f32fc",
+        "metrics": {
+          "react": {
+            "n": 300,
+            "raw_em": 0.3333333333333333,
+            "contamination": 0.0,
+            "no_commit": 0.09666666666666666,
+            "calls_q": 2.3966666666666665,
+            "final_refusal": 0.31333333333333335
+          },
+          "planrag": {
+            "n": 300,
+            "raw_em": 0.32666666666666666,
+            "contamination": 0.0,
+            "no_commit": 0.21666666666666667,
+            "calls_q": 3.4233333333333333,
+            "final_refusal": 0.23333333333333334
+          },
+          "autogen": {
+            "n": 300,
+            "raw_em": 0.32666666666666666,
+            "contamination": 0.0,
+            "no_commit": 0.09666666666666666,
+            "calls_q": 2.4033333333333333,
+            "final_refusal": 0.3
+          },
+          "pooled": {
+            "n": 900,
+            "raw_em": 0.3288888888888889,
+            "contamination": 0.0,
+            "no_commit": 0.13666666666666666,
+            "calls_q": 2.741111111111111,
+            "final_refusal": 0.2822222222222222
+          }
+        }
+      },
+      "full_admit": {
+        "typed_rerun_pairs": 451,
+        "artifact": "typed_component_full_admit_900.jsonl",
+        "sha256": "0cb4660d9ba69ac0eca7e8ec28ba2e6152841dfad17395308688996519bf376c",
+        "metrics": {
+          "react": {
+            "n": 300,
+            "raw_em": 0.3333333333333333,
+            "contamination": 0.0,
+            "no_commit": 0.09333333333333334,
+            "calls_q": 2.39,
+            "final_refusal": 0.31333333333333335
+          },
+          "planrag": {
+            "n": 300,
+            "raw_em": 0.32666666666666666,
+            "contamination": 0.0,
+            "no_commit": 0.21333333333333335,
+            "calls_q": 3.42,
+            "final_refusal": 0.23333333333333334
+          },
+          "autogen": {
+            "n": 300,
+            "raw_em": 0.32666666666666666,
+            "contamination": 0.0,
+            "no_commit": 0.09666666666666666,
+            "calls_q": 2.4,
+            "final_refusal": 0.3
+          },
+          "pooled": {
+            "n": 900,
+            "raw_em": 0.3288888888888889,
+            "contamination": 0.0,
+            "no_commit": 0.13444444444444445,
+            "calls_q": 2.736666666666667,
+            "final_refusal": 0.2822222222222222
+          }
+        }
+      }
+    }
+  },
+  "paired": {
+    "comparator": {
+      "admit_minus_control": {
+        "final_support_retry": {
+          "react": {
+            "raw_em": {
+              "point": -0.0033333333333333335,
+              "ci95": [
+                -0.01,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": -0.12333333333333334,
+              "ci95": [
+                -0.16,
+                -0.08666666666666667
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.09333333333333334,
+              "ci95": [
+                0.06333333333333334,
+                0.12666666666666668
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.15333333333333332,
+              "ci95": [
+                0.08333333333333333,
+                0.22674999999999879
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "planrag": {
+            "raw_em": {
+              "point": -0.006666666666666667,
+              "ci95": [
+                -0.023333333333333334,
+                0.01
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": -0.33666666666666667,
+              "ci95": [
+                -0.39,
+                -0.2833333333333333
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.21333333333333335,
+              "ci95": [
+                0.16666666666666666,
+                0.26
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.15333333333333332,
+              "ci95": [
+                0.1,
+                0.21
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "autogen": {
+            "raw_em": {
+              "point": -0.013333333333333334,
+              "ci95": [
+                -0.02666666666666667,
+                -0.0033333333333333335
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": -0.13,
+              "ci95": [
+                -0.16674999999999993,
+                -0.09333333333333334
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.09666666666666666,
+              "ci95": [
+                0.06333333333333334,
+                0.13
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.15666666666666668,
+              "ci95": [
+                0.08333333333333333,
+                0.25
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "pooled": {
+            "raw_em": {
+              "point": -0.007777777777777778,
+              "ci95": [
+                -0.015555555555555553,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": -0.19666666666666663,
+              "ci95": [
+                -0.2322222222222222,
+                -0.16333333333333333
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.13444444444444442,
+              "ci95": [
+                0.10555555555555554,
+                0.16555555555555554
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.15444444444444444,
+              "ci95": [
+                0.10222222222222223,
+                0.2122499999999996
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          }
+        },
+        "cavec_paper": {
+          "react": {
+            "raw_em": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": -0.09333333333333334,
+              "ci95": [
+                -0.12666666666666668,
+                -0.06333333333333334
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.09333333333333334,
+              "ci95": [
+                0.06333333333333334,
+                0.12666666666666668
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.043333333333333335,
+              "ci95": [
+                0.01,
+                0.08333333333333333
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "planrag": {
+            "raw_em": {
+              "point": -0.01,
+              "ci95": [
+                -0.023333333333333334,
+                0.0033333333333333335
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": -0.22,
+              "ci95": [
+                -0.26666666666666666,
+                -0.17333333333333334
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.21333333333333335,
+              "ci95": [
+                0.16666666666666666,
+                0.26
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": -0.023333333333333334,
+              "ci95": [
+                -0.05,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "autogen": {
+            "raw_em": {
+              "point": -0.01,
+              "ci95": [
+                -0.023333333333333334,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": -0.09666666666666666,
+              "ci95": [
+                -0.13,
+                -0.06333333333333334
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.09666666666666666,
+              "ci95": [
+                0.06333333333333334,
+                0.13
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.023333333333333334,
+              "ci95": [
+                -0.023333333333333334,
+                0.09
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "pooled": {
+            "raw_em": {
+              "point": -0.006666666666666667,
+              "ci95": [
+                -0.013333333333333332,
+                -0.0011111111111111111
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": -0.13666666666666666,
+              "ci95": [
+                -0.16777777777777778,
+                -0.10777777777777776
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.13444444444444442,
+              "ci95": [
+                0.10555555555555554,
+                0.16555555555555554
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.014444444444444447,
+              "ci95": [
+                -0.008888888888888887,
+                0.044444444444444446
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          }
+        },
+        "cavec_h1_hard_refuse": {
+          "react": {
+            "raw_em": {
+              "point": 0.056666666666666664,
+              "ci95": [
+                0.03333333333333333,
+                0.08333333333333333
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.09333333333333334,
+              "ci95": [
+                0.06333333333333334,
+                0.12666666666666668
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": -0.0033333333333333335,
+              "ci95": [
+                -0.01,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "planrag": {
+            "raw_em": {
+              "point": 0.056666666666666664,
+              "ci95": [
+                0.03333333333333333,
+                0.08333333333333333
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.21333333333333335,
+              "ci95": [
+                0.16666666666666666,
+                0.26
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": -0.013333333333333334,
+              "ci95": [
+                -0.03,
+                0.0033333333333333335
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "autogen": {
+            "raw_em": {
+              "point": 0.05333333333333334,
+              "ci95": [
+                0.03,
+                0.08
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.09666666666666666,
+              "ci95": [
+                0.06333333333333334,
+                0.13
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "pooled": {
+            "raw_em": {
+              "point": 0.055555555555555546,
+              "ci95": [
+                0.03444444444444444,
+                0.07888888888888888
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.13444444444444442,
+              "ci95": [
+                0.10555555555555554,
+                0.16555555555555554
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": -0.005555555555555555,
+              "ci95": [
+                -0.01222222222222222,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          }
+        }
+      }
+    },
+    "component": {
+      "full_minus_other": {
+        "gate_only": {
+          "react": {
+            "raw_em": {
+              "point": 0.0,
+              "ci95": [
+                -0.01,
+                0.01
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": -0.02666666666666667,
+              "ci95": [
+                -0.04666666666666667,
+                -0.01
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.25666666666666665,
+              "ci95": [
+                0.17333333333333334,
+                0.3466666666666667
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "planrag": {
+            "raw_em": {
+              "point": -0.01,
+              "ci95": [
+                -0.03,
+                0.01
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": -0.12333333333333334,
+              "ci95": [
+                -0.16333333333333333,
+                -0.08666666666666667
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.42,
+              "ci95": [
+                0.35,
+                0.49666666666666665
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "autogen": {
+            "raw_em": {
+              "point": -0.0033333333333333335,
+              "ci95": [
+                -0.016666666666666666,
+                0.006666666666666667
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": -0.03,
+              "ci95": [
+                -0.05,
+                -0.013333333333333334
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.27666666666666667,
+              "ci95": [
+                0.19,
+                0.37333333333333335
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "pooled": {
+            "raw_em": {
+              "point": -0.004444444444444444,
+              "ci95": [
+                -0.014444444444444444,
+                0.005555555555555557
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": -0.06,
+              "ci95": [
+                -0.08,
+                -0.041111111111111105
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": 0.31777777777777777,
+              "ci95": [
+                0.2511111111111111,
+                0.39111111111111113
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          }
+        },
+        "gate_repair": {
+          "react": {
+            "raw_em": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": -0.0033333333333333335,
+              "ci95": [
+                -0.01,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": -0.006666666666666667,
+              "ci95": [
+                -0.03333333333333333,
+                0.02
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "planrag": {
+            "raw_em": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": -0.0033333333333333335,
+              "ci95": [
+                -0.02,
+                0.01
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": -0.0033333333333333335,
+              "ci95": [
+                -0.02,
+                0.013333333333333334
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "autogen": {
+            "raw_em": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": -0.0033333333333333335,
+              "ci95": [
+                -0.01,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          },
+          "pooled": {
+            "raw_em": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "contamination": {
+              "point": 0.0,
+              "ci95": [
+                0.0,
+                0.0
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "no_commit": {
+              "point": -0.0022222222222222227,
+              "ci95": [
+                -0.007777777777777777,
+                0.0033333333333333335
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            },
+            "calls_q": {
+              "point": -0.004444444444444445,
+              "ci95": [
+                -0.015555555555555553,
+                0.006666666666666666
+              ],
+              "unit": "qid paired bootstrap",
+              "draws": 10000
+            }
+          }
+        }
+      }
+    }
+  },
+  "scoring_revision": {
+    "date": "2026-10-20",
+    "model_calls": 0,
+    "definition": "refusal-aware bidirectional substring EM",
+    "runtime_freeze_date": "2026-08-07"
+  },
+  "write_scope_revision": {
+    "date": "2026-10-20",
+    "model_calls_added": 0,
+    "scope": "all reuse-eligible content writes, including the terminal memory write",
+    "audit_artifact": "write_scope_per_qid.jsonl",
+    "audit_sha256": "4956766841163fa7127d60fc28b545c8bea34a9fcf61f7db87e7cb06ccb91b2b",
+    "primary_answer_scores_calls_and_admit_policy_unchanged": true,
+    "final_support_terminal_metadata_normalized": true,
+    "previous_aggregation": "typed trajectories omitted terminal records; the final-only comparator additionally mixed post-repair and Vanilla terminal states",
+    "changed_rows": {
+      "comparator/final_support_retry": 29,
+      "comparator/cavec_paper": 21,
+      "comparator/cavec_h1_hard_refuse": 0,
+      "comparator/cavec_mfc": 0,
+      "component/gate_only": 0,
+      "component/gate_repair": 0,
+      "component/full_admit": 0
+    }
+  },
+  "final_support_contract_revision": {
+    "date": "2026-10-20",
+    "model_calls_added": 0,
+    "policy": "preserve_all_vanilla_memory_output_only_repair",
+    "definition": "Post-hoc support checking and RepairRead update only the output; all Vanilla memory writes, including the pre-repair terminal write, remain unchanged.",
+    "counts": {
+      "typed_rows": 422,
+      "typed_terminal_metadata_changed": 11,
+      "contaminated": 177,
+      "react_contaminated": 37,
+      "typed_contaminated": 122,
+      "legacy_rows": 478,
+      "legacy_contaminated": 55,
+      "legacy_unsupported_binary_terminals": 3,
+      "changed_vs_previous_release": 9,
+      "planrag_contaminated": 101,
+      "autogen_contaminated": 39,
+      "changed_typed_vs_previous_release": 6,
+      "changed_legacy_vs_previous_release": 3
+    },
+    "source_sha256": {
+      "typed_comparator_final_support_retry_900.jsonl": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1",
+      "all_public_writes.jsonl": "123d1a23371a094355ca2fdb98cf23da03bb0c9b341fcd219eebca8d9fc8e7cb",
+      "react_per_qid.jsonl": "a5b7994e203e1a76846f8ebd2f808b4e1201288b6d876d966accec7f29937114",
+      "planrag_per_qid.jsonl": "9c77c26821ceec5d65a87df4865d76492f5a3a3486aabbea9a2c56179122896a",
+      "autogen_per_qid.jsonl": "2055dfc32f82b4b7923538366601450580928e4689fe7dc6ebec312f8bfdcf78"
+    },
+    "compact_artifact": "final_support_memory_contract_20261020.jsonl",
+    "compact_sha256": "b38649788104faa86d01e319c3f3c54391403cdb32a9f165f76310e5e7bdc8d0",
+    "generations_primary_scores_calls_and_intermediate_records_unchanged": true,
+    "normalization": "Derived terminal metadata is normalized to the retained Vanilla state; raw trajectory files remain immutable.",
+    "legacy_support_rule": "Exact-reader substring annotations, with no binary-answer exception.",
+    "normalized_artifact": "typed_comparator_final_support_retry_preserve_vanilla_900.jsonl",
+    "normalized_sha256": "a84e661a779b2876bda7caf336595d88345327d7d2cfee3a2be3aa8966bcbd45",
+    "generation_source": {
+      "artifact_id": "typed_comparator_final_support_retry_900.jsonl",
+      "sha256": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1"
+    }
+  }
+}

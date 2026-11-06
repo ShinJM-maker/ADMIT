@@ -1,0 +1,702 @@
+{
+ "description": "Response-period three-turn continuity test on 71 terminal repair-fail events (46 qids) under the pre-correction contract. Conditions vary transcript (H) and candidate-bearing memory (M); H1_M0 is MFC/OFO and H1_M1 is fail-open. H1_M0_TAG adds a visible UNVERIFIED tag. Gold answers were attached only for scoring.",
+ "primary": {
+  "scope": "71 terminal-quarantine events from 46 qids; controlled structured follow-up",
+  "claim": "controlled multi-turn contract consistency, not human-perceived coherence",
+  "n_rows": 284,
+  "n_events": 71,
+  "n_qids": 46,
+  "by_agent": {
+   "react": 21,
+   "autogen": 20,
+   "planrag": 30
+  },
+  "condition": {
+   "H0_M0": {
+    "n": 71,
+    "unique_qids": 46,
+    "recall_exact": 0.0,
+    "forgetting_failure": 0.0,
+    "valid_transition": 0.971830985915493,
+    "silent_change": 0.0,
+    "candidate_persistence": 0.2535211267605634,
+    "final_lexical_support": 0.0,
+    "final_em": 0.323943661971831,
+    "final_abstention": 0.5492957746478874,
+    "recall_parse_valid": 1.0,
+    "transition_parse_valid": 1.0,
+    "actions": {
+     "CANNOT_VERIFY": 39,
+     "ANSWER": 30,
+     "CORRECT": 2
+    }
+   },
+   "H0_M1": {
+    "n": 71,
+    "unique_qids": 46,
+    "recall_exact": 0.971830985915493,
+    "forgetting_failure": 0.028169014084507043,
+    "valid_transition": 0.352112676056338,
+    "silent_change": 0.0,
+    "candidate_persistence": 0.30985915492957744,
+    "final_lexical_support": 0.07042253521126761,
+    "final_em": 0.323943661971831,
+    "final_abstention": 0.11267605633802817,
+    "recall_parse_valid": 1.0,
+    "transition_parse_valid": 1.0,
+    "actions": {
+     "CORRECT": 52,
+     "CANNOT_VERIFY": 8,
+     "KEEP": 11
+    }
+   },
+   "H1_M0": {
+    "n": 71,
+    "unique_qids": 46,
+    "recall_exact": 0.971830985915493,
+    "forgetting_failure": 0.028169014084507043,
+    "valid_transition": 0.4225352112676056,
+    "silent_change": 0.0,
+    "candidate_persistence": 0.3380281690140845,
+    "final_lexical_support": 0.08450704225352113,
+    "final_em": 0.36619718309859156,
+    "final_abstention": 0.08450704225352113,
+    "recall_parse_valid": 1.0,
+    "transition_parse_valid": 1.0,
+    "actions": {
+     "CORRECT": 52,
+     "CANNOT_VERIFY": 6,
+     "KEEP": 13
+    }
+   },
+   "H1_M1": {
+    "n": 71,
+    "unique_qids": 46,
+    "recall_exact": 0.971830985915493,
+    "forgetting_failure": 0.028169014084507043,
+    "valid_transition": 0.4225352112676056,
+    "silent_change": 0.0,
+    "candidate_persistence": 0.43661971830985913,
+    "final_lexical_support": 0.028169014084507043,
+    "final_em": 0.39436619718309857,
+    "final_abstention": 0.15492957746478872,
+    "recall_parse_valid": 1.0,
+    "transition_parse_valid": 1.0,
+    "actions": {
+     "CORRECT": 39,
+     "CANNOT_VERIFY": 11,
+     "KEEP": 21
+    }
+   }
+  },
+  "stratified": {
+   "first_turn_em_correct": {
+    "H0_M0": {
+     "n": 38,
+     "unique_qids": 20,
+     "recall_exact": 0.0,
+     "forgetting_failure": 0.0,
+     "valid_transition": 0.9473684210526315,
+     "silent_change": 0.0,
+     "candidate_persistence": 0.42105263157894735,
+     "final_lexical_support": 0.0,
+     "final_em": 0.5789473684210527,
+     "final_abstention": 0.34210526315789475,
+     "recall_parse_valid": 1.0,
+     "transition_parse_valid": 1.0,
+     "actions": {
+      "CANNOT_VERIFY": 13,
+      "ANSWER": 23,
+      "CORRECT": 2
+     }
+    },
+    "H0_M1": {
+     "n": 38,
+     "unique_qids": 20,
+     "recall_exact": 1.0,
+     "forgetting_failure": 0.0,
+     "valid_transition": 0.42105263157894735,
+     "silent_change": 0.0,
+     "candidate_persistence": 0.5263157894736842,
+     "final_lexical_support": 0.0,
+     "final_em": 0.5263157894736842,
+     "final_abstention": 0.07894736842105263,
+     "recall_parse_valid": 1.0,
+     "transition_parse_valid": 1.0,
+     "actions": {
+      "CORRECT": 25,
+      "KEEP": 10,
+      "CANNOT_VERIFY": 3
+     }
+    },
+    "H1_M0": {
+     "n": 38,
+     "unique_qids": 20,
+     "recall_exact": 1.0,
+     "forgetting_failure": 0.0,
+     "valid_transition": 0.5263157894736842,
+     "silent_change": 0.0,
+     "candidate_persistence": 0.5526315789473685,
+     "final_lexical_support": 0.02631578947368421,
+     "final_em": 0.5789473684210527,
+     "final_abstention": 0.0,
+     "recall_parse_valid": 1.0,
+     "transition_parse_valid": 1.0,
+     "actions": {
+      "CORRECT": 26,
+      "KEEP": 12
+     }
+    },
+    "H1_M1": {
+     "n": 38,
+     "unique_qids": 20,
+     "recall_exact": 1.0,
+     "forgetting_failure": 0.0,
+     "valid_transition": 0.5,
+     "silent_change": 0.0,
+     "candidate_persistence": 0.6842105263157895,
+     "final_lexical_support": 0.0,
+     "final_em": 0.6842105263157895,
+     "final_abstention": 0.05263157894736842,
+     "recall_parse_valid": 1.0,
+     "transition_parse_valid": 1.0,
+     "actions": {
+      "CORRECT": 19,
+      "KEEP": 17,
+      "CANNOT_VERIFY": 2
+     }
+    }
+   },
+   "first_turn_em_incorrect": {
+    "H0_M0": {
+     "n": 33,
+     "unique_qids": 26,
+     "recall_exact": 0.0,
+     "forgetting_failure": 0.0,
+     "valid_transition": 1.0,
+     "silent_change": 0.0,
+     "candidate_persistence": 0.06060606060606061,
+     "final_lexical_support": 0.0,
+     "final_em": 0.030303030303030304,
+     "final_abstention": 0.7878787878787878,
+     "recall_parse_valid": 1.0,
+     "transition_parse_valid": 1.0,
+     "actions": {
+      "ANSWER": 7,
+      "CANNOT_VERIFY": 26
+     }
+    },
+    "H0_M1": {
+     "n": 33,
+     "unique_qids": 26,
+     "recall_exact": 0.9393939393939394,
+     "forgetting_failure": 0.06060606060606061,
+     "valid_transition": 0.2727272727272727,
+     "silent_change": 0.0,
+     "candidate_persistence": 0.06060606060606061,
+     "final_lexical_support": 0.15151515151515152,
+     "final_em": 0.09090909090909091,
+     "final_abstention": 0.15151515151515152,
+     "recall_parse_valid": 1.0,
+     "transition_parse_valid": 1.0,
+     "actions": {
+      "CORRECT": 27,
+      "CANNOT_VERIFY": 5,
+      "KEEP": 1
+     }
+    },
+    "H1_M0": {
+     "n": 33,
+     "unique_qids": 26,
+     "recall_exact": 0.9393939393939394,
+     "forgetting_failure": 0.06060606060606061,
+     "valid_transition": 0.30303030303030304,
+     "silent_change": 0.0,
+     "candidate_persistence": 0.09090909090909091,
+     "final_lexical_support": 0.15151515151515152,
+     "final_em": 0.12121212121212122,
+     "final_abstention": 0.18181818181818182,
+     "recall_parse_valid": 1.0,
+     "transition_parse_valid": 1.0,
+     "actions": {
+      "CORRECT": 26,
+      "CANNOT_VERIFY": 6,
+      "KEEP": 1
+     }
+    },
+    "H1_M1": {
+     "n": 33,
+     "unique_qids": 26,
+     "recall_exact": 0.9393939393939394,
+     "forgetting_failure": 0.06060606060606061,
+     "valid_transition": 0.3333333333333333,
+     "silent_change": 0.0,
+     "candidate_persistence": 0.15151515151515152,
+     "final_lexical_support": 0.06060606060606061,
+     "final_em": 0.06060606060606061,
+     "final_abstention": 0.2727272727272727,
+     "recall_parse_valid": 1.0,
+     "transition_parse_valid": 1.0,
+     "actions": {
+      "CORRECT": 20,
+      "CANNOT_VERIFY": 9,
+      "KEEP": 4
+     }
+    }
+   }
+  },
+  "contrasts": {
+   "H1_M0_minus_H1_M1": {
+    "label": "MFC transcript-only minus fail-open transcript+memory",
+    "recall_exact": {
+     "n_qids": 46,
+     "delta": 0.0,
+     "delta_pp": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "ci95_pp": [
+      0.0,
+      0.0
+     ]
+    },
+    "forgetting_failure": {
+     "n_qids": 46,
+     "delta": 0.0,
+     "delta_pp": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "ci95_pp": [
+      0.0,
+      0.0
+     ]
+    },
+    "valid_transition": {
+     "n_qids": 46,
+     "delta": -0.06521739130434782,
+     "delta_pp": -6.521739130434782,
+     "ci95": [
+      -0.2246376811594203,
+      0.09420289855072464
+     ],
+     "ci95_pp": [
+      -22.463768115942027,
+      9.420289855072465
+     ]
+    },
+    "silent_change": {
+     "n_qids": 46,
+     "delta": 0.0,
+     "delta_pp": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "ci95_pp": [
+      0.0,
+      0.0
+     ]
+    },
+    "candidate_persistence": {
+     "n_qids": 46,
+     "delta": -0.10869565217391304,
+     "delta_pp": -10.869565217391305,
+     "ci95": [
+      -0.1956521739130435,
+      -0.021739130434782608
+     ],
+     "ci95_pp": [
+      -19.565217391304348,
+      -2.1739130434782608
+     ]
+    },
+    "final_lexical_support": {
+     "n_qids": 46,
+     "delta": 0.06521739130434782,
+     "delta_pp": 6.521739130434782,
+     "ci95": [
+      0.0,
+      0.15217391304347827
+     ],
+     "ci95_pp": [
+      0.0,
+      15.217391304347828
+     ]
+    },
+    "final_em": {
+     "n_qids": 46,
+     "delta": -0.03260869565217391,
+     "delta_pp": -3.260869565217391,
+     "ci95": [
+      -0.13043478260869565,
+      0.05434782608695652
+     ],
+     "ci95_pp": [
+      -13.043478260869565,
+      5.434782608695652
+     ]
+    },
+    "final_abstention": {
+     "n_qids": 46,
+     "delta": -0.10869565217391304,
+     "delta_pp": -10.869565217391305,
+     "ci95": [
+      -0.21739130434782608,
+      0.0
+     ],
+     "ci95_pp": [
+      -21.73913043478261,
+      0.0
+     ]
+    }
+   },
+   "H1_M0_minus_H0_M0": {
+    "label": "transcript-retention effect under MFC",
+    "recall_exact": {
+     "n_qids": 46,
+     "delta": 0.9782608695652174,
+     "delta_pp": 97.82608695652173,
+     "ci95": [
+      0.9347826086956522,
+      1.0
+     ],
+     "ci95_pp": [
+      93.47826086956522,
+      100.0
+     ]
+    },
+    "forgetting_failure": {
+     "n_qids": 46,
+     "delta": 0.021739130434782608,
+     "delta_pp": 2.1739130434782608,
+     "ci95": [
+      0.0,
+      0.06521739130434782
+     ],
+     "ci95_pp": [
+      0.0,
+      6.521739130434782
+     ]
+    },
+    "valid_transition": {
+     "n_qids": 46,
+     "delta": -0.6340579710144928,
+     "delta_pp": -63.40579710144928,
+     "ci95": [
+      -0.7753623188405797,
+      -0.4855072463768116
+     ],
+     "ci95_pp": [
+      -77.53623188405797,
+      -48.55072463768116
+     ]
+    },
+    "silent_change": {
+     "n_qids": 46,
+     "delta": 0.0,
+     "delta_pp": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "ci95_pp": [
+      0.0,
+      0.0
+     ]
+    },
+    "candidate_persistence": {
+     "n_qids": 46,
+     "delta": 0.09782608695652174,
+     "delta_pp": 9.782608695652174,
+     "ci95": [
+      -0.014492753623188403,
+      0.213768115942029
+     ],
+     "ci95_pp": [
+      -1.4492753623188404,
+      21.3768115942029
+     ]
+    },
+    "final_lexical_support": {
+     "n_qids": 46,
+     "delta": 0.08695652173913043,
+     "delta_pp": 8.695652173913043,
+     "ci95": [
+      0.021739130434782608,
+      0.17391304347826086
+     ],
+     "ci95_pp": [
+      2.1739130434782608,
+      17.391304347826086
+     ]
+    },
+    "final_em": {
+     "n_qids": 46,
+     "delta": 0.025362318840579715,
+     "delta_pp": 2.5362318840579716,
+     "ci95": [
+      -0.06159420289855072,
+      0.11231884057971016
+     ],
+     "ci95_pp": [
+      -6.159420289855072,
+      11.231884057971016
+     ]
+    },
+    "final_abstention": {
+     "n_qids": 46,
+     "delta": -0.5398550724637681,
+     "delta_pp": -53.985507246376805,
+     "ci95": [
+      -0.6811594202898551,
+      -0.39855072463768115
+     ],
+     "ci95_pp": [
+      -68.11594202898551,
+      -39.85507246376812
+     ]
+    }
+   },
+   "H0_M1_minus_H0_M0": {
+    "label": "public-memory effect without transcript",
+    "recall_exact": {
+     "n_qids": 46,
+     "delta": 0.9782608695652174,
+     "delta_pp": 97.82608695652173,
+     "ci95": [
+      0.9347826086956522,
+      1.0
+     ],
+     "ci95_pp": [
+      93.47826086956522,
+      100.0
+     ]
+    },
+    "forgetting_failure": {
+     "n_qids": 46,
+     "delta": 0.021739130434782608,
+     "delta_pp": 2.1739130434782608,
+     "ci95": [
+      0.0,
+      0.06521739130434782
+     ],
+     "ci95_pp": [
+      0.0,
+      6.521739130434782
+     ]
+    },
+    "valid_transition": {
+     "n_qids": 46,
+     "delta": -0.677536231884058,
+     "delta_pp": -67.7536231884058,
+     "ci95": [
+      -0.8115942028985508,
+      -0.5362318840579711
+     ],
+     "ci95_pp": [
+      -81.15942028985508,
+      -53.62318840579711
+     ]
+    },
+    "silent_change": {
+     "n_qids": 46,
+     "delta": 0.0,
+     "delta_pp": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ],
+     "ci95_pp": [
+      0.0,
+      0.0
+     ]
+    },
+    "candidate_persistence": {
+     "n_qids": 46,
+     "delta": 0.07246376811594203,
+     "delta_pp": 7.246376811594203,
+     "ci95": [
+      -0.036231884057971016,
+      0.18134057971014228
+     ],
+     "ci95_pp": [
+      -3.6231884057971016,
+      18.13405797101423
+     ]
+    },
+    "final_lexical_support": {
+     "n_qids": 46,
+     "delta": 0.06521739130434782,
+     "delta_pp": 6.521739130434782,
+     "ci95": [
+      0.0,
+      0.15217391304347827
+     ],
+     "ci95_pp": [
+      0.0,
+      15.217391304347828
+     ]
+    },
+    "final_em": {
+     "n_qids": 46,
+     "delta": 0.010869565217391308,
+     "delta_pp": 1.0869565217391308,
+     "ci95": [
+      -0.07608695652173914,
+      0.09420289855072464
+     ],
+     "ci95_pp": [
+      -7.608695652173914,
+      9.420289855072465
+     ]
+    },
+    "final_abstention": {
+     "n_qids": 46,
+     "delta": -0.4855072463768116,
+     "delta_pp": -48.55072463768116,
+     "ci95": [
+      -0.6231884057971014,
+      -0.34057971014492755
+     ],
+     "ci95_pp": [
+      -62.31884057971014,
+      -34.05797101449276
+     ]
+    }
+   }
+  }
+ },
+ "provenance_tag": {
+  "n_rows": 71,
+  "condition": {
+   "H1_M0_TAG": {
+    "n": 71,
+    "unique_qids": 46,
+    "recall_exact": 1.0,
+    "forgetting_failure": 0.0,
+    "valid_transition": 0.4084507042253521,
+    "silent_change": 0.0,
+    "candidate_persistence": 0.2535211267605634,
+    "final_lexical_support": 0.056338028169014086,
+    "final_em": 0.3380281690140845,
+    "final_abstention": 0.2535211267605634,
+    "recall_parse_valid": 1.0,
+    "transition_parse_valid": 1.0,
+    "actions": {
+     "CORRECT": 47,
+     "CANNOT_VERIFY": 18,
+     "KEEP": 6
+    }
+   }
+  },
+  "tag_minus_untagged": {
+   "recall_exact": {
+    "n_qids": 46,
+    "delta": 0.021739130434782608,
+    "delta_pp": 2.1739130434782608,
+    "ci95": [
+     0.0,
+     0.06521739130434782
+    ],
+    "ci95_pp": [
+     0.0,
+     6.521739130434782
+    ]
+   },
+   "forgetting_failure": {
+    "n_qids": 46,
+    "delta": -0.021739130434782608,
+    "delta_pp": -2.1739130434782608,
+    "ci95": [
+     -0.06521739130434782,
+     0.0
+    ],
+    "ci95_pp": [
+     -6.521739130434782,
+     0.0
+    ]
+   },
+   "valid_transition": {
+    "n_qids": 46,
+    "delta": 0.050724637681159424,
+    "delta_pp": 5.072463768115942,
+    "ci95": [
+     -0.10507246376811594,
+     0.2028985507246377
+    ],
+    "ci95_pp": [
+     -10.507246376811594,
+     20.28985507246377
+    ]
+   },
+   "silent_change": {
+    "n_qids": 46,
+    "delta": 0.0,
+    "delta_pp": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "ci95_pp": [
+     0.0,
+     0.0
+    ]
+   },
+   "candidate_persistence": {
+    "n_qids": 46,
+    "delta": -0.08695652173913043,
+    "delta_pp": -8.695652173913043,
+    "ci95": [
+     -0.17391304347826086,
+     -0.021739130434782608
+    ],
+    "ci95_pp": [
+     -17.391304347826086,
+     -2.1739130434782608
+    ]
+   },
+   "final_lexical_support": {
+    "n_qids": 46,
+    "delta": -0.043478260869565216,
+    "delta_pp": -4.3478260869565215,
+    "ci95": [
+     -0.10869565217391304,
+     0.0
+    ],
+    "ci95_pp": [
+     -10.869565217391305,
+     0.0
+    ]
+   },
+   "final_em": {
+    "n_qids": 46,
+    "delta": 0.0,
+    "delta_pp": 0.0,
+    "ci95": [
+     -0.06521739130434782,
+     0.06521739130434782
+    ],
+    "ci95_pp": [
+     -6.521739130434782,
+     6.521739130434782
+    ]
+   },
+   "final_abstention": {
+    "n_qids": 46,
+    "delta": 0.2608695652173913,
+    "delta_pp": 26.08695652173913,
+    "ci95": [
+     0.13043478260869565,
+     0.391304347826087
+    ],
+    "ci95_pp": [
+     13.043478260869565,
+     39.130434782608695
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "artifact_scope": "definitive revised-paper contract",
+  "static": {
+    "dataset": "M3DocVQA",
+    "released_validation_n": 2441,
+    "candidate_complete_n": 2324,
+    "excluded_incomplete_candidate_n": 117,
+    "calibration_partition_n": 1162,
+    "reporting_partition_n": 1162,
+    "reader": "Qwen3-VL-8B-Instruct",
+    "initial_and_repair_reader_match": true,
+    "max_model_len": 24576,
+    "evidence_token_budget": 14000,
+    "max_images_total": 1,
+    "decoding": "greedy",
+    "max_new_tokens": 64,
+    "gate_input": "exact post-packing reader-visible OCR/text component",
+    "population_scope": "candidate-complete subset of the released validation file; not a full-validation result",
+    "partition": "117 incomplete-candidate qids excluded before disjoint 1162-qid calibration and 1162-qid reporting partitions",
+    "definitive_routing": "fixed refusal becomes a typed status without RepairRead; deterministic rejection of an unsupported non-refusal triggers at most one RepairRead",
+    "metric": "dynamic-aligned bidirectional substring EM after lowercasing and whitespace normalization for every initial and RepairRead output; short-answer and punctuation/article normalization is restricted to complementary F1 and ANLS; empty outputs and the fixed refusal receive zero",
+    "learned_router_evaluation": "descriptive diagnostic only; training labels, inner-validation early stopping, and the median baseline-row OOF threshold use calibration qids only; reporting labels are unused until evaluation; +0.09 pp EM with CI including zero at +0.493 calls/q does not dominate deterministic routing",
+    "support_router_features": [
+      "f_S_str",
+      "f_S_tok",
+      "f_S_ent",
+      "f_S_non",
+      "f_H_unsupported"
+    ],
+    "support_router_hyperparameters": {
+      "objective": "lambdarank",
+      "num_leaves": 31,
+      "learning_rate": 0.05,
+      "max_estimators": 500,
+      "min_data_in_leaf": 20,
+      "reg_lambda": 1.0,
+      "random_state": 42,
+      "early_stopping_rounds": 30,
+      "final_estimators": 2
+    },
+    "counterfactual_rows": "training augmentation on calibration qids only; features recomputed against the exact calibration packet; zero counterfactual reader outputs at reporting time",
+    "untouched_held_out_claim": false,
+    "reread_prompt": "archived best-guess template, not the dynamic copy-focused repair prompt; strict lexical admission follows either generation"
+  },
+  "dynamic": {
+    "dataset": "M3DocVQA",
+    "qid_count": 300,
+    "agents": [
+      "ReAct",
+      "PlanRAG",
+      "AutoGen"
+    ],
+    "reader": "Qwen3-VL-8B-Instruct",
+    "reader_mode": "text-only",
+    "max_model_len": 16384,
+    "decoding": "greedy",
+    "gate_input": "exact post-truncation reader-visible OCR/text packet",
+    "public_memory": "typed FACT/STATUS records",
+    "factual_consumer_rule": "retrieval, planning, and synthesis read only the FACT projection; REFUSAL and NO_COMMIT remain audit-visible STATUS records",
+    "full_admit_router": "frozen historical 17-feature singleton-compatible LightGBM checkpoint",
+    "lambda_unsup": 0.5,
+    "tau_commit": -3.832878,
+    "router_scope": "archived compatibility diagnostic; no router-only trigger occurred and no causal compute effect is attributed; not required for the lexical guarantee",
+    "definitive_routing": "deterministic lexical admission and at most one RepairRead after a parse failure or unsupported non-refusal; initial refusals become STATUS without repair",
+    "repair_prompt": "frozen dynamic_repair; contains a yes/no generation permission, with no gate bypass",
+    "final_support_memory_policy": "preserve_all_vanilla_memory_output_only_repair",
+    "final_support_retry": "Check and repair only the user-facing final answer; retain all Vanilla intermediate and pre-repair terminal memory records without output-driven replacement.",
+    "initial_memory": "empty; no pre-existing admitted records",
+    "task_question": "PlanRAG intermediate: current subquestion; ReAct/AutoGen and terminal admission: main question. Initial synthesis can prepend admitted findings, but terminal repair uses the main question without the findings preamble.",
+    "memory_adapter": "FACT projection returns answer-value content by write position; surrounding logs retain subquestion/search/turn labels and packet pointers. PlanRAG synthesis joins each FACT value to its original sub_q. These links are context, not certified relations.",
+    "loop_limits": {
+      "react": "forced first search, then FINISH or 5 search turns; final synthesis",
+      "planrag": "one plan, exactly 2 subquestions (fixed fallback on parse failure), then synthesis",
+      "autogen": "forced first request, then STOP/unparseable request or 5 retrieval turns; final synthesis"
+    },
+    "hard_refusal_continuation": "A failed-repair refusal becomes STATUS; it does not directly abort the agent loop."
+  },
+  "admission": {
+    "verifier": "strict normalized substring",
+    "non_refusal_bypass_enabled": false,
+    "refusal_action": "record as non-factual STATUS without RepairRead; exclude from factual prompts and lexical contamination",
+    "factual_consumer_rule": "reuse only records whose memory_status is COMMIT or diagnostic COMMIT_DIAGNOSTIC_FAIL_OPEN; ignore REFUSAL and NO_COMMIT as factual content",
+    "repair_calls_per_proposed_write_max": 1,
+    "repair_fail_definition": "RepairRead returns a refusal or a non-refusal value that fails the strict lexical check",
+    "default_repair_fail_policy": "memory-fail-closed/output-fail-open",
+    "memory_sentinel": "[NO_COMMIT]"
+  },
+  "metrics": {
+    "contamination": "trajectory contains at least one admitted non-refusal content write, including the terminal memory write, without normalized-substring support in its exact delivered OCR/text packet",
+    "no_commit": "trajectory contains at least one [NO_COMMIT] memory action",
+    "calls_q": "initial and repair reader invocations per query; excludes planning and reasoning invocations; model-based verifier costs are reported separately",
+    "dynamic_raw_em": "normalized bidirectional substring EM; empty outputs and the fixed refusal receive zero",
+    "static_em": "dynamic-aligned bidirectional substring EM after lowercasing and whitespace normalization for every initial and RepairRead output; empty outputs and the fixed refusal receive zero",
+    "word_boundary_sensitivity": "diagnostic only: same refusal-aware normalization and bidirectional substring containment, with Unicode word boundaries at both ends of the contained string; not a semantic accuracy metric",
+    "admitted_write_rate": "Admitted content writes / all proposed intermediate and terminal writes, including initial refusals; policy-common availability measure, unlike Any NO_COMMIT",
+    "gate_boundary_audit": "Character-interior matching diagnostic, distinct from answer scoring; 1318/1321 final ADMIT content writes recoverable, 323 verified against recorded packet hashes, 995 card-ID reconstructions, 3 unreproduced recorded hashes excluded; no gate or output changes"
+  },
+  "scoring_revision": "2026-10-20: fixed refusals receive zero substring EM; saved generations and admission actions unchanged",
+  "prompts": {
+    "templates": "frozen_prompt_templates.json",
+    "manifest": "frozen_prompt_manifest.json",
+    "assembly": "prompts.md"
+  },
+  "metric_scope_revision": "2026-10-20: terminal memory records included in typed trajectory contamination; primary answer scores, generations, decisions and calls unchanged",
+  "final_support_contract_revision": "2026-10-20: normalize typed and reused legacy rows to the same preserved-Vanilla memory policy; exact-reader lexical support has no binary-answer exception. Generations, primary answer scores and reader calls unchanged."
+}

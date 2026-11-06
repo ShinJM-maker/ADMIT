@@ -1,0 +1,560 @@
+{
+  "status": "COMPLETE_AUDITED",
+  "scope": "terminal policy portability, not multi-turn downstream-effect replication",
+  "n_rows": 2400,
+  "fresh_terminal_reader_generations": 2670,
+  "pipelines": {
+    "fixed512": {
+      "n": 300,
+      "arms": {
+        "fail_open": {
+          "raw_em": 0.3466666666666667,
+          "contamination": 0.06,
+          "no_commit": 0.0,
+          "calls_q": 1.0966666666666667
+        },
+        "admit": {
+          "raw_em": 0.3466666666666667,
+          "contamination": 0.0,
+          "no_commit": 0.06,
+          "calls_q": 1.0966666666666667
+        },
+        "hard_refuse": {
+          "raw_em": 0.31,
+          "contamination": 0.0,
+          "no_commit": 0.0,
+          "calls_q": 1.0966666666666667
+        }
+      },
+      "paired": {
+        "fail_open": {
+          "raw_em": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "contamination": {
+            "delta": -6.0,
+            "lo95": -9.0,
+            "hi95": -3.3333333333333335
+          },
+          "no_commit": {
+            "delta": 6.0,
+            "lo95": 3.3333333333333335,
+            "hi95": 9.0
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        },
+        "hard_refuse": {
+          "raw_em": {
+            "delta": 3.6666666666666665,
+            "lo95": 1.6666666666666667,
+            "hi95": 6.0
+          },
+          "contamination": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "no_commit": {
+            "delta": 6.0,
+            "lo95": 3.3333333333333335,
+            "hi95": 9.0
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        }
+      }
+    },
+    "gte7b": {
+      "n": 300,
+      "arms": {
+        "fail_open": {
+          "raw_em": 0.25333333333333335,
+          "contamination": 0.08333333333333333,
+          "no_commit": 0.0,
+          "calls_q": 1.12
+        },
+        "admit": {
+          "raw_em": 0.25333333333333335,
+          "contamination": 0.0,
+          "no_commit": 0.08333333333333333,
+          "calls_q": 1.12
+        },
+        "hard_refuse": {
+          "raw_em": 0.21333333333333335,
+          "contamination": 0.0,
+          "no_commit": 0.0,
+          "calls_q": 1.12
+        }
+      },
+      "paired": {
+        "fail_open": {
+          "raw_em": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "contamination": {
+            "delta": -8.333333333333332,
+            "lo95": -11.666666666666666,
+            "hi95": -5.333333333333334
+          },
+          "no_commit": {
+            "delta": 8.333333333333332,
+            "lo95": 5.333333333333334,
+            "hi95": 11.666666666666666
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        },
+        "hard_refuse": {
+          "raw_em": {
+            "delta": 4.0,
+            "lo95": 2.0,
+            "hi95": 6.333333333333334
+          },
+          "contamination": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "no_commit": {
+            "delta": 8.333333333333332,
+            "lo95": 5.333333333333334,
+            "hi95": 11.666666666666666
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        }
+      }
+    },
+    "hybrid": {
+      "n": 300,
+      "arms": {
+        "fail_open": {
+          "raw_em": 0.36666666666666664,
+          "contamination": 0.06,
+          "no_commit": 0.0,
+          "calls_q": 1.1033333333333333
+        },
+        "admit": {
+          "raw_em": 0.36666666666666664,
+          "contamination": 0.0,
+          "no_commit": 0.06,
+          "calls_q": 1.1033333333333333
+        },
+        "hard_refuse": {
+          "raw_em": 0.32666666666666666,
+          "contamination": 0.0,
+          "no_commit": 0.0,
+          "calls_q": 1.1033333333333333
+        }
+      },
+      "paired": {
+        "fail_open": {
+          "raw_em": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "contamination": {
+            "delta": -6.0,
+            "lo95": -9.0,
+            "hi95": -3.3333333333333335
+          },
+          "no_commit": {
+            "delta": 6.0,
+            "lo95": 3.3333333333333335,
+            "hi95": 9.0
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        },
+        "hard_refuse": {
+          "raw_em": {
+            "delta": 4.0,
+            "lo95": 2.0,
+            "hi95": 6.333333333333334
+          },
+          "contamination": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "no_commit": {
+            "delta": 6.0,
+            "lo95": 3.3333333333333335,
+            "hi95": 9.0
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        }
+      }
+    },
+    "lumberchunker": {
+      "n": 300,
+      "arms": {
+        "fail_open": {
+          "raw_em": 0.36,
+          "contamination": 0.05333333333333334,
+          "no_commit": 0.0,
+          "calls_q": 1.1
+        },
+        "admit": {
+          "raw_em": 0.36,
+          "contamination": 0.0,
+          "no_commit": 0.05333333333333334,
+          "calls_q": 1.1
+        },
+        "hard_refuse": {
+          "raw_em": 0.32,
+          "contamination": 0.0,
+          "no_commit": 0.0,
+          "calls_q": 1.1
+        }
+      },
+      "paired": {
+        "fail_open": {
+          "raw_em": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "contamination": {
+            "delta": -5.333333333333334,
+            "lo95": -8.0,
+            "hi95": -3.0
+          },
+          "no_commit": {
+            "delta": 5.333333333333334,
+            "lo95": 3.0,
+            "hi95": 8.0
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        },
+        "hard_refuse": {
+          "raw_em": {
+            "delta": 4.0,
+            "lo95": 2.0,
+            "hi95": 6.333333333333334
+          },
+          "contamination": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "no_commit": {
+            "delta": 5.333333333333334,
+            "lo95": 3.0,
+            "hi95": 8.0
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        }
+      }
+    },
+    "metachunker": {
+      "n": 300,
+      "arms": {
+        "fail_open": {
+          "raw_em": 0.3566666666666667,
+          "contamination": 0.06666666666666667,
+          "no_commit": 0.0,
+          "calls_q": 1.1166666666666667
+        },
+        "admit": {
+          "raw_em": 0.3566666666666667,
+          "contamination": 0.0,
+          "no_commit": 0.06666666666666667,
+          "calls_q": 1.1166666666666667
+        },
+        "hard_refuse": {
+          "raw_em": 0.32,
+          "contamination": 0.0,
+          "no_commit": 0.0,
+          "calls_q": 1.1166666666666667
+        }
+      },
+      "paired": {
+        "fail_open": {
+          "raw_em": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "contamination": {
+            "delta": -6.666666666666667,
+            "lo95": -9.666666666666666,
+            "hi95": -4.0
+          },
+          "no_commit": {
+            "delta": 6.666666666666667,
+            "lo95": 4.0,
+            "hi95": 9.666666666666666
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        },
+        "hard_refuse": {
+          "raw_em": {
+            "delta": 3.6666666666666665,
+            "lo95": 1.6666666666666667,
+            "hi95": 6.0
+          },
+          "contamination": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "no_commit": {
+            "delta": 6.666666666666667,
+            "lo95": 4.0,
+            "hi95": 9.666666666666666
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        }
+      }
+    },
+    "page_qwen3emb": {
+      "n": 300,
+      "arms": {
+        "fail_open": {
+          "raw_em": 0.3466666666666667,
+          "contamination": 0.08666666666666667,
+          "no_commit": 0.0,
+          "calls_q": 1.14
+        },
+        "admit": {
+          "raw_em": 0.3466666666666667,
+          "contamination": 0.0,
+          "no_commit": 0.08666666666666667,
+          "calls_q": 1.14
+        },
+        "hard_refuse": {
+          "raw_em": 0.30666666666666664,
+          "contamination": 0.0,
+          "no_commit": 0.0,
+          "calls_q": 1.14
+        }
+      },
+      "paired": {
+        "fail_open": {
+          "raw_em": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "contamination": {
+            "delta": -8.666666666666668,
+            "lo95": -12.0,
+            "hi95": -5.666666666666666
+          },
+          "no_commit": {
+            "delta": 8.666666666666668,
+            "lo95": 5.666666666666666,
+            "hi95": 12.0
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        },
+        "hard_refuse": {
+          "raw_em": {
+            "delta": 4.0,
+            "lo95": 2.0,
+            "hi95": 6.333333333333334
+          },
+          "contamination": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "no_commit": {
+            "delta": 8.666666666666668,
+            "lo95": 5.666666666666666,
+            "hi95": 12.0
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        }
+      }
+    },
+    "qwen3emb": {
+      "n": 300,
+      "arms": {
+        "fail_open": {
+          "raw_em": 0.3233333333333333,
+          "contamination": 0.09333333333333334,
+          "no_commit": 0.0,
+          "calls_q": 1.1266666666666667
+        },
+        "admit": {
+          "raw_em": 0.3233333333333333,
+          "contamination": 0.0,
+          "no_commit": 0.09333333333333334,
+          "calls_q": 1.1266666666666667
+        },
+        "hard_refuse": {
+          "raw_em": 0.2633333333333333,
+          "contamination": 0.0,
+          "no_commit": 0.0,
+          "calls_q": 1.1266666666666667
+        }
+      },
+      "paired": {
+        "fail_open": {
+          "raw_em": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "contamination": {
+            "delta": -9.333333333333334,
+            "lo95": -12.674999999999994,
+            "hi95": -6.333333333333334
+          },
+          "no_commit": {
+            "delta": 9.333333333333334,
+            "lo95": 6.333333333333334,
+            "hi95": 12.67499999999988
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        },
+        "hard_refuse": {
+          "raw_em": {
+            "delta": 6.0,
+            "lo95": 3.3333333333333335,
+            "hi95": 9.0
+          },
+          "contamination": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "no_commit": {
+            "delta": 9.333333333333334,
+            "lo95": 6.333333333333334,
+            "hi95": 12.67499999999988
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        }
+      }
+    },
+    "semantic": {
+      "n": 300,
+      "arms": {
+        "fail_open": {
+          "raw_em": 0.36,
+          "contamination": 0.04666666666666667,
+          "no_commit": 0.0,
+          "calls_q": 1.0966666666666667
+        },
+        "admit": {
+          "raw_em": 0.36,
+          "contamination": 0.0,
+          "no_commit": 0.04666666666666667,
+          "calls_q": 1.0966666666666667
+        },
+        "hard_refuse": {
+          "raw_em": 0.32666666666666666,
+          "contamination": 0.0,
+          "no_commit": 0.0,
+          "calls_q": 1.0966666666666667
+        }
+      },
+      "paired": {
+        "fail_open": {
+          "raw_em": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "contamination": {
+            "delta": -4.666666666666667,
+            "lo95": -7.333333333333333,
+            "hi95": -2.3333333333333335
+          },
+          "no_commit": {
+            "delta": 4.666666666666667,
+            "lo95": 2.3333333333333335,
+            "hi95": 7.333333333333333
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        },
+        "hard_refuse": {
+          "raw_em": {
+            "delta": 3.3333333333333335,
+            "lo95": 1.3333333333333335,
+            "hi95": 5.333333333333334
+          },
+          "contamination": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          },
+          "no_commit": {
+            "delta": 4.666666666666667,
+            "lo95": 2.3333333333333335,
+            "hi95": 7.333333333333333
+          },
+          "calls_q": {
+            "delta": 0.0,
+            "lo95": 0.0,
+            "hi95": 0.0
+          }
+        }
+      }
+    }
+  }
+}

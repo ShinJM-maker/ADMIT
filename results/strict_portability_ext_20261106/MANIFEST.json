@@ -1,0 +1,77 @@
+{
+  "scope": "terminal policy portability, not multi-turn downstream-effect replication",
+  "n_qids": 300,
+  "contract_sha256": "a169feae678160c74b106fe1ae5a026c9e537ea7fb9162883ebf9de0ec36b7d5",
+  "arms": [
+    "fail_open",
+    "admit",
+    "hard_refuse"
+  ],
+  "sampling": "same historical 300 common qids, reused descriptive sample",
+  "packet_token_budget": 4500,
+  "generation": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 64,
+    "seed": 20260928
+  },
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 20260928,
+    "unit": "qid within each pipeline",
+    "pool_p_value": false
+  },
+  "legacy_tag": "FACT is the implementation alias for ADMITTED; STATUS is never reused",
+  "comparison": "All three arms share freshly generated initial answer and, on strict failure, one freshly generated RepairRead; only failed-repair output/storage actions differ. Fail-open and ADMIT have identical terminal output/calls by construction.",
+  "status": "FROZEN_BEFORE_FRESH_INFERENCE",
+  "n_rows": 2400,
+  "pipelines": [
+    "fixed512",
+    "gte7b",
+    "hybrid",
+    "lumberchunker",
+    "metachunker",
+    "page_qwen3emb",
+    "qwen3emb",
+    "semantic"
+  ],
+  "sources": {
+    "frozen_packets.jsonl": {
+      "sha256": "a6cace23f884c1b6bd28d4dc2ffbc9a2ca595d9ab6d56be149130e91d991aa85"
+    },
+    "upstream:page_qwen3emb": {
+      "source": "hikey_frozen_artifacts/baselines_eval/packs/M3DocVQA_text_page_qwen3emb_global.jsonl",
+      "sha256": "03313ba202ca1611fa16079f82f43cddc6036dfdd4086bb435efd057dc6c94d4"
+    },
+    "upstream:fixed512": {
+      "source": "hikey_frozen_artifacts/m3_stage2_fixed512.jsonl",
+      "sha256": "f8ecba8fc321f73f52a19abf1d8a16319d2cef6ddcd04c668212de32d614cb16"
+    },
+    "upstream:semantic": {
+      "source": "hikey_frozen_artifacts/m3_stage2_semantic.jsonl",
+      "sha256": "06414ac4b3cf16b39c8175384a88ae0a7129e8c87cf8452d3c9144b0d72b3386"
+    },
+    "upstream:lumberchunker": {
+      "source": "hikey_frozen_artifacts/pilot_pevid/chunking_baselines/m3_stage2_lumberchunker_real.jsonl",
+      "sha256": "f3ba9ca9e8894a2d80b97af4710e09e9dc4467dae2cecb76a190d84aa581569d"
+    },
+    "upstream:metachunker": {
+      "source": "hikey_frozen_artifacts/pilot_pevid/chunking_baselines/m3_stage2_metachunker_real.jsonl",
+      "sha256": "a1c8e666571c2d723551a7b2203f6e24b4a935a8f4092f5069812c46d2bbca60"
+    },
+    "upstream:gte7b": {
+      "source": "hikey_frozen_artifacts/baselines_eval/packs/M3DocVQA_gte7b_only.jsonl",
+      "sha256": "64111f59f8beb766a74143f3cd381a919a329d2e247a3fbecfc07628a91f00bb"
+    },
+    "upstream:qwen3emb": {
+      "source": "hikey_frozen_artifacts/baselines_eval/packs/M3DocVQA_qwen3_only.jsonl",
+      "sha256": "56865391aaba9e45c383e03d24ce325a8aaefb4450312c0b56c1ad2313036e43"
+    },
+    "upstream:hybrid": {
+      "source": "hikey_frozen_artifacts/baselines_eval/packs/M3DocVQA_hybrid_nostage1.jsonl",
+      "sha256": "d19d905b7de46f22f4fa68f0d9bc53ddfaa9401eddc557f97c999d31c3a70103"
+    }
+  },
+  "extends": "strict_portability_20260928",
+  "note": "Additional public upstream artifacts; same qids, contract, reader, decoding, and serialization as the first eight."
+}

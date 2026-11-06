@@ -1,0 +1,424 @@
+{
+  "status": "PASS",
+  "contract": {
+    "dataset": "M3DocVQA",
+    "released_validation_qids": 2441,
+    "candidate_complete_qids": 2324,
+    "excluded_incomplete_candidate_qids": 117,
+    "population_scope": "candidate-complete subset; 117 incomplete-candidate qids excluded before splitting",
+    "calibration_qids": 1162,
+    "reporting_qids": 1162,
+    "partition_overlap": 0,
+    "reader": "Qwen3-VL-8B-Instruct for initial read and RepairRead",
+    "packet": "exact post-truncation reader-visible OCR/text",
+    "runtime_features": [
+      "f_S_str",
+      "f_S_tok",
+      "f_S_ent",
+      "f_S_non",
+      "f_H_unsupported"
+    ],
+    "runtime_counterfactual_outputs": 0,
+    "training_augmentation": "counterfactual candidate answers from calibration qids only; every feature recomputed against the exact calibration packet",
+    "model_selection": "five outer calibration folds; early stopping only on an inner calibration fold; outer-test labels never enter fitting or stopping",
+    "threshold": "median of calibration baseline-row OOF scores",
+    "reporting_labels_used_for_training_or_threshold": false,
+    "metric": "dynamic-aligned bidirectional lowercase/whitespace-normalized substring EM for every output; fixed refusals are typed STATUS records and do not trigger RepairRead; complementary F1 and ANLS use short-answer extraction plus punctuation/article removal; scoring revision 2026-10-20: refusals receive zero substring EM",
+    "frozen_router_training": "Original fitted router and routes retained; only reporting scores are recomputed."
+  },
+  "router": {
+    "features": [
+      "f_S_str",
+      "f_S_tok",
+      "f_S_ent",
+      "f_S_non",
+      "f_H_unsupported"
+    ],
+    "threshold_percentile": 50,
+    "threshold_source": "calibration baseline-row OOF scores only",
+    "threshold": -0.01956849758803275,
+    "final_iterations": 2,
+    "folds": [
+      {
+        "outer_fold": 0,
+        "outer_train_qids": 929,
+        "outer_test_qids": 233,
+        "inner_train_qids": 696,
+        "inner_validation_qids": 233,
+        "selected_iterations": 3
+      },
+      {
+        "outer_fold": 1,
+        "outer_train_qids": 929,
+        "outer_test_qids": 233,
+        "inner_train_qids": 697,
+        "inner_validation_qids": 232,
+        "selected_iterations": 2
+      },
+      {
+        "outer_fold": 2,
+        "outer_train_qids": 930,
+        "outer_test_qids": 232,
+        "inner_train_qids": 698,
+        "inner_validation_qids": 232,
+        "selected_iterations": 1
+      },
+      {
+        "outer_fold": 3,
+        "outer_train_qids": 930,
+        "outer_test_qids": 232,
+        "inner_train_qids": 698,
+        "inner_validation_qids": 232,
+        "selected_iterations": 1
+      },
+      {
+        "outer_fold": 4,
+        "outer_train_qids": 930,
+        "outer_test_qids": 232,
+        "inner_train_qids": 697,
+        "inner_validation_qids": 233,
+        "selected_iterations": 12
+      }
+    ],
+    "feature_gain": {
+      "f_S_str": 23.93559876899235,
+      "f_S_tok": 333.0878787599504,
+      "f_S_ent": 61.93164327740669,
+      "f_S_non": 31.778950691223145,
+      "f_H_unsupported": 0.043559201061725616
+    }
+  },
+  "metrics": {
+    "Vanilla single-pass": {
+      "n": 1162,
+      "EM": 0.4010327022375215,
+      "F1": 0.38638444888444884,
+      "ANLS": 0.37849185952524167,
+      "unsupNR_strict": 0.1549053356282272,
+      "value_supported_EM": 0.31841652323580033,
+      "calls": 1.0,
+      "no_commit": 0.0,
+      "routes": {
+        "single_pass": 1162
+      }
+    },
+    "Gate-only": {
+      "n": 1162,
+      "EM": 0.4010327022375215,
+      "F1": 0.38638444888444884,
+      "ANLS": 0.37849185952524167,
+      "unsupNR_strict": 0.1549053356282272,
+      "value_supported_EM": 0.31841652323580033,
+      "calls": 1.0,
+      "no_commit": 0.1549053356282272,
+      "routes": {
+        "initial_refusal": 271,
+        "initial_admit": 711,
+        "no_commit_output_fallback": 180
+      }
+    },
+    "ADMIT": {
+      "n": 1162,
+      "EM": 0.4036144578313253,
+      "F1": 0.3894825555970134,
+      "ANLS": 0.38119655586160756,
+      "unsupNR_strict": 0.14802065404475043,
+      "value_supported_EM": 0.3218588640275387,
+      "calls": 1.1549053356282273,
+      "no_commit": 0.14802065404475043,
+      "routes": {
+        "initial_refusal": 271,
+        "initial_admit": 711,
+        "no_commit_output_fallback": 172,
+        "repair_admit": 8
+      }
+    },
+    "Learned-router diagnostic": {
+      "n": 1162,
+      "EM": 0.4044750430292599,
+      "F1": 0.3905890222800722,
+      "ANLS": 0.38192805327985196,
+      "unsupNR_strict": 0.14802065404475043,
+      "value_supported_EM": 0.3227194492254733,
+      "calls": 1.6480206540447504,
+      "no_commit": 0.1566265060240964,
+      "routes": {
+        "initial_refusal": 271,
+        "repair_admit": 571,
+        "no_commit_output_fallback": 182,
+        "initial_admit": 138
+      }
+    },
+    "Final-support + retry": {
+      "n": 1162,
+      "EM": 0.4036144578313253,
+      "F1": 0.3894825555970134,
+      "ANLS": 0.38119655586160756,
+      "unsupNR_strict": 0.14802065404475043,
+      "value_supported_EM": 0.3218588640275387,
+      "calls": 1.1549053356282273,
+      "no_commit": 0.0,
+      "routes": {
+        "initial_refusal": 271,
+        "initial_supported": 711,
+        "fallback_initial": 172,
+        "repair_admit": 8
+      }
+    },
+    "Every-q repair": {
+      "n": 1162,
+      "EM": 0.43459552495697074,
+      "F1": 0.42258366752772947,
+      "ANLS": 0.41936712529419984,
+      "unsupNR_strict": 0.14802065404475043,
+      "value_supported_EM": 0.3528399311531842,
+      "calls": 2.0,
+      "no_commit": 0.16006884681583478,
+      "routes": {
+        "repair_admit": 889,
+        "initial_refusal_fallback": 87,
+        "no_commit_output_fallback": 186
+      }
+    }
+  },
+  "paired_deltas": {
+    "ADMIT_minus_Vanilla single-pass": {
+      "EM": {
+        "n": 1162,
+        "mean": 0.0025817555938037868,
+        "ci95": [
+          0.0,
+          0.006024096385542169
+        ],
+        "draws": 10000
+      },
+      "F1": {
+        "n": 1162,
+        "mean": 0.003098106712564544,
+        "ci95": [
+          0.0005163511187607573,
+          0.006540447504302925
+        ],
+        "draws": 10000
+      },
+      "ANLS": {
+        "n": 1162,
+        "mean": 0.0027046963363658717,
+        "ci95": [
+          -0.0006147037128104255,
+          0.0068846815834767644
+        ],
+        "draws": 10000
+      },
+      "value_supported_EM": {
+        "n": 1162,
+        "mean": 0.0034423407917383822,
+        "ci95": [
+          0.0008605851979345956,
+          0.0068846815834767644
+        ],
+        "draws": 10000
+      },
+      "calls": {
+        "n": 1162,
+        "mean": 0.1549053356282272,
+        "ci95": [
+          0.1342512908777969,
+          0.17558089500860552
+        ],
+        "draws": 10000
+      },
+      "no_commit": {
+        "n": 1162,
+        "mean": 0.14802065404475043,
+        "ci95": [
+          0.12736660929432014,
+          0.1686746987951807
+        ],
+        "draws": 10000
+      }
+    },
+    "ADMIT_minus_Final-support + retry": {
+      "EM": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "F1": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "ANLS": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "value_supported_EM": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "calls": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "no_commit": {
+        "n": 1162,
+        "mean": 0.14802065404475043,
+        "ci95": [
+          0.12736660929432014,
+          0.1686746987951807
+        ],
+        "draws": 10000
+      }
+    },
+    "ADMIT_minus_Every-q repair": {
+      "EM": {
+        "n": 1162,
+        "mean": -0.03098106712564544,
+        "ci95": [
+          -0.043029259896729774,
+          -0.019793459552495698
+        ],
+        "draws": 10000
+      },
+      "F1": {
+        "n": 1162,
+        "mean": -0.03310111193071607,
+        "ci95": [
+          -0.04474097068546294,
+          -0.02219746332267847
+        ],
+        "draws": 10000
+      },
+      "ANLS": {
+        "n": 1162,
+        "mean": -0.03817056943259231,
+        "ci95": [
+          -0.05037995017284023,
+          -0.027111959241527935
+        ],
+        "draws": 10000
+      },
+      "value_supported_EM": {
+        "n": 1162,
+        "mean": -0.03098106712564544,
+        "ci95": [
+          -0.043029259896729774,
+          -0.019793459552495698
+        ],
+        "draws": 10000
+      },
+      "calls": {
+        "n": 1162,
+        "mean": -0.8450946643717728,
+        "ci95": [
+          -0.8657487091222031,
+          -0.8244191049913945
+        ],
+        "draws": 10000
+      },
+      "no_commit": {
+        "n": 1162,
+        "mean": -0.012048192771084338,
+        "ci95": [
+          -0.0189328743545611,
+          -0.006024096385542169
+        ],
+        "draws": 10000
+      }
+    },
+    "Learned-router_diagnostic_minus_ADMIT": {
+      "EM": {
+        "n": 1162,
+        "mean": 0.0008605851979345956,
+        "ci95": [
+          -0.0051635111876075735,
+          0.0068846815834767644
+        ],
+        "draws": 10000
+      },
+      "F1": {
+        "n": 1162,
+        "mean": 0.0011064666830587658,
+        "ci95": [
+          -0.004245758544381608,
+          0.006458896811736736
+        ],
+        "draws": 10000
+      },
+      "ANLS": {
+        "n": 1162,
+        "mean": 0.0007314974182444061,
+        "ci95": [
+          -0.004302925989672977,
+          0.005550774526678142
+        ],
+        "draws": 10000
+      },
+      "value_supported_EM": {
+        "n": 1162,
+        "mean": 0.0008605851979345956,
+        "ci95": [
+          -0.0051635111876075735,
+          0.0068846815834767644
+        ],
+        "draws": 10000
+      },
+      "calls": {
+        "n": 1162,
+        "mean": 0.49311531841652323,
+        "ci95": [
+          0.463855421686747,
+          0.5215146299483648
+        ],
+        "draws": 10000
+      },
+      "no_commit": {
+        "n": 1162,
+        "mean": 0.008605851979345954,
+        "ci95": [
+          0.0034423407917383822,
+          0.014629948364888123
+        ],
+        "draws": 10000
+      }
+    }
+  },
+  "artifact_sha256": {
+    "calibration_predictions": "8736340318511b156742039af29d0538ccb86169911889bcd661ff584930899e",
+    "calibration_packets": "b9e2776e2644e0515352f0671f88e462e56fedaaa8021d4834816a225f72e1a4",
+    "reporting_initial_predictions": "dbf5f2a2cf04847f252a42b36bbc34f7f4b09b46f5ee539bcbddb1252e1b5dc6",
+    "reporting_initial_packets": "1500c7d69f07caa86783eeb5642b2fe0717698850b92f1cb0794a4cfb6099383",
+    "reporting_repair_predictions": "0085f7306c4c58cb08ba744e7b0304973810ebb4ad7ff6acc6e886d183685ad2",
+    "reporting_repair_packets": "482bec59e465294d2a78053bffc0870e41c35f94d51c62eefda20edeaa28e025",
+    "per_qid": "10db384924f2c045259dc16d3ce6d9abfb18c3950e9ac8968ad5b16919d1b4d3"
+  },
+  "scoring_revision": {
+    "date": "2026-10-20",
+    "model_calls": 0,
+    "archived_results": "historical/pre_refusal_score_correction_20261020/results"
+  }
+}

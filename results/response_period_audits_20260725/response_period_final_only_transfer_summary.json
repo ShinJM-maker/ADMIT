@@ -1,0 +1,92 @@
+{
+ "description": "Response-period typed PlanRAG transfer on the same 300 scalar-answer qids per dataset (sample seed 20260725) used by the fresh replay. Only the final-support retry and ADMIT arms and their paired contrasts are listed; the run used the response-period runtime and normalized substring EM (raw_em), not the dataset task scores of the fresh replay. Contrasts are ADMIT minus final-support retry with paired qid bootstrap 95% intervals.",
+ "datasets": {
+  "DUDE": {
+   "n": 300,
+   "final_support_retry": {
+    "raw_em_pct": 24.333333333333336,
+    "lexical_trajectory_contamination_pct": 31.333333333333336,
+    "no_commit_trajectory_pct": 0.0,
+    "output_unsup_nonrefusal_pct": 6.666666666666667,
+    "calls_q": 3.1933333333333334
+   },
+   "admit": {
+    "raw_em_pct": 24.0,
+    "lexical_trajectory_contamination_pct": 0.0,
+    "no_commit_trajectory_pct": 14.000000000000002,
+    "output_unsup_nonrefusal_pct": 5.0,
+    "calls_q": 3.41
+   },
+   "admit_minus_final_support_retry": {
+    "raw_em": {
+     "point_pp": -0.33333333333333337,
+     "lo95_pp": -1.6666666666666667,
+     "hi95_pp": 0.6666666666666667
+    },
+    "lexical_trajectory_contamination": {
+     "point_pp": -31.333333333333336,
+     "lo95_pp": -36.666666666666664,
+     "hi95_pp": -26.333333333333332
+    }
+   }
+  },
+  "MMLongBench-Doc": {
+   "n": 300,
+   "final_support_retry": {
+    "raw_em_pct": 27.333333333333332,
+    "lexical_trajectory_contamination_pct": 25.0,
+    "no_commit_trajectory_pct": 0.0,
+    "output_unsup_nonrefusal_pct": 7.000000000000001,
+    "calls_q": 3.13
+   },
+   "admit": {
+    "raw_em_pct": 28.333333333333332,
+    "lexical_trajectory_contamination_pct": 0.0,
+    "no_commit_trajectory_pct": 13.0,
+    "output_unsup_nonrefusal_pct": 7.666666666666666,
+    "calls_q": 3.31
+   },
+   "admit_minus_final_support_retry": {
+    "raw_em": {
+     "point_pp": 1.0,
+     "lo95_pp": -0.6666666666666667,
+     "hi95_pp": 2.666666666666667
+    },
+    "lexical_trajectory_contamination": {
+     "point_pp": -25.0,
+     "lo95_pp": -30.0,
+     "hi95_pp": -20.0
+    }
+   }
+  },
+  "TAT-QA": {
+   "n": 300,
+   "final_support_retry": {
+    "raw_em_pct": 38.0,
+    "lexical_trajectory_contamination_pct": 67.33333333333333,
+    "no_commit_trajectory_pct": 0.0,
+    "output_unsup_nonrefusal_pct": 20.666666666666668,
+    "calls_q": 3.4966666666666666
+   },
+   "admit": {
+    "raw_em_pct": 38.0,
+    "lexical_trajectory_contamination_pct": 0.0,
+    "no_commit_trajectory_pct": 27.333333333333332,
+    "output_unsup_nonrefusal_pct": 19.0,
+    "calls_q": 3.88
+   },
+   "admit_minus_final_support_retry": {
+    "raw_em": {
+     "point_pp": 0.0,
+     "lo95_pp": -2.3333333333333335,
+     "hi95_pp": 2.3333333333333335
+    },
+    "lexical_trajectory_contamination": {
+     "point_pp": -67.33333333333333,
+     "lo95_pp": -72.66666666666667,
+     "hi95_pp": -62.0
+    }
+   }
+  }
+ }
+}

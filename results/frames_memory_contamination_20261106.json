@@ -1,0 +1,79 @@
+{
+  "source": "multihop_final_check_20261102.jsonl",
+  "source_sha256": "aab148dfff8245a2f89267268ff2239af3a60eee0c33a79eac76b58e1f2b8be5",
+  "scope": "FRAMES intermediate stored non-refusal values; direct OCR/text support",
+  "main_table_arms": [
+    "failopen",
+    "admit"
+  ],
+  "arms": {
+    "failopen": {
+      "questions": 824,
+      "correct_answers": 209,
+      "substring_em": 25.36,
+      "contaminated_runs": 128,
+      "contamination_pct": 15.53,
+      "stored_values": 1960,
+      "values_without_direct_text_support": 156
+    },
+    "admit": {
+      "questions": 824,
+      "correct_answers": 200,
+      "substring_em": 24.27,
+      "contaminated_runs": 0,
+      "contamination_pct": 0.0,
+      "stored_values": 1745,
+      "values_without_direct_text_support": 0
+    },
+    "failopen_memory_support": {
+      "questions": 824,
+      "correct_answers": 244,
+      "substring_em": 29.61,
+      "contaminated_runs": 129,
+      "contamination_pct": 15.66,
+      "stored_values": 1961,
+      "values_without_direct_text_support": 161
+    },
+    "admit_memory_support": {
+      "questions": 824,
+      "correct_answers": 233,
+      "substring_em": 28.28,
+      "contaminated_runs": 6,
+      "contamination_pct": 0.73,
+      "stored_values": 1751,
+      "values_without_direct_text_support": 7
+    }
+  },
+  "trace_manifest": {
+    "raw_source": "admitd_addev2_frames.jsonl",
+    "raw_source_sha256": "3594467103ee2f33c11213b69633ea1a993dd835fce695bf2621999e799a9a79",
+    "source_arm": "admit",
+    "questions": 824,
+    "trace": "frames_admit_trace_20261106.jsonl",
+    "trace_sha256": "3d97f6de116082a3039ba759790e7105b8c9f19f9488332f70a88b7dc349f78d",
+    "reader_calls": "One initial read per retrieved hop, one final synthesis read, the recorded hop repair calls, and one final repair when final_source is not candidate. Planner and memoized all-arm serving totals are excluded.",
+    "hard_refusal_replay": "Keep admitted memory, unresolved subquestions, and reader decodes fixed; replace only fallback_baseline_unsupported final outputs with the fixed refusal. This is a matched-output policy replay, not a separately generated trajectory."
+  },
+  "admit_runtime": {
+    "questions": 824,
+    "runs_with_no_commit": 128,
+    "no_commit_pct": 15.53,
+    "initial_reader_calls": 3349,
+    "intermediate_repair_calls": 265,
+    "final_repair_calls": 274,
+    "reader_calls": 3888,
+    "reader_calls_per_question": 4.718
+  },
+  "hard_refusal_replay": {
+    "questions": 824,
+    "correct_answers": 137,
+    "substring_em": 16.63,
+    "contaminated_runs": 0,
+    "contamination_pct": 0.0,
+    "outputs_replaced_with_refusal": 178,
+    "correct_outputs_replaced": 63,
+    "reader_calls": 3888,
+    "reader_calls_per_question": 4.718,
+    "admitted_values_and_unresolved_questions_unchanged": true
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "scope": "terminal policy portability, not multi-turn downstream-effect replication",
+  "n_qids": 300,
+  "contract_sha256": "a169feae678160c74b106fe1ae5a026c9e537ea7fb9162883ebf9de0ec36b7d5",
+  "arms": [
+    "fail_open",
+    "admit",
+    "hard_refuse"
+  ],
+  "sampling": "same historical 300 common qids, reused descriptive sample",
+  "packet_token_budget": 4500,
+  "generation": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 64,
+    "seed": 20260928
+  },
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 20260928,
+    "unit": "qid within each pipeline",
+    "pool_p_value": false
+  },
+  "legacy_tag": "FACT is the implementation alias for ADMITTED; STATUS is never reused",
+  "comparison": "All three arms share freshly generated initial answer and, on strict failure, one freshly generated RepairRead; only failed-repair output/storage actions differ. Fail-open and ADMIT have identical terminal output/calls by construction.",
+  "status": "FROZEN_BEFORE_FRESH_INFERENCE",
+  "n_rows": 600,
+  "pipelines": [
+    "hoprag",
+    "molorag"
+  ],
+  "sources": {
+    "frozen_packets.jsonl": {
+      "sha256": "75a1af6df6531aff399dd6c853a677547446d19a8cda2a970cb9f1d8689458e9"
+    },
+    "upstream:hoprag": {
+      "source": "graph_upstreams_20261106/hoprag/retrieved.jsonl",
+      "sha256": "9c220d702f9db9046aa37875c69c345d37b8485591f7b1264edb5af3f79cc7bb"
+    },
+    "upstream:molorag": {
+      "source": "graph_upstreams_20261106/molorag/retrieved.jsonl",
+      "sha256": "3275a6839c66e7f5eb92c86da126bad215190cd17b3823dd3ba7372e0b0f3df9"
+    }
+  },
+  "extends": "strict_portability_20260928",
+  "empty_packets": {},
+  "note": "Graph-based upstreams (HopRAG, MoLoRAG local reproductions); same qids, contract, reader, decoding, and serialization as the other sixteen.",
+  "upstream_construction": {
+    "hoprag": "Released HopRAG graph construction and bfs_node traversal (prompts from config.py), Qwen3-8B with thinking off, temperature 0.1; nodes = OCR/text chunks (bge-base-en-v1.5); per-question graph over the documents of the dense top-10 entry nodes (1,162 documents, 31,447 nodes with questions, 695,143 edges); topk 10, four hops; graph held in memory instead of Neo4j.",
+    "molorag": "Released MoLoRAG beam search (beam 3, max_hop 4, alpha 0.4, threshold 0.3) with the training-free Qwen2.5-VL-3B-Instruct page judge (detailed relevance prompt, 16 tokens); ColPali v1.3 page scores; candidate documents of the ColPali top-20 pages, page graphs k=5, cosine >= 0.8 of mean-pooled page embeddings; selected pages read through PyMuPDF OCR/text (4,000 characters)."
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "status": "mechanical sensitivity analysis; not human semantic accuracy",
+  "definition": "Primary normalization and bidirectional containment, with Unicode word boundaries at both ends of the contained string",
+  "population": "all 300 matched query IDs and three agents; 900 trajectories per policy",
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 20260807,
+    "unit": "query ID, averaging three agents within query"
+  },
+  "arms": {
+    "final_support_retry": {
+      "react": {
+        "n": 300,
+        "substring_em": 0.34,
+        "word_boundary_em": 0.33666666666666667,
+        "changed_matches": 1
+      },
+      "planrag": {
+        "n": 300,
+        "substring_em": 0.33,
+        "word_boundary_em": 0.3233333333333333,
+        "changed_matches": 2
+      },
+      "autogen": {
+        "n": 300,
+        "substring_em": 0.3433333333333333,
+        "word_boundary_em": 0.33666666666666667,
+        "changed_matches": 2
+      },
+      "pooled": {
+        "n": 900,
+        "substring_em": 0.3377777777777778,
+        "word_boundary_em": 0.3322222222222222,
+        "changed_matches": 5
+      }
+    },
+    "cavec_paper": {
+      "react": {
+        "n": 300,
+        "substring_em": 0.33666666666666667,
+        "word_boundary_em": 0.3333333333333333,
+        "changed_matches": 1
+      },
+      "planrag": {
+        "n": 300,
+        "substring_em": 0.3333333333333333,
+        "word_boundary_em": 0.32666666666666666,
+        "changed_matches": 2
+      },
+      "autogen": {
+        "n": 300,
+        "substring_em": 0.34,
+        "word_boundary_em": 0.3333333333333333,
+        "changed_matches": 2
+      },
+      "pooled": {
+        "n": 900,
+        "substring_em": 0.33666666666666667,
+        "word_boundary_em": 0.33111111111111113,
+        "changed_matches": 5
+      }
+    },
+    "cavec_h1_hard_refuse": {
+      "react": {
+        "n": 300,
+        "substring_em": 0.28,
+        "word_boundary_em": 0.28,
+        "changed_matches": 0
+      },
+      "planrag": {
+        "n": 300,
+        "substring_em": 0.26666666666666666,
+        "word_boundary_em": 0.2633333333333333,
+        "changed_matches": 1
+      },
+      "autogen": {
+        "n": 300,
+        "substring_em": 0.27666666666666667,
+        "word_boundary_em": 0.27666666666666667,
+        "changed_matches": 0
+      },
+      "pooled": {
+        "n": 900,
+        "substring_em": 0.27444444444444444,
+        "word_boundary_em": 0.2733333333333333,
+        "changed_matches": 1
+      }
+    },
+    "cavec_mfc": {
+      "react": {
+        "n": 300,
+        "substring_em": 0.33666666666666667,
+        "word_boundary_em": 0.3333333333333333,
+        "changed_matches": 1
+      },
+      "planrag": {
+        "n": 300,
+        "substring_em": 0.3233333333333333,
+        "word_boundary_em": 0.32,
+        "changed_matches": 1
+      },
+      "autogen": {
+        "n": 300,
+        "substring_em": 0.33,
+        "word_boundary_em": 0.32666666666666666,
+        "changed_matches": 1
+      },
+      "pooled": {
+        "n": 900,
+        "substring_em": 0.33,
+        "word_boundary_em": 0.32666666666666666,
+        "changed_matches": 3
+      }
+    }
+  },
+  "paired": {
+    "cavec_paper": {
+      "react": {
+        "point": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      },
+      "planrag": {
+        "point": -0.006666666666666667,
+        "ci95": [
+          -0.02,
+          0.006666666666666667
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      },
+      "autogen": {
+        "point": -0.006666666666666667,
+        "ci95": [
+          -0.016666666666666666,
+          0.0
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      },
+      "pooled": {
+        "point": -0.0044444444444444444,
+        "ci95": [
+          -0.01,
+          0.0
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      }
+    },
+    "cavec_h1_hard_refuse": {
+      "react": {
+        "point": 0.05333333333333334,
+        "ci95": [
+          0.03,
+          0.08
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      },
+      "planrag": {
+        "point": 0.056666666666666664,
+        "ci95": [
+          0.03333333333333333,
+          0.08333333333333333
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      },
+      "autogen": {
+        "point": 0.05,
+        "ci95": [
+          0.02666666666666667,
+          0.07666666666666666
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      },
+      "pooled": {
+        "point": 0.05333333333333333,
+        "ci95": [
+          0.033333333333333326,
+          0.07666666666666666
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      }
+    },
+    "final_support_retry": {
+      "react": {
+        "point": -0.0033333333333333335,
+        "ci95": [
+          -0.01,
+          0.0
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      },
+      "planrag": {
+        "point": -0.0033333333333333335,
+        "ci95": [
+          -0.016666666666666666,
+          0.01
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      },
+      "autogen": {
+        "point": -0.01,
+        "ci95": [
+          -0.023333333333333334,
+          0.0
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      },
+      "pooled": {
+        "point": -0.005555555555555555,
+        "ci95": [
+          -0.013333333333333332,
+          0.0011111111111111111
+        ],
+        "unit": "qid paired bootstrap",
+        "draws": 10000
+      }
+    }
+  },
+  "source_artifact": "write_scope_per_qid.jsonl",
+  "source_sha256": "4956766841163fa7127d60fc28b545c8bea34a9fcf61f7db87e7cb06ccb91b2b"
+}

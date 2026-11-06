@@ -1,0 +1,90 @@
+[
+  {
+    "agent": "planrag",
+    "qid": "26c045714567d0d79f93206e54a0bc50",
+    "reference": "Joe Robert Cole",
+    "admit_answer": "Ryan Coogler",
+    "fail_open_answer": "Ryan Coogler and Joe Robert Cole",
+    "admit_substring_em": 0,
+    "fail_open_substring_em": 1,
+    "admit_strict_em": 0,
+    "fail_open_strict_em": 0
+  },
+  {
+    "agent": "planrag",
+    "qid": "6bf92419ba83dfd6577df2cddff3d086",
+    "reference": "2005",
+    "admit_answer": "2005, 2009, 2011, 2013, 2015",
+    "fail_open_answer": "I do not have enough information to answer",
+    "admit_substring_em": 1,
+    "fail_open_substring_em": 0,
+    "admit_strict_em": 0,
+    "fail_open_strict_em": 0
+  },
+  {
+    "agent": "planrag",
+    "qid": "6fbdb97b4d29571b4667d8c9cd499885",
+    "reference": "right",
+    "admit_answer": "Seaman",
+    "fail_open_answer": "right hand",
+    "admit_substring_em": 0,
+    "fail_open_substring_em": 1,
+    "admit_strict_em": 0,
+    "fail_open_strict_em": 0
+  },
+  {
+    "agent": "planrag",
+    "qid": "7756d12841e0f89d787ab5a4921d6d13",
+    "reference": "ball",
+    "admit_answer": "I do not have enough information to answer",
+    "fail_open_answer": "playing for the Finland national football team",
+    "admit_substring_em": 0,
+    "fail_open_substring_em": 1,
+    "admit_strict_em": 0,
+    "fail_open_strict_em": 0
+  },
+  {
+    "agent": "planrag",
+    "qid": "e587c73af292fb40bf0dbfec2c2894e2",
+    "reference": "Spin",
+    "admit_answer": "Rolling Stone",
+    "fail_open_answer": "Billboard, The Daily Beast, The Guardian, Idolator, MTV News, Newsday, PopMatters, Rolling Stone, Spin, Stereogum, The New York Times, Pazz & Jop",
+    "admit_substring_em": 0,
+    "fail_open_substring_em": 1,
+    "admit_strict_em": 0,
+    "fail_open_strict_em": 0
+  },
+  {
+    "agent": "autogen",
+    "qid": "9506718a72b420d3bb9ebf39348287c0",
+    "reference": "Sanskrit",
+    "admit_answer": "I do not have enough information to answer",
+    "fail_open_answer": "Sanskrit",
+    "admit_substring_em": 0,
+    "fail_open_substring_em": 1,
+    "admit_strict_em": 0,
+    "fail_open_strict_em": 1
+  },
+  {
+    "agent": "autogen",
+    "qid": "95feb69ddb500ddc1bcae1b166c0f0d5",
+    "reference": "goalpost",
+    "admit_answer": "rugby league football",
+    "fail_open_answer": "rugby league goalposts",
+    "admit_substring_em": 0,
+    "fail_open_substring_em": 1,
+    "admit_strict_em": 0,
+    "fail_open_strict_em": 0
+  },
+  {
+    "agent": "autogen",
+    "qid": "dfbac41d7dc993d2295f025056f19724",
+    "reference": "Cindy Crawford",
+    "admit_answer": "Linda Evangelista",
+    "fail_open_answer": "Linda Evangelista, Christy Turlington, Tatjana Patitz, Cindy Crawford, Naomi Campbell",
+    "admit_substring_em": 0,
+    "fail_open_substring_em": 1,
+    "admit_strict_em": 0,
+    "fail_open_strict_em": 0
+  }
+]

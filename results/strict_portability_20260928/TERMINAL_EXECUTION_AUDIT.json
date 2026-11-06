@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "n_terminal_packets": 2400,
+  "check": "Exact tokenizer truncation and initial/repair prompt reconstruction from frozen raw artifacts."
+}

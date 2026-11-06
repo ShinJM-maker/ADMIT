@@ -1,0 +1,23 @@
+{
+ "description": "Lexical admission on saved answers to packets with a planted typed distractor. Gold was used offline to construct and label the perturbation; the reader and the gate did not receive gold, and cases were not selected by gate outcome.",
+ "n_questions": 290,
+ "counterfactual_following": {
+  "admitted": 118,
+  "n": 121,
+  "rate_pct": 97.52,
+  "wilson95_pct": [
+   92.96,
+   99.15
+  ]
+ },
+ "explicit_distractor_copies": {
+  "admitted": 111,
+  "n": 114,
+  "rate_pct": 97.37,
+  "wilson95_pct": [
+   92.55,
+   99.1
+  ]
+ },
+ "refusals_in_stratum": 0
+}

@@ -1,0 +1,10 @@
+{
+  "raw_source": "admitd_addev2_frames.jsonl",
+  "raw_source_sha256": "3594467103ee2f33c11213b69633ea1a993dd835fce695bf2621999e799a9a79",
+  "source_arm": "admit",
+  "questions": 824,
+  "trace": "frames_admit_trace_20261106.jsonl",
+  "trace_sha256": "3d97f6de116082a3039ba759790e7105b8c9f19f9488332f70a88b7dc349f78d",
+  "reader_calls": "One initial read per retrieved hop, one final synthesis read, the recorded hop repair calls, and one final repair when final_source is not candidate. Planner and memoized all-arm serving totals are excluded.",
+  "hard_refusal_replay": "Keep admitted memory, unresolved subquestions, and reader decodes fixed; replace only fallback_baseline_unsupported final outputs with the fixed refusal. This is a matched-output policy replay, not a separately generated trajectory."
+}

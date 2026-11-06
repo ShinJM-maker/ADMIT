@@ -1,0 +1,15 @@
+{
+ "description": "Submitted ADMIT run re-checked against the exact post-truncation reader packet instead of the expanded serialization. Counts non-refusal candidate or repair admission decisions whose outcome changes and the trajectories containing them; these trajectories were rerun before the final typed replay replaced the dynamic comparison.",
+ "contract": "exact post-truncation reader-visible packet",
+ "trajectories": 900,
+ "nonrefusal_admission_decisions": 1758,
+ "decision_changes": 107,
+ "decision_changes_serialization_admit_packet_reject": 29,
+ "decision_changes_serialization_reject_packet_admit": 78,
+ "trajectories_with_decision_change": 54,
+ "decision_changes_by_agent": {
+  "react": 35,
+  "planrag": 47,
+  "autogen": 25
+ }
+}

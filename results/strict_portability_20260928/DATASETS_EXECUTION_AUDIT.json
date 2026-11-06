@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "n_policy_trajectories": 2700,
+  "check": "Union of three independently completed per-dataset exact CPU execution replays; no dataset omitted.",
+  "sources": {
+    "DATASETS_EXECUTION_AUDIT_DUDE.json": {
+      "sha256": "190a5f6823de2dd28e2f239d241cbc08c94b9b2da3c268098c8f1dde1e09bc27",
+      "status": "PASS",
+      "n_policy_trajectories": 900,
+      "check": "Exact frozen PlanRAG replay from fresh prompt/output transcript; all intermediate records, typed projection-dependent synthesis prompts, final answers and call counts identical."
+    },
+    "DATASETS_EXECUTION_AUDIT_TATQA.json": {
+      "sha256": "190a5f6823de2dd28e2f239d241cbc08c94b9b2da3c268098c8f1dde1e09bc27",
+      "status": "PASS",
+      "n_policy_trajectories": 900,
+      "check": "Exact frozen PlanRAG replay from fresh prompt/output transcript; all intermediate records, typed projection-dependent synthesis prompts, final answers and call counts identical."
+    },
+    "DATASETS_EXECUTION_AUDIT_MMLONGBENCH.json": {
+      "sha256": "190a5f6823de2dd28e2f239d241cbc08c94b9b2da3c268098c8f1dde1e09bc27",
+      "status": "PASS",
+      "n_policy_trajectories": 900,
+      "check": "Exact frozen PlanRAG replay from fresh prompt/output transcript; all intermediate records, typed projection-dependent synthesis prompts, final answers and call counts identical."
+    }
+  }
+}

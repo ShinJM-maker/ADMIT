@@ -1,0 +1,27 @@
+{
+  "scope": "Frozen component reconstructions; separate from the final comparator ADMIT arm.",
+  "definition": "Admitted content writes divided by all proposed intermediate and terminal writes, including refusals.",
+  "source_audit_sha256": "30b2458bcc3f68025492fd0663cba1b10666990fed8a4a53156e960bfa8858a2",
+  "policies": {
+    "gate_only": {
+      "proposed_writes": 2177,
+      "admitted_writes": 1230,
+      "no_commit_writes": 282,
+      "refusal_writes": 665,
+      "reader_calls": 2177.0,
+      "n": 900,
+      "any_no_commit": 175,
+      "admitted_fraction": 0.5649977032613689
+    },
+    "gate_repair": {
+      "proposed_writes": 2180,
+      "admitted_writes": 1315,
+      "no_commit_writes": 205,
+      "refusal_writes": 660,
+      "reader_calls": 2467.0,
+      "n": 900,
+      "any_no_commit": 123,
+      "admitted_fraction": 0.6032110091743119
+    }
+  }
+}

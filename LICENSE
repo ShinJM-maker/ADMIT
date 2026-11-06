@@ -1,0 +1,38 @@
+Apache License 2.0
+
+This supplementary release (reference code, configs, prompts, aggregate
+registries, and compact per-qid metrics) accompanies the NeurIPS 2026 paper of the paper
+"ADMIT: Support-Gated Memory-Write Admission for Document QA Agents".
+
+Copyright (c) 2026, ADMIT contributors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this work except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+----
+
+Third-party assets used (not redistributed; cited and accessed under their own licenses):
+- Qwen3-VL-8B-Instruct: Apache License 2.0 (Alibaba Cloud)
+- LightGBM: MIT License (Microsoft)
+- M3DocRAG release code: Apache License 2.0; M3DocVQA questions/annotations
+  and Wikipedia-derived documents remain governed by their upstream terms
+  (the source documents are CC BY-SA 4.0)
+- VisDoMSlide / VisDoMBench (SlideVQA subset): NTT software evaluation license (research use only)
+- FRAMES benchmark: Apache License 2.0 (Google)
+
+This supplementary contains only:
+- Original code authored for this submission (Apache-2.0)
+- Aggregate result registries and compact per-qid strict-component metrics
+- Configuration files and prompt templates (Apache-2.0)
+
+The bundle does not contain reader weights, a routing-scorer checkpoint,
+feature-extraction code, or the end-to-end model-serving pipeline.

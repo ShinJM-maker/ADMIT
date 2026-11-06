@@ -1,0 +1,370 @@
+{
+ "FRAMES": {
+  "split": "development",
+  "reader_prompt": "strict",
+  "questions": 824,
+  "rag": {
+   "em": 16.38,
+   "answered": 54.25,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen": {
+   "em": 25.36,
+   "answered": 74.51,
+   "rests_on_ungrounded": 4.61
+  },
+  "admit": {
+   "em": 24.27,
+   "answered": 71.72,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen_memory_support": {
+   "em": 29.61,
+   "answered": 74.51,
+   "rests_on_ungrounded": 5.22
+  },
+  "admit_memory_support": {
+   "em": 28.28,
+   "answered": 71.72,
+   "rests_on_ungrounded": 0.0
+  },
+  "admit_minus_failopen_em_default": [
+   -1.09,
+   -2.31,
+   0.0
+  ],
+  "admit_minus_failopen_em_memory_support": [
+   -1.33,
+   -2.67,
+   -0.12
+  ],
+  "admit_minus_failopen_rests_memory_support": [
+   -5.22,
+   -6.8,
+   -3.76
+  ],
+  "memory_support_minus_default_admit_em": [
+   4.0,
+   2.67,
+   5.46
+  ],
+  "admit_default_check": {
+   "check_failed": 33.25,
+   "replaced_by_repair": 11.65,
+   "replaced_synthesized_correct": 45,
+   "replaced_output_correct": 8
+  },
+  "by_failopen_resting": {
+   "resting": {
+    "questions": 43,
+    "failopen_em": 44.19,
+    "admit_em": 25.58
+   },
+   "other": {
+    "questions": 781,
+    "failopen_em": 28.81,
+    "admit_em": 28.43
+   }
+  },
+  "admit_memory_support_check_failed": 16.75
+ },
+ "2WikiMultihopQA": {
+  "split": "confirmation",
+  "reader_prompt": "strict",
+  "questions": 750,
+  "rag": {
+   "em": 57.07,
+   "answered": 84.27,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen": {
+   "em": 71.6,
+   "answered": 95.6,
+   "rests_on_ungrounded": 0.0
+  },
+  "admit": {
+   "em": 71.47,
+   "answered": 95.47,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen_memory_support": {
+   "em": 77.07,
+   "answered": 95.6,
+   "rests_on_ungrounded": 0.13
+  },
+  "admit_memory_support": {
+   "em": 76.93,
+   "answered": 95.47,
+   "rests_on_ungrounded": 0.0
+  },
+  "admit_minus_failopen_em_default": [
+   -0.13,
+   -0.67,
+   0.27
+  ],
+  "admit_minus_failopen_em_memory_support": [
+   -0.13,
+   -0.67,
+   0.27
+  ],
+  "admit_minus_failopen_rests_memory_support": [
+   -0.13,
+   -0.4,
+   0.0
+  ],
+  "memory_support_minus_default_admit_em": [
+   5.47,
+   3.87,
+   7.2
+  ],
+  "admit_default_check": {
+   "check_failed": 25.87,
+   "replaced_by_repair": 9.6,
+   "replaced_synthesized_correct": 56,
+   "replaced_output_correct": 4
+  },
+  "by_failopen_resting": {
+   "resting": {
+    "questions": 1,
+    "failopen_em": 0.0,
+    "admit_em": 0.0
+   },
+   "other": {
+    "questions": 749,
+    "failopen_em": 77.17,
+    "admit_em": 77.04
+   }
+  },
+  "admit_memory_support_check_failed": 9.2
+ },
+ "MuSiQue": {
+  "split": "confirmation",
+  "reader_prompt": "strict",
+  "questions": 750,
+  "rag": {
+   "em": 26.67,
+   "answered": 62.27,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen": {
+   "em": 38.93,
+   "answered": 74.53,
+   "rests_on_ungrounded": 2.13
+  },
+  "admit": {
+   "em": 38.93,
+   "answered": 74.0,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen_memory_support": {
+   "em": 46.13,
+   "answered": 74.53,
+   "rests_on_ungrounded": 2.67
+  },
+  "admit_memory_support": {
+   "em": 46.0,
+   "answered": 74.0,
+   "rests_on_ungrounded": 0.0
+  },
+  "admit_minus_failopen_em_default": [
+   0.0,
+   -0.53,
+   0.53
+  ],
+  "admit_minus_failopen_em_memory_support": [
+   -0.13,
+   -0.8,
+   0.4
+  ],
+  "admit_minus_failopen_rests_memory_support": [
+   -2.67,
+   -3.87,
+   -1.6
+  ],
+  "memory_support_minus_default_admit_em": [
+   7.07,
+   5.33,
+   9.07
+  ],
+  "admit_default_check": {
+   "check_failed": 28.93,
+   "replaced_by_repair": 13.07,
+   "replaced_synthesized_correct": 63,
+   "replaced_output_correct": 11
+  },
+  "by_failopen_resting": {
+   "resting": {
+    "questions": 20,
+    "failopen_em": 45.0,
+    "admit_em": 50.0
+   },
+   "other": {
+    "questions": 730,
+    "failopen_em": 46.16,
+    "admit_em": 45.89
+   }
+  },
+  "admit_memory_support_check_failed": 3.47
+ },
+ "MuSiQue fresh, complete corpus": {
+  "split": "confirmation",
+  "reader_prompt": "guess",
+  "questions": 1062,
+  "rag": {
+   "em": 17.61,
+   "answered": 100.0,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen": {
+   "em": 27.97,
+   "answered": 100.0,
+   "rests_on_ungrounded": 15.35
+  },
+  "admit": {
+   "em": 28.25,
+   "answered": 100.0,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen_memory_support": {
+   "em": 33.62,
+   "answered": 100.0,
+   "rests_on_ungrounded": 18.36
+  },
+  "admit_memory_support": {
+   "em": 34.56,
+   "answered": 100.0,
+   "rests_on_ungrounded": 0.0
+  },
+  "admit_minus_failopen_em_default": [
+   0.28,
+   -0.94,
+   1.51
+  ],
+  "admit_minus_failopen_em_memory_support": [
+   0.94,
+   -0.56,
+   2.45
+  ],
+  "admit_minus_failopen_rests_memory_support": [
+   -18.36,
+   -20.62,
+   -16.01
+  ],
+  "memory_support_minus_default_admit_em": [
+   6.31,
+   4.9,
+   7.82
+  ],
+  "admit_default_check": {
+   "check_failed": 50.19,
+   "replaced_by_repair": 13.75,
+   "replaced_synthesized_correct": 74,
+   "replaced_output_correct": 8
+  },
+  "by_failopen_resting": {
+   "resting": {
+    "questions": 195,
+    "failopen_em": 9.74,
+    "admit_em": 20.51
+   },
+   "other": {
+    "questions": 867,
+    "failopen_em": 38.99,
+    "admit_em": 37.72
+   }
+  },
+  "admit_memory_support_check_failed": 12.05
+ },
+ "MuSiQue fresh, incomplete corpus": {
+  "split": "confirmation",
+  "reader_prompt": "guess",
+  "questions": 1062,
+  "rag": {
+   "em": 12.52,
+   "answered": 100.0,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen": {
+   "em": 16.2,
+   "answered": 100.0,
+   "rests_on_ungrounded": 21.56
+  },
+  "admit": {
+   "em": 15.82,
+   "answered": 100.0,
+   "rests_on_ungrounded": 0.0
+  },
+  "failopen_memory_support": {
+   "em": 17.89,
+   "answered": 100.0,
+   "rests_on_ungrounded": 25.8
+  },
+  "admit_memory_support": {
+   "em": 17.98,
+   "answered": 100.0,
+   "rests_on_ungrounded": 0.0
+  },
+  "admit_minus_failopen_em_default": [
+   -0.38,
+   -1.6,
+   0.75
+  ],
+  "admit_minus_failopen_em_memory_support": [
+   0.09,
+   -1.22,
+   1.41
+  ],
+  "admit_minus_failopen_rests_memory_support": [
+   -25.8,
+   -28.44,
+   -23.26
+  ],
+  "memory_support_minus_default_admit_em": [
+   2.17,
+   1.22,
+   3.11
+  ],
+  "admit_default_check": {
+   "check_failed": 46.8,
+   "replaced_by_repair": 10.83,
+   "replaced_synthesized_correct": 29,
+   "replaced_output_correct": 8
+  },
+  "by_failopen_resting": {
+   "resting": {
+    "questions": 274,
+    "failopen_em": 6.57,
+    "admit_em": 12.04
+   },
+   "other": {
+    "questions": 788,
+    "failopen_em": 21.83,
+    "admit_em": 20.05
+   }
+  },
+  "admit_memory_support_check_failed": 15.63
+ },
+ "pooled confirmation": {
+  "settings": [
+   "2WikiMultihopQA",
+   "MuSiQue",
+   "MuSiQue fresh, complete corpus",
+   "MuSiQue fresh, incomplete corpus"
+  ],
+  "admit_minus_failopen_em_memory_support": [
+   0.19,
+   -0.34,
+   0.71
+  ],
+  "admit_minus_failopen_em_default": [
+   -0.06,
+   -0.52,
+   0.39
+  ],
+  "memory_support_minus_default_admit_em": [
+   5.25,
+   4.5,
+   5.99
+  ]
+ }
+}

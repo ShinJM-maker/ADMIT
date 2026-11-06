@@ -1,0 +1,244 @@
+{
+ "injected": [
+  {
+   "env": "blocked",
+   "inject_p": 0.1,
+   "trajectories": 63,
+   "failopen": 7.94,
+   "random": 9.52,
+   "admit": 12.7,
+   "admit_minus_failopen": [
+    4.76,
+    0.0,
+    11.11
+   ],
+   "admit_minus_random": [
+    3.17,
+    0.53,
+    6.88
+   ]
+  },
+  {
+   "env": "blocked",
+   "inject_p": 0.2,
+   "trajectories": 133,
+   "failopen": 9.02,
+   "random": 9.52,
+   "admit": 12.78,
+   "admit_minus_failopen": [
+    3.76,
+    0.75,
+    7.52
+   ],
+   "admit_minus_random": [
+    3.26,
+    1.25,
+    6.02
+   ]
+  },
+  {
+   "env": "blocked",
+   "inject_p": 0.4,
+   "trajectories": 254,
+   "failopen": 9.84,
+   "random": 8.27,
+   "admit": 11.81,
+   "admit_minus_failopen": [
+    1.97,
+    0.0,
+    4.33
+   ],
+   "admit_minus_random": [
+    3.54,
+    1.97,
+    5.51
+   ]
+  },
+  {
+   "env": "available",
+   "inject_p": 0.1,
+   "trajectories": 63,
+   "failopen": 33.33,
+   "random": 34.39,
+   "admit": 34.92,
+   "admit_minus_failopen": [
+    1.59,
+    -3.17,
+    6.35
+   ],
+   "admit_minus_random": [
+    0.53,
+    -1.06,
+    3.17
+   ]
+  },
+  {
+   "env": "available",
+   "inject_p": 0.2,
+   "trajectories": 133,
+   "failopen": 37.59,
+   "random": 41.6,
+   "admit": 40.6,
+   "admit_minus_failopen": [
+    3.01,
+    0.0,
+    6.77
+   ],
+   "admit_minus_random": [
+    -1.0,
+    -3.01,
+    0.25
+   ]
+  },
+  {
+   "env": "available",
+   "inject_p": 0.4,
+   "trajectories": 254,
+   "failopen": 36.61,
+   "random": 40.81,
+   "admit": 40.55,
+   "admit_minus_failopen": [
+    3.94,
+    1.57,
+    6.69
+   ],
+   "admit_minus_random": [
+    -0.26,
+    -1.31,
+    0.52
+   ]
+  }
+ ],
+ "multihop": [
+  {
+   "setting": "FRAMES",
+   "reader_prompt": "strict",
+   "questions": "failopen_rests",
+   "n": 43,
+   "failopen": 44.19,
+   "admit": 25.58,
+   "admit_minus_failopen": [
+    -18.6,
+    -32.56,
+    -4.65
+   ]
+  },
+  {
+   "setting": "FRAMES",
+   "reader_prompt": "strict",
+   "questions": "other",
+   "n": 781,
+   "failopen": 28.81,
+   "admit": 28.43,
+   "admit_minus_failopen": [
+    -0.38,
+    -1.54,
+    0.77
+   ]
+  },
+  {
+   "setting": "2WikiMultihopQA",
+   "reader_prompt": "strict",
+   "questions": "failopen_rests",
+   "n": 1,
+   "failopen": 0.0,
+   "admit": 0.0,
+   "admit_minus_failopen": [
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "setting": "2WikiMultihopQA",
+   "reader_prompt": "strict",
+   "questions": "other",
+   "n": 749,
+   "failopen": 77.17,
+   "admit": 77.04,
+   "admit_minus_failopen": [
+    -0.13,
+    -0.67,
+    0.27
+   ]
+  },
+  {
+   "setting": "MuSiQue",
+   "reader_prompt": "strict",
+   "questions": "failopen_rests",
+   "n": 20,
+   "failopen": 45.0,
+   "admit": 50.0,
+   "admit_minus_failopen": [
+    5.0,
+    -10.0,
+    20.0
+   ]
+  },
+  {
+   "setting": "MuSiQue",
+   "reader_prompt": "strict",
+   "questions": "other",
+   "n": 730,
+   "failopen": 46.16,
+   "admit": 45.89,
+   "admit_minus_failopen": [
+    -0.27,
+    -0.68,
+    0.0
+   ]
+  },
+  {
+   "setting": "MuSiQue fresh, complete corpus",
+   "reader_prompt": "guess",
+   "questions": "failopen_rests",
+   "n": 195,
+   "failopen": 9.74,
+   "admit": 20.51,
+   "admit_minus_failopen": [
+    10.77,
+    5.13,
+    16.41
+   ]
+  },
+  {
+   "setting": "MuSiQue fresh, complete corpus",
+   "reader_prompt": "guess",
+   "questions": "other",
+   "n": 867,
+   "failopen": 38.99,
+   "admit": 37.72,
+   "admit_minus_failopen": [
+    -1.27,
+    -2.54,
+    0.0
+   ]
+  },
+  {
+   "setting": "MuSiQue fresh, incomplete corpus",
+   "reader_prompt": "guess",
+   "questions": "failopen_rests",
+   "n": 274,
+   "failopen": 6.57,
+   "admit": 12.04,
+   "admit_minus_failopen": [
+    5.47,
+    1.82,
+    9.12
+   ]
+  },
+  {
+   "setting": "MuSiQue fresh, incomplete corpus",
+   "reader_prompt": "guess",
+   "questions": "other",
+   "n": 788,
+   "failopen": 21.83,
+   "admit": 20.05,
+   "admit_minus_failopen": [
+    -1.78,
+    -3.05,
+    -0.63
+   ]
+  }
+ ]
+}

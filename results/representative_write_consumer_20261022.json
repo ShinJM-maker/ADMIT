@@ -1,0 +1,65 @@
+{
+  "agent": "planrag",
+  "qid": "1d106f2272d2afe59a4ba84342e897db",
+  "task_question": "Who is S. Van Wormer?",
+  "initial_candidate": "Actor and voice actor who played Randy / Ronnie in Johnny Tsunami",
+  "repair_value": "Steve Van Wormer as Randy / Ronnie",
+  "action": "COMMIT_REPAIR",
+  "memory_record": {
+    "record_type": "FACT",
+    "status": "COMMIT",
+    "value": "Steve Van Wormer as Randy / Ronnie",
+    "lexically_supported": true,
+    "evidence_packet_sha256": "072d6f78bacf7584fb9f323d286570036cf538342e701bcadf3300b8b5be2484"
+  },
+  "normalized_span": [
+    5704,
+    5738
+  ],
+  "normalized_evidence_excerpt": "tchard, emily's father cylk cozart as sergeant sterling, sam's father steve van wormer as randy / ronnie cary-hiroyuki tagawa as grandpa johnny \"tsunami\" kapahala, johnny's p",
+  "packet_sha256": "072d6f78bacf7584fb9f323d286570036cf538342e701bcadf3300b8b5be2484",
+  "consumer_question": "Findings from sub-questions:\n- Q: Who is S. Van Wormer?\n  A: Steve Van Wormer as Randy / Ronnie\n- Q: What is the title of the S. Van Wormer work that features a surfer on the poster?\n  A: Johnny Tsunami\n\nMain question: What do they call the snowboarders in the S. Van Wormer title with a surfer on the poster?",
+  "source_attribution": "Wikipedia-derived M3DocVQA text; CC BY-SA 4.0; short diagnostic excerpt, not the source document",
+  "source_documents": [
+    {
+      "doc_id": "ce642ebf1b240e8a28306901f40ce6b3",
+      "title": "Steve Van Wormer"
+    },
+    {
+      "doc_id": "129523641a4adb5d777fb0271cca6cf5",
+      "title": "Johnny Tsunami"
+    },
+    {
+      "doc_id": "d0cedd153c0bfd15aa7fd98e347e4450",
+      "title": "Johnny Tsunami"
+    },
+    {
+      "doc_id": "6a30cb7f22f4e2188e34afcd8878e2fc",
+      "title": "Jean-Claude Van Damme"
+    },
+    {
+      "doc_id": "6a30cb7f22f4e2188e34afcd8878e2fc",
+      "title": "Jean-Claude Van Damme"
+    },
+    {
+      "doc_id": "5f5e6820a9d07c570c0eaa3905946ed8",
+      "title": "Rafael van der Vaart"
+    },
+    {
+      "doc_id": "6a30cb7f22f4e2188e34afcd8878e2fc",
+      "title": "Jean-Claude Van Damme"
+    },
+    {
+      "doc_id": "ad20afe31bcbfb2836998dbfa0ddbfa6",
+      "title": "FC Barcelona"
+    },
+    {
+      "doc_id": "79590cf8461a559c722bdbec93a1bb47",
+      "title": "Chris Van Allsburg"
+    },
+    {
+      "doc_id": "6d641ee411855846990f7cedb381739b",
+      "title": "Phil Taylor (darts player)"
+    }
+  ]
+}

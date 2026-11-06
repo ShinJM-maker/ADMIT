@@ -1,0 +1,22 @@
+{
+  "file_sha256": "8a27ed23bd03695ab6a6a79dab3a5aec992b9fa66c38d2c4d497d5f040d419b0",
+  "string_sha256": {
+    "static_initial": "5ee2d76a38ac3971bb91989ad99aad2d037a27ea77be46bb985674ea800254c2",
+    "static_reread": "3e91ed42d836758da71c1194f0e2ae6821ed606d06bd2b19262dfb1349a8a1bf",
+    "dynamic_initial": "5ee2d76a38ac3971bb91989ad99aad2d037a27ea77be46bb985674ea800254c2",
+    "dynamic_repair": "67618e237f7cb8304a06aeeaba0dfd8f0eac41ed02111e2ec64d10971c0a09f4",
+    "dynamic_agent_prompts": {
+      "REACT_PLANNER_PROMPT": "544b1e0c9d52d73e07aa1b8462b67e1ee2fb6106537ebd28a8694b4fe4aa18ed",
+      "PLANRAG_PROMPT": "0d56e07c94643e93ccdd60a53017c5b866ddc667989fe5e257dae9dcb3621bf3",
+      "AUTOGEN_REASONER_PROMPT": "920077ba61acd2738e6851e9a6b72c7e9ba0a30b53ea620526b9902ee003e696"
+    },
+    "terminal_initial": "255e250e7af90366c3b410734ff8191ae5c7c59f4aa818564fb981d4b1b62158",
+    "terminal_repair": "67618e237f7cb8304a06aeeaba0dfd8f0eac41ed02111e2ec64d10971c0a09f4",
+    "prompt_tail": "15152d93288e00bb32ad171cb21212dea69ccd1e4eb2f7be147b120d9e050ee6"
+  },
+  "source_sha256": {
+    "run_reader_qwen25vl.py": "2ddae44282861f81acb6888d5f613ae197a0ffba92950c1f3dca31f3784865e3",
+    "run_phase30_reader_exact.py": "001b5ae53bb496b15d58758764d93c0a85d46614a1f09657e5e5f3bcb2fa6c8c",
+    "contract.py": "a169feae678160c74b106fe1ae5a026c9e537ea7fb9162883ebf9de0ec36b7d5"
+  }
+}

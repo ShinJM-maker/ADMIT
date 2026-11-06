@@ -1,0 +1,88 @@
+{
+  "scope": "Historical cached multimodal candidate pools, not the final ADMIT execution contract.",
+  "row_unit": "One cached reader output for one evidence configuration and one reader modality, with derived features and labels.",
+  "modalities": [
+    "text-only",
+    "image-enabled"
+  ],
+  "full_selector": "Argmax over all cached rows, without a modality filter.",
+  "archived_cascade_budget": "Stage weights 1/4/10 are hard-coded schedule units; they are not measured modality-specific generation counts.",
+  "datasets": {
+    "VisDoMSlide": {
+      "qids": 551,
+      "rows": 11020,
+      "rows_by_kind": {
+        "baseline_text": 551,
+        "baseline_image": 551,
+        "swap_text": 4959,
+        "swap_image": 4959
+      },
+      "rows_per_qid_histogram": {
+        "20": 551
+      },
+      "cached_generation_count_per_qid": 20.0,
+      "source": "projects/hikey/work/cavec_v4/phase2m_full_20260429_0116/harnesses/VisDoMSlide_full/cands_gbdt_base.jsonl",
+      "source_sha256": "3e1f189eeeb62747c5ccc58679d292d4937243e88c4f09616c1a2fc4ba9cf857"
+    },
+    "M3DocVQA": {
+      "qids": 2324,
+      "rows": 44774,
+      "rows_by_kind": {
+        "baseline_text": 2324,
+        "baseline_image": 2324,
+        "swap_text": 20063,
+        "swap_image": 20063
+      },
+      "rows_per_qid_histogram": {
+        "4": 3,
+        "6": 1,
+        "8": 68,
+        "10": 3,
+        "12": 6,
+        "14": 109,
+        "16": 20,
+        "18": 8,
+        "20": 2106
+      },
+      "cached_generation_count_per_qid": 19.26592082616179,
+      "source": "projects/hikey/work/cavec_v4/phase2m_full_20260429_0116/harnesses/M3DocVQA_full/cands_gbdt_base.jsonl",
+      "source_sha256": "2a29e9874e13749833bb8cbf66ea17eb9defac3e3470409ccc00e2554ebc097d"
+    },
+    "FRAMES": {
+      "qids": 760,
+      "rows": 15032,
+      "rows_by_kind": {
+        "baseline_text": 760,
+        "baseline_image": 760,
+        "swap_text": 6756,
+        "swap_image": 6756
+      },
+      "rows_per_qid_histogram": {
+        "6": 1,
+        "8": 5,
+        "10": 1,
+        "14": 11,
+        "16": 4,
+        "18": 1,
+        "20": 737
+      },
+      "cached_generation_count_per_qid": 19.778947368421054,
+      "source": "projects/hikey/work/cavec_v4/phase2m_full_20260429_0116/harnesses/FRAMES_full/cands_gbdt_base.jsonl",
+      "source_sha256": "33647a8eca152c7b7920c8a483f7b2f1e2c3aa8d0c0ad5cc10e175f0f7e4a268"
+    }
+  },
+  "code_sources": [
+    {
+      "path": "projects/hikey/code/cavec_v4/multimodal_harness_build.py",
+      "sha256": "2f5f961ccdf56f76929b349c06110bc4b1cfbc28f8ca28b21f82bcb1f3734e9d"
+    },
+    {
+      "path": "projects/hikey/code/cavec_v4/phase3b_cavec_learned_safe.py",
+      "sha256": "adae090f35dee64f7f30c9145c057e9f243985469bf07e7c3a544a2e03d54a84"
+    },
+    {
+      "path": "projects/hikey/code/cavec_v4/phase3c_lambda_heldout_calibration.py",
+      "sha256": "5e2556ed786286b8c6ba2859eaf6d08f29d548ef1773099e13fc4009c26da59e"
+    }
+  ]
+}

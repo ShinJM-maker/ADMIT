@@ -1,0 +1,34 @@
+{
+  "status": "historical diagnostic, not current admission gate",
+  "premise": "first 8000 characters of original serialized pack",
+  "hypothesis": "The answer to the question '<Q>' is: <gold>",
+  "candidate_scope": "reference answer, not necessarily exact generated candidate",
+  "nli_truncation": "only_first; no chunking or aggregation",
+  "models": [
+    {
+      "checkpoint": "MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli",
+      "max_total_tokens": 512
+    },
+    {
+      "checkpoint": "roberta-large-mnli",
+      "max_total_tokens": 512
+    },
+    {
+      "checkpoint": "facebook/bart-large-mnli",
+      "max_total_tokens": 1024
+    },
+    {
+      "checkpoint": "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7",
+      "max_total_tokens": 512
+    }
+  ],
+  "nli_decision": "argmax over model labels",
+  "llm": {
+    "checkpoint": "Qwen/Qwen3-VL-8B-Instruct",
+    "max_model_len": 12000,
+    "max_new_tokens": 8,
+    "evidence": "same first 8000 characters",
+    "parsing": "ENTAILED, CONTRADICTED, NEUTRAL label matching; default NEUTRAL"
+  },
+  "inference_limit": "No verified causal explanation for RoBERTa zero entailment; incomplete evidence coverage."
+}

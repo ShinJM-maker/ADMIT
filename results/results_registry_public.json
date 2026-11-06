@@ -1,0 +1,1653 @@
+{
+  "schema_version": "1.1",
+  "frozen_at": "2026-08-07 Asia/Seoul",
+  "thesis": "Final-answer parity in an answer-held-fixed control does not imply memory-state parity. ADMIT controls the write-time transition through which a public output becomes automatically reusable factual memory; the typed dynamic replay measures a small answer cost for that control.",
+  "contracts": {
+    "static": {
+      "population": "M3DocVQA 2,324-query candidate-complete subset: disjoint 1,162-qid calibration and reporting partitions",
+      "released_validation_n": 2441,
+      "candidate_complete_n": 2324,
+      "excluded_incomplete_candidate_rows": 117,
+      "exclusion_scope": "inherited candidate-complete harness population; not the full released validation set",
+      "calibration_n": 1162,
+      "reporting_n": 1162,
+      "partition_overlap": 0,
+      "untouched_held_out_claim": false,
+      "reader": "Qwen3-VL-8B-Instruct for initial read and RepairRead",
+      "max_model_len": 24576,
+      "evidence_token_budget": 14000,
+      "max_images_total": 1,
+      "actual_image_input": "2315/2324 initial-read artifacts; 1155/1162 cached candidate RepairRead artifacts",
+      "generation": "greedy, max_new_tokens=64",
+      "admission": "exact post-truncation reader-visible OCR/text packet",
+      "definitive_policy": "fixed refusal -> typed STATUS without RepairRead; unsupported non-refusal -> at most one RepairRead -> MFC/OFO",
+      "EM": "dynamic-aligned bidirectional lowercase/whitespace-normalized substring EM for every initial and RepairRead output; fixed refusals receive zero",
+      "learned_router_diagnostic": {
+        "features": [
+          "f_S_str",
+          "f_S_tok",
+          "f_S_ent",
+          "f_S_non",
+          "f_H_unsupported"
+        ],
+        "model": "LightGBM lambdarank",
+        "num_leaves": 31,
+        "learning_rate": 0.05,
+        "max_estimators": 500,
+        "min_data_in_leaf": 20,
+        "reg_lambda": 1.0,
+        "random_state": 42,
+        "early_stopping_rounds": 30,
+        "final_estimators": 2,
+        "model_selection": "nested calibration-only folds; final round count is the median selected count",
+        "threshold": "median of calibration baseline-row OOF scores",
+        "runtime_counterfactual_outputs": 0,
+        "reporting_labels_used_for_training_or_threshold": false,
+        "result": "no detectable answer-metric gain over deterministic routing; +0.09 pp EM with CI including zero at +0.493 calls/q; descriptive reporting-set diagnostic, not an untouched confirmatory claim"
+      }
+    },
+    "dynamic": {
+      "reader": "Qwen3-VL-8B-Instruct text-only",
+      "max_model_len": 16384,
+      "decoding": "greedy",
+      "packet": "exact post-truncation reader-visible OCR/text",
+      "gate": "strict normalized substring; H1 disabled",
+      "population": "300 qids x ReAct/PlanRAG/AutoGen",
+      "full_admit_router": "frozen historical 17-feature singleton-compatible LightGBM checkpoint",
+      "lambda_unsup": 0.5,
+      "tau_commit": -3.832878,
+      "router_scope": "historical compatibility diagnostic; no causal compute-saving claim; not required for the lexical guarantee",
+      "public_memory": "typed FACT/STATUS records",
+      "factual_consumer_rule": "retrieval, planning, and synthesis read FACT projection only",
+      "status_records": "REFUSAL and NO_COMMIT remain in audit state but are excluded from factual prompts",
+      "utility_state_result": "ADMIT vs fail-open: -0.67 pp substring EM (95% CI [-1.33,-0.11]) and -13.67 pp all-write lexical trajectory contamination",
+      "rerun_scope": {
+        "contract": "typed FACT/STATUS store; factual consumers read FACT projection only",
+        "selection": "union of pairs with an intermediate refusal or NO_COMMIT in any frozen arm",
+        "comparator": {
+          "union_pairs": 422,
+          "by_agent": {
+            "autogen": 124,
+            "react": 126,
+            "planrag": 172
+          },
+          "affected_by_arm": {
+            "cavec_mfc": 418,
+            "cavec_paper": 353,
+            "cavec_h1_hard_refuse": 418,
+            "final_support_retry": 338
+          }
+        },
+        "component": {
+          "union_pairs": 451,
+          "by_agent": {
+            "autogen": 130,
+            "planrag": 189,
+            "react": 132
+          },
+          "affected_by_arm": {
+            "gate_only": 449,
+            "gate_repair": 415,
+            "full_admit": 411
+          }
+        }
+      },
+      "answer_metric": "refusal-aware normalized bidirectional substring EM",
+      "contamination_scope": "all reuse-eligible content writes, including the terminal memory write",
+      "final_support_memory_policy": "Post-hoc support checking and RepairRead update only the output; all Vanilla memory writes, including the pre-repair terminal write, remain unchanged."
+    }
+  },
+  "metric_definitions": {
+    "contamination": "all reuse-eligible content writes, including the terminal memory write contains at least one non-refusal value without lexical support in its exact reader-visible OCR/text",
+    "no_commit": "trajectory contains at least one NO_COMMIT memory write",
+    "raw_em": "normalized bidirectional substring EM in the dynamic runner; fixed refusals and empty outputs score zero",
+    "static_em": "bidirectional substring EM after lowercase/whitespace normalization, identical to dynamic raw EM, for every initial and RepairRead output; fixed refusals and empty outputs score zero",
+    "unsupNR_strict": "per-query indicator that the output is a non-refusal and its normalized answer is not a substring of the exact reader-visible OCR/text packet; averaged over all queries, not only non-refusals",
+    "value_supported_EM": "per-query static EM indicator multiplied by the normalized substring-support indicator; averaged over all queries",
+    "F1": "SQuAD-style token F1 after lowercasing, punctuation/article removal, and short-answer extraction; max over gold alternatives",
+    "ANLS": "full-string normalized Levenshtein similarity after the same normalization and short-answer extraction; tau=0.5; max over gold alternatives",
+    "calls_q": "total reader calls per qid; final-only incremental retry is added to its vanilla base trajectory"
+  },
+  "provenance": {
+    "scope": "Dynamic entry source fields retain identifiers and hashes for the non-redistributed full typed trajectories. Public verification uses the included compact per-qid artifacts below; the validator recomputes all definitive aggregates and paired point estimates from them.",
+    "public_verification_sources": {
+      "static": {
+        "artifact_id": "static_deployable_router_per_qid.jsonl",
+        "sha256": "10db384924f2c045259dc16d3ce6d9abfb18c3950e9ac8968ad5b16919d1b4d3"
+      },
+      "dynamic_comparator": {
+        "artifact_id": "strict_comparator_per_qid.jsonl",
+        "sha256": "9c86d58650f96d09bdc034fcec8509f999dc83b95523599e84551f6e1a6534f5"
+      },
+      "dynamic_component": {
+        "artifact_id": "strict_component_per_qid.jsonl",
+        "sha256": "f258f214ec39a13248a3867b4a30fb530ec9175a7af685e7960768f41fa41bb6"
+      }
+    }
+  },
+  "entries": [
+    {
+      "experiment_id": "static_qwen3_clean_vanilla",
+      "dataset": "M3DocVQA",
+      "split": "1,162-qid reporting partition disjoint from router fitting and calibration",
+      "reader": "Qwen3-VL-8B-Instruct for initial read and RepairRead",
+      "packet_contract": "exact post-truncation reader-visible OCR/text packet",
+      "agent": "static",
+      "policy": "Vanilla single-pass",
+      "n": 1162,
+      "metrics": {
+        "n": 1162,
+        "EM": 0.4010327022375215,
+        "F1": 0.38638444888444884,
+        "ANLS": 0.37849185952524167,
+        "unsupNR_strict": 0.1549053356282272,
+        "value_supported_EM": 0.31841652323580033,
+        "calls_per_q": 1.0,
+        "no_commit_rate": 0.0,
+        "routes": {
+          "single_pass": 1162
+        }
+      },
+      "source": {
+        "artifact_id": "static_deployable_router_results.json",
+        "sha256": "e9c64db374525319fe01974f1d35d79bedbe65208a05876b25e37efd5647955d"
+      },
+      "status": "main",
+      "claim_scope": "static answer-cost and component audit",
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "static_qwen3_clean_gate_only",
+      "dataset": "M3DocVQA",
+      "split": "1,162-qid reporting partition disjoint from router fitting and calibration",
+      "reader": "Qwen3-VL-8B-Instruct for initial read and RepairRead",
+      "packet_contract": "exact post-truncation reader-visible OCR/text packet",
+      "agent": "static",
+      "policy": "Gate-only",
+      "n": 1162,
+      "metrics": {
+        "n": 1162,
+        "EM": 0.4010327022375215,
+        "F1": 0.38638444888444884,
+        "ANLS": 0.37849185952524167,
+        "unsupNR_strict": 0.1549053356282272,
+        "value_supported_EM": 0.31841652323580033,
+        "calls_per_q": 1.0,
+        "no_commit_rate": 0.1549053356282272,
+        "routes": {
+          "initial_refusal": 271,
+          "initial_admit": 711,
+          "no_commit_output_fallback": 180
+        }
+      },
+      "source": {
+        "artifact_id": "static_deployable_router_results.json",
+        "sha256": "e9c64db374525319fe01974f1d35d79bedbe65208a05876b25e37efd5647955d"
+      },
+      "status": "main-ablation",
+      "claim_scope": "static answer-cost and component audit",
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "static_qwen3_clean_final_support_retry",
+      "dataset": "M3DocVQA",
+      "split": "1,162-qid reporting partition disjoint from router fitting and calibration",
+      "reader": "Qwen3-VL-8B-Instruct for initial read and RepairRead",
+      "packet_contract": "exact post-truncation reader-visible OCR/text packet",
+      "agent": "static",
+      "policy": "Final-support + retry",
+      "n": 1162,
+      "metrics": {
+        "n": 1162,
+        "EM": 0.4036144578313253,
+        "F1": 0.3894825555970134,
+        "ANLS": 0.38119655586160756,
+        "unsupNR_strict": 0.14802065404475043,
+        "value_supported_EM": 0.3218588640275387,
+        "calls_per_q": 1.1549053356282273,
+        "no_commit_rate": 0.0,
+        "routes": {
+          "initial_refusal": 271,
+          "initial_supported": 711,
+          "fallback_initial": 172,
+          "repair_admit": 8
+        }
+      },
+      "source": {
+        "artifact_id": "static_deployable_router_results.json",
+        "sha256": "e9c64db374525319fe01974f1d35d79bedbe65208a05876b25e37efd5647955d"
+      },
+      "status": "main",
+      "claim_scope": "identical answer surface, distinct memory action",
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "static_qwen3_clean_admit",
+      "dataset": "M3DocVQA",
+      "split": "1,162-qid reporting partition disjoint from router fitting and calibration",
+      "reader": "Qwen3-VL-8B-Instruct for initial read and RepairRead",
+      "packet_contract": "exact post-truncation reader-visible OCR/text packet",
+      "agent": "static",
+      "policy": "ADMIT",
+      "n": 1162,
+      "metrics": {
+        "n": 1162,
+        "EM": 0.4036144578313253,
+        "F1": 0.3894825555970134,
+        "ANLS": 0.38119655586160756,
+        "unsupNR_strict": 0.14802065404475043,
+        "value_supported_EM": 0.3218588640275387,
+        "calls_per_q": 1.1549053356282273,
+        "no_commit_rate": 0.14802065404475043,
+        "routes": {
+          "initial_refusal": 271,
+          "initial_admit": 711,
+          "no_commit_output_fallback": 172,
+          "repair_admit": 8
+        }
+      },
+      "source": {
+        "artifact_id": "static_deployable_router_results.json",
+        "sha256": "e9c64db374525319fe01974f1d35d79bedbe65208a05876b25e37efd5647955d"
+      },
+      "status": "main",
+      "claim_scope": "identical answer surface, distinct memory action",
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "static_qwen3_clean_learned_router_diagnostic",
+      "dataset": "M3DocVQA",
+      "split": "1,162-qid reporting partition disjoint from router fitting and calibration",
+      "reader": "Qwen3-VL-8B-Instruct for initial read and RepairRead",
+      "packet_contract": "exact post-truncation reader-visible OCR/text packet",
+      "agent": "static",
+      "policy": "Learned-router diagnostic",
+      "n": 1162,
+      "metrics": {
+        "n": 1162,
+        "EM": 0.4044750430292599,
+        "F1": 0.3905890222800722,
+        "ANLS": 0.38192805327985196,
+        "unsupNR_strict": 0.14802065404475043,
+        "value_supported_EM": 0.3227194492254733,
+        "calls_per_q": 1.6480206540447504,
+        "no_commit_rate": 0.1566265060240964,
+        "routes": {
+          "initial_refusal": 271,
+          "repair_admit": 571,
+          "no_commit_output_fallback": 182,
+          "initial_admit": 138
+        }
+      },
+      "source": {
+        "artifact_id": "static_deployable_router_results.json",
+        "sha256": "e9c64db374525319fe01974f1d35d79bedbe65208a05876b25e37efd5647955d"
+      },
+      "status": "diagnostic",
+      "claim_scope": "static answer-cost and component audit",
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "static_qwen3_clean_every_q",
+      "dataset": "M3DocVQA",
+      "split": "1,162-qid reporting partition disjoint from router fitting and calibration",
+      "reader": "Qwen3-VL-8B-Instruct for initial read and RepairRead",
+      "packet_contract": "exact post-truncation reader-visible OCR/text packet",
+      "agent": "static",
+      "policy": "Every-q repair",
+      "n": 1162,
+      "metrics": {
+        "n": 1162,
+        "EM": 0.43459552495697074,
+        "F1": 0.42258366752772947,
+        "ANLS": 0.41936712529419984,
+        "unsupNR_strict": 0.14802065404475043,
+        "value_supported_EM": 0.3528399311531842,
+        "calls_per_q": 2.0,
+        "no_commit_rate": 0.16006884681583478,
+        "routes": {
+          "repair_admit": 889,
+          "initial_refusal_fallback": 87,
+          "no_commit_output_fallback": 186
+        }
+      },
+      "source": {
+        "artifact_id": "static_deployable_router_results.json",
+        "sha256": "e9c64db374525319fe01974f1d35d79bedbe65208a05876b25e37efd5647955d"
+      },
+      "status": "main-ablation",
+      "claim_scope": "static answer-cost and component audit",
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_gate_only_react",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "react",
+      "policy": "Gate-only",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.3333333333333333,
+        "contamination": 0.0,
+        "no_commit": 0.12,
+        "calls_q": 2.1333333333333333,
+        "final_refusal": 0.31333333333333335
+      },
+      "source": {
+        "artifact_id": "typed_component_gate_only_900.jsonl",
+        "sha256": "adaa13a3695f9b445f610a2dfae39cee08116ab956a95f417d5467de9f04507e"
+      },
+      "status": "main_ablation",
+      "replacement_count": 21,
+      "control_reproducibility": {
+        "n": 24,
+        "exact_signature_matches": 24,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_gate_only_planrag",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "planrag",
+      "policy": "Gate-only",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.33666666666666667,
+        "contamination": 0.0,
+        "no_commit": 0.33666666666666667,
+        "calls_q": 3.0,
+        "final_refusal": 0.23333333333333334
+      },
+      "source": {
+        "artifact_id": "typed_component_gate_only_900.jsonl",
+        "sha256": "adaa13a3695f9b445f610a2dfae39cee08116ab956a95f417d5467de9f04507e"
+      },
+      "status": "main_ablation",
+      "replacement_count": 21,
+      "control_reproducibility": {
+        "n": 24,
+        "exact_signature_matches": 24,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_gate_only_autogen",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "autogen",
+      "policy": "Gate-only",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.33,
+        "contamination": 0.0,
+        "no_commit": 0.12666666666666668,
+        "calls_q": 2.1233333333333335,
+        "final_refusal": 0.3
+      },
+      "source": {
+        "artifact_id": "typed_component_gate_only_900.jsonl",
+        "sha256": "adaa13a3695f9b445f610a2dfae39cee08116ab956a95f417d5467de9f04507e"
+      },
+      "status": "main_ablation",
+      "replacement_count": 21,
+      "control_reproducibility": {
+        "n": 24,
+        "exact_signature_matches": 24,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_gate_only_pooled",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "pooled",
+      "policy": "Gate-only",
+      "n": 900,
+      "metrics": {
+        "n": 900,
+        "raw_em": 0.3333333333333333,
+        "contamination": 0.0,
+        "no_commit": 0.19444444444444445,
+        "calls_q": 2.418888888888889,
+        "final_refusal": 0.2822222222222222
+      },
+      "source": {
+        "artifact_id": "typed_component_gate_only_900.jsonl",
+        "sha256": "adaa13a3695f9b445f610a2dfae39cee08116ab956a95f417d5467de9f04507e"
+      },
+      "status": "main_ablation",
+      "replacement_count": 21,
+      "control_reproducibility": {
+        "n": 24,
+        "exact_signature_matches": 24,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_full_admit_react",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "react",
+      "policy": "Full ADMIT",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.3333333333333333,
+        "contamination": 0.0,
+        "no_commit": 0.09333333333333334,
+        "calls_q": 2.39,
+        "final_refusal": 0.31333333333333335
+      },
+      "source": {
+        "artifact_id": "typed_component_full_admit_900.jsonl",
+        "sha256": "0cb4660d9ba69ac0eca7e8ec28ba2e6152841dfad17395308688996519bf376c"
+      },
+      "status": "main_ablation",
+      "replacement_count": 23,
+      "control_reproducibility": {
+        "n": 25,
+        "exact_signature_matches": 25,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_full_admit_planrag",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "planrag",
+      "policy": "Full ADMIT",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.32666666666666666,
+        "contamination": 0.0,
+        "no_commit": 0.21333333333333335,
+        "calls_q": 3.42,
+        "final_refusal": 0.23333333333333334
+      },
+      "source": {
+        "artifact_id": "typed_component_full_admit_900.jsonl",
+        "sha256": "0cb4660d9ba69ac0eca7e8ec28ba2e6152841dfad17395308688996519bf376c"
+      },
+      "status": "main_ablation",
+      "replacement_count": 23,
+      "control_reproducibility": {
+        "n": 25,
+        "exact_signature_matches": 25,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_full_admit_autogen",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "autogen",
+      "policy": "Full ADMIT",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.32666666666666666,
+        "contamination": 0.0,
+        "no_commit": 0.09666666666666666,
+        "calls_q": 2.4,
+        "final_refusal": 0.3
+      },
+      "source": {
+        "artifact_id": "typed_component_full_admit_900.jsonl",
+        "sha256": "0cb4660d9ba69ac0eca7e8ec28ba2e6152841dfad17395308688996519bf376c"
+      },
+      "status": "main_ablation",
+      "replacement_count": 23,
+      "control_reproducibility": {
+        "n": 25,
+        "exact_signature_matches": 25,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_full_admit_pooled",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "pooled",
+      "policy": "Full ADMIT",
+      "n": 900,
+      "metrics": {
+        "n": 900,
+        "raw_em": 0.3288888888888889,
+        "contamination": 0.0,
+        "no_commit": 0.13444444444444445,
+        "calls_q": 2.736666666666667,
+        "final_refusal": 0.2822222222222222
+      },
+      "source": {
+        "artifact_id": "typed_component_full_admit_900.jsonl",
+        "sha256": "0cb4660d9ba69ac0eca7e8ec28ba2e6152841dfad17395308688996519bf376c"
+      },
+      "status": "main_ablation",
+      "replacement_count": 23,
+      "control_reproducibility": {
+        "n": 25,
+        "exact_signature_matches": 25,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_gate_repair_react",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "react",
+      "policy": "Gate + RepairRead",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.3333333333333333,
+        "contamination": 0.0,
+        "no_commit": 0.09666666666666666,
+        "calls_q": 2.3966666666666665,
+        "final_refusal": 0.31333333333333335
+      },
+      "source": {
+        "artifact_id": "typed_component_gate_repair_900.jsonl",
+        "sha256": "a884e3af40c932886cfcef3e6127490b2d0e74072ea0431f4fb3ae84d19f32fc"
+      },
+      "status": "main_ablation",
+      "replacement_count": 24,
+      "control_reproducibility": {
+        "n": 24,
+        "exact_signature_matches": 23,
+        "mismatches": [
+          {
+            "qid": "5bd72bfba4f8e712f3dec278cdec9ccf",
+            "agent": "planrag",
+            "before": {
+              "answer": "I do not have enough information to answer",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 0,
+              "calls_q": 3
+            },
+            "after": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            }
+          }
+        ],
+        "mismatch_repeat_audit": [
+          {
+            "qid": "5bd72bfba4f8e712f3dec278cdec9ccf",
+            "agent": "planrag",
+            "fresh_rerun_signature": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            },
+            "repeat_signature": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            },
+            "fresh_repeat_exact": true
+          }
+        ]
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_gate_repair_planrag",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "planrag",
+      "policy": "Gate + RepairRead",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.32666666666666666,
+        "contamination": 0.0,
+        "no_commit": 0.21666666666666667,
+        "calls_q": 3.4233333333333333,
+        "final_refusal": 0.23333333333333334
+      },
+      "source": {
+        "artifact_id": "typed_component_gate_repair_900.jsonl",
+        "sha256": "a884e3af40c932886cfcef3e6127490b2d0e74072ea0431f4fb3ae84d19f32fc"
+      },
+      "status": "main_ablation",
+      "replacement_count": 24,
+      "control_reproducibility": {
+        "n": 24,
+        "exact_signature_matches": 23,
+        "mismatches": [
+          {
+            "qid": "5bd72bfba4f8e712f3dec278cdec9ccf",
+            "agent": "planrag",
+            "before": {
+              "answer": "I do not have enough information to answer",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 0,
+              "calls_q": 3
+            },
+            "after": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            }
+          }
+        ],
+        "mismatch_repeat_audit": [
+          {
+            "qid": "5bd72bfba4f8e712f3dec278cdec9ccf",
+            "agent": "planrag",
+            "fresh_rerun_signature": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            },
+            "repeat_signature": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            },
+            "fresh_repeat_exact": true
+          }
+        ]
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_gate_repair_autogen",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "autogen",
+      "policy": "Gate + RepairRead",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.32666666666666666,
+        "contamination": 0.0,
+        "no_commit": 0.09666666666666666,
+        "calls_q": 2.4033333333333333,
+        "final_refusal": 0.3
+      },
+      "source": {
+        "artifact_id": "typed_component_gate_repair_900.jsonl",
+        "sha256": "a884e3af40c932886cfcef3e6127490b2d0e74072ea0431f4fb3ae84d19f32fc"
+      },
+      "status": "main_ablation",
+      "replacement_count": 24,
+      "control_reproducibility": {
+        "n": 24,
+        "exact_signature_matches": 23,
+        "mismatches": [
+          {
+            "qid": "5bd72bfba4f8e712f3dec278cdec9ccf",
+            "agent": "planrag",
+            "before": {
+              "answer": "I do not have enough information to answer",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 0,
+              "calls_q": 3
+            },
+            "after": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            }
+          }
+        ],
+        "mismatch_repeat_audit": [
+          {
+            "qid": "5bd72bfba4f8e712f3dec278cdec9ccf",
+            "agent": "planrag",
+            "fresh_rerun_signature": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            },
+            "repeat_signature": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            },
+            "fresh_repeat_exact": true
+          }
+        ]
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_component_gate_repair_pooled",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "pooled",
+      "policy": "Gate + RepairRead",
+      "n": 900,
+      "metrics": {
+        "n": 900,
+        "raw_em": 0.3288888888888889,
+        "contamination": 0.0,
+        "no_commit": 0.13666666666666666,
+        "calls_q": 2.741111111111111,
+        "final_refusal": 0.2822222222222222
+      },
+      "source": {
+        "artifact_id": "typed_component_gate_repair_900.jsonl",
+        "sha256": "a884e3af40c932886cfcef3e6127490b2d0e74072ea0431f4fb3ae84d19f32fc"
+      },
+      "status": "main_ablation",
+      "replacement_count": 24,
+      "control_reproducibility": {
+        "n": 24,
+        "exact_signature_matches": 23,
+        "mismatches": [
+          {
+            "qid": "5bd72bfba4f8e712f3dec278cdec9ccf",
+            "agent": "planrag",
+            "before": {
+              "answer": "I do not have enough information to answer",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 0,
+              "calls_q": 3
+            },
+            "after": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            }
+          }
+        ],
+        "mismatch_repeat_audit": [
+          {
+            "qid": "5bd72bfba4f8e712f3dec278cdec9ccf",
+            "agent": "planrag",
+            "fresh_rerun_signature": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            },
+            "repeat_signature": {
+              "answer": "No",
+              "em": 0,
+              "n_reader_calls": 3,
+              "n_repair_calls": 2,
+              "calls_q": 5
+            },
+            "fresh_repeat_exact": true
+          }
+        ]
+      },
+      "typed_rerun_pairs": 451,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_final_support_retry_react",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "react",
+      "policy": "Final-support + retry",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.34,
+        "contamination": 0.12333333333333334,
+        "no_commit": 0.0,
+        "calls_q": 2.23,
+        "final_refusal": 0.31333333333333335
+      },
+      "source": {
+        "artifact_id": "typed_comparator_final_support_retry_preserve_vanilla_900.jsonl",
+        "sha256": "a84e661a779b2876bda7caf336595d88345327d7d2cfee3a2be3aa8966bcbd45"
+      },
+      "status": "main",
+      "replacement_count": 0,
+      "control_reproducibility": null,
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20",
+      "generation_source": {
+        "artifact_id": "typed_comparator_final_support_retry_900.jsonl",
+        "sha256": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1"
+      },
+      "terminal_memory_policy": "preserve_all_vanilla_memory_output_only_repair"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_final_support_retry_planrag",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "planrag",
+      "policy": "Final-support + retry",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.33,
+        "contamination": 0.33666666666666667,
+        "no_commit": 0.0,
+        "calls_q": 3.27,
+        "final_refusal": 0.22333333333333333
+      },
+      "source": {
+        "artifact_id": "typed_comparator_final_support_retry_preserve_vanilla_900.jsonl",
+        "sha256": "a84e661a779b2876bda7caf336595d88345327d7d2cfee3a2be3aa8966bcbd45"
+      },
+      "status": "main",
+      "replacement_count": 0,
+      "control_reproducibility": null,
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20",
+      "generation_source": {
+        "artifact_id": "typed_comparator_final_support_retry_900.jsonl",
+        "sha256": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1"
+      },
+      "terminal_memory_policy": "preserve_all_vanilla_memory_output_only_repair"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_final_support_retry_autogen",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "autogen",
+      "policy": "Final-support + retry",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.3433333333333333,
+        "contamination": 0.13,
+        "no_commit": 0.0,
+        "calls_q": 2.243333333333333,
+        "final_refusal": 0.2966666666666667
+      },
+      "source": {
+        "artifact_id": "typed_comparator_final_support_retry_preserve_vanilla_900.jsonl",
+        "sha256": "a84e661a779b2876bda7caf336595d88345327d7d2cfee3a2be3aa8966bcbd45"
+      },
+      "status": "main",
+      "replacement_count": 0,
+      "control_reproducibility": null,
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20",
+      "generation_source": {
+        "artifact_id": "typed_comparator_final_support_retry_900.jsonl",
+        "sha256": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1"
+      },
+      "terminal_memory_policy": "preserve_all_vanilla_memory_output_only_repair"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_final_support_retry_pooled",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "pooled",
+      "policy": "Final-support + retry",
+      "n": 900,
+      "metrics": {
+        "n": 900,
+        "raw_em": 0.3377777777777778,
+        "contamination": 0.19666666666666666,
+        "no_commit": 0.0,
+        "calls_q": 2.581111111111111,
+        "final_refusal": 0.2777777777777778
+      },
+      "source": {
+        "artifact_id": "typed_comparator_final_support_retry_preserve_vanilla_900.jsonl",
+        "sha256": "a84e661a779b2876bda7caf336595d88345327d7d2cfee3a2be3aa8966bcbd45"
+      },
+      "status": "main",
+      "replacement_count": 0,
+      "control_reproducibility": null,
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20",
+      "generation_source": {
+        "artifact_id": "typed_comparator_final_support_retry_900.jsonl",
+        "sha256": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1"
+      },
+      "terminal_memory_policy": "preserve_all_vanilla_memory_output_only_repair"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_admit_fail_open_react",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "react",
+      "policy": "ADMIT fail-open",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.33666666666666667,
+        "contamination": 0.09333333333333334,
+        "no_commit": 0.0,
+        "calls_q": 2.34,
+        "final_refusal": 0.31333333333333335
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_paper_900.jsonl",
+        "sha256": "777163c99e23ecff94a11e2ded119a021efe20925a7238b3f1ddda00618d560d"
+      },
+      "status": "main",
+      "replacement_count": 26,
+      "control_reproducibility": {
+        "n": 19,
+        "exact_signature_matches": 19,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_admit_fail_open_planrag",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "planrag",
+      "policy": "ADMIT fail-open",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.3333333333333333,
+        "contamination": 0.22,
+        "no_commit": 0.0,
+        "calls_q": 3.4466666666666668,
+        "final_refusal": 0.22
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_paper_900.jsonl",
+        "sha256": "777163c99e23ecff94a11e2ded119a021efe20925a7238b3f1ddda00618d560d"
+      },
+      "status": "main",
+      "replacement_count": 26,
+      "control_reproducibility": {
+        "n": 19,
+        "exact_signature_matches": 19,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_admit_fail_open_autogen",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "autogen",
+      "policy": "ADMIT fail-open",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.34,
+        "contamination": 0.09666666666666666,
+        "no_commit": 0.0,
+        "calls_q": 2.3766666666666665,
+        "final_refusal": 0.2966666666666667
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_paper_900.jsonl",
+        "sha256": "777163c99e23ecff94a11e2ded119a021efe20925a7238b3f1ddda00618d560d"
+      },
+      "status": "main",
+      "replacement_count": 26,
+      "control_reproducibility": {
+        "n": 19,
+        "exact_signature_matches": 19,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_admit_fail_open_pooled",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "pooled",
+      "policy": "ADMIT fail-open",
+      "n": 900,
+      "metrics": {
+        "n": 900,
+        "raw_em": 0.33666666666666667,
+        "contamination": 0.13666666666666666,
+        "no_commit": 0.0,
+        "calls_q": 2.721111111111111,
+        "final_refusal": 0.27666666666666667
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_paper_900.jsonl",
+        "sha256": "777163c99e23ecff94a11e2ded119a021efe20925a7238b3f1ddda00618d560d"
+      },
+      "status": "main",
+      "replacement_count": 26,
+      "control_reproducibility": {
+        "n": 19,
+        "exact_signature_matches": 19,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_hard_refuse_react",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "react",
+      "policy": "Hard-refuse",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.28,
+        "contamination": 0.0,
+        "no_commit": 0.0,
+        "calls_q": 2.3866666666666667,
+        "final_refusal": 0.4
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_h1_hard_refuse_900.jsonl",
+        "sha256": "78e5dd6af5ec0a539a22a7ee8b7898bec78f3e936d9dd565ee2cd1408aeb0eaf"
+      },
+      "status": "main",
+      "replacement_count": 27,
+      "control_reproducibility": {
+        "n": 21,
+        "exact_signature_matches": 21,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_hard_refuse_planrag",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "planrag",
+      "policy": "Hard-refuse",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.26666666666666666,
+        "contamination": 0.0,
+        "no_commit": 0.0,
+        "calls_q": 3.4366666666666665,
+        "final_refusal": 0.36666666666666664
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_h1_hard_refuse_900.jsonl",
+        "sha256": "78e5dd6af5ec0a539a22a7ee8b7898bec78f3e936d9dd565ee2cd1408aeb0eaf"
+      },
+      "status": "main",
+      "replacement_count": 27,
+      "control_reproducibility": {
+        "n": 21,
+        "exact_signature_matches": 21,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_hard_refuse_autogen",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "autogen",
+      "policy": "Hard-refuse",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.27666666666666667,
+        "contamination": 0.0,
+        "no_commit": 0.0,
+        "calls_q": 2.4,
+        "final_refusal": 0.38666666666666666
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_h1_hard_refuse_900.jsonl",
+        "sha256": "78e5dd6af5ec0a539a22a7ee8b7898bec78f3e936d9dd565ee2cd1408aeb0eaf"
+      },
+      "status": "main",
+      "replacement_count": 27,
+      "control_reproducibility": {
+        "n": 21,
+        "exact_signature_matches": 21,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_hard_refuse_pooled",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "pooled",
+      "policy": "Hard-refuse",
+      "n": 900,
+      "metrics": {
+        "n": 900,
+        "raw_em": 0.27444444444444444,
+        "contamination": 0.0,
+        "no_commit": 0.0,
+        "calls_q": 2.741111111111111,
+        "final_refusal": 0.3844444444444444
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_h1_hard_refuse_900.jsonl",
+        "sha256": "78e5dd6af5ec0a539a22a7ee8b7898bec78f3e936d9dd565ee2cd1408aeb0eaf"
+      },
+      "status": "main",
+      "replacement_count": 27,
+      "control_reproducibility": {
+        "n": 21,
+        "exact_signature_matches": 21,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_admit_mfc_ofo_react",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "react",
+      "policy": "ADMIT MFC/OFO",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.33666666666666667,
+        "contamination": 0.0,
+        "no_commit": 0.09333333333333334,
+        "calls_q": 2.3833333333333333,
+        "final_refusal": 0.31333333333333335
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_mfc_900.jsonl",
+        "sha256": "fd08096f34466dccbc3d021065da3c6bd31525f5fb1dfed17414812d9cca28eb"
+      },
+      "status": "main",
+      "replacement_count": 27,
+      "control_reproducibility": {
+        "n": 21,
+        "exact_signature_matches": 21,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_admit_mfc_ofo_planrag",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "planrag",
+      "policy": "ADMIT MFC/OFO",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.3233333333333333,
+        "contamination": 0.0,
+        "no_commit": 0.21333333333333335,
+        "calls_q": 3.4233333333333333,
+        "final_refusal": 0.22333333333333333
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_mfc_900.jsonl",
+        "sha256": "fd08096f34466dccbc3d021065da3c6bd31525f5fb1dfed17414812d9cca28eb"
+      },
+      "status": "main",
+      "replacement_count": 27,
+      "control_reproducibility": {
+        "n": 21,
+        "exact_signature_matches": 21,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_admit_mfc_ofo_autogen",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "autogen",
+      "policy": "ADMIT MFC/OFO",
+      "n": 300,
+      "metrics": {
+        "n": 300,
+        "raw_em": 0.33,
+        "contamination": 0.0,
+        "no_commit": 0.09666666666666666,
+        "calls_q": 2.4,
+        "final_refusal": 0.3
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_mfc_900.jsonl",
+        "sha256": "fd08096f34466dccbc3d021065da3c6bd31525f5fb1dfed17414812d9cca28eb"
+      },
+      "status": "main",
+      "replacement_count": 27,
+      "control_reproducibility": {
+        "n": 21,
+        "exact_signature_matches": 21,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    },
+    {
+      "experiment_id": "dynamic_strict_comparator_admit_mfc_ofo_pooled",
+      "dataset": "M3DocVQA",
+      "split": "frozen 300-qid dynamic subset",
+      "reader": "Qwen3-VL-8B-Instruct, text-only, greedy, vLLM 0.16.0",
+      "packet_contract": "strict exact normalized substring; typed FACT/STATUS public memory; factual consumers read FACT projection only",
+      "agent": "pooled",
+      "policy": "ADMIT MFC/OFO",
+      "n": 900,
+      "metrics": {
+        "n": 900,
+        "raw_em": 0.33,
+        "contamination": 0.0,
+        "no_commit": 0.13444444444444445,
+        "calls_q": 2.7355555555555555,
+        "final_refusal": 0.2788888888888889
+      },
+      "source": {
+        "artifact_id": "typed_comparator_cavec_mfc_900.jsonl",
+        "sha256": "fd08096f34466dccbc3d021065da3c6bd31525f5fb1dfed17414812d9cca28eb"
+      },
+      "status": "main",
+      "replacement_count": 27,
+      "control_reproducibility": {
+        "n": 21,
+        "exact_signature_matches": 21,
+        "mismatches": []
+      },
+      "typed_rerun_pairs": 422,
+      "scoring_revision": "2026-10-20"
+    }
+  ],
+  "static_paired_deltas": {
+    "ADMIT_minus_Vanilla single-pass": {
+      "EM": {
+        "n": 1162,
+        "mean": 0.0025817555938037868,
+        "ci95": [
+          0.0,
+          0.006024096385542169
+        ],
+        "draws": 10000
+      },
+      "F1": {
+        "n": 1162,
+        "mean": 0.003098106712564544,
+        "ci95": [
+          0.0005163511187607573,
+          0.006540447504302925
+        ],
+        "draws": 10000
+      },
+      "ANLS": {
+        "n": 1162,
+        "mean": 0.0027046963363658717,
+        "ci95": [
+          -0.0006147037128104255,
+          0.0068846815834767644
+        ],
+        "draws": 10000
+      },
+      "value_supported_EM": {
+        "n": 1162,
+        "mean": 0.0034423407917383822,
+        "ci95": [
+          0.0008605851979345956,
+          0.0068846815834767644
+        ],
+        "draws": 10000
+      },
+      "calls": {
+        "n": 1162,
+        "mean": 0.1549053356282272,
+        "ci95": [
+          0.1342512908777969,
+          0.17558089500860552
+        ],
+        "draws": 10000
+      },
+      "no_commit": {
+        "n": 1162,
+        "mean": 0.14802065404475043,
+        "ci95": [
+          0.12736660929432014,
+          0.1686746987951807
+        ],
+        "draws": 10000
+      }
+    },
+    "ADMIT_minus_Final-support + retry": {
+      "EM": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "F1": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "ANLS": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "value_supported_EM": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "calls": {
+        "n": 1162,
+        "mean": 0.0,
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "draws": 10000
+      },
+      "no_commit": {
+        "n": 1162,
+        "mean": 0.14802065404475043,
+        "ci95": [
+          0.12736660929432014,
+          0.1686746987951807
+        ],
+        "draws": 10000
+      }
+    },
+    "ADMIT_minus_Every-q repair": {
+      "EM": {
+        "n": 1162,
+        "mean": -0.03098106712564544,
+        "ci95": [
+          -0.043029259896729774,
+          -0.019793459552495698
+        ],
+        "draws": 10000
+      },
+      "F1": {
+        "n": 1162,
+        "mean": -0.03310111193071607,
+        "ci95": [
+          -0.04474097068546294,
+          -0.02219746332267847
+        ],
+        "draws": 10000
+      },
+      "ANLS": {
+        "n": 1162,
+        "mean": -0.03817056943259231,
+        "ci95": [
+          -0.05037995017284023,
+          -0.027111959241527935
+        ],
+        "draws": 10000
+      },
+      "value_supported_EM": {
+        "n": 1162,
+        "mean": -0.03098106712564544,
+        "ci95": [
+          -0.043029259896729774,
+          -0.019793459552495698
+        ],
+        "draws": 10000
+      },
+      "calls": {
+        "n": 1162,
+        "mean": -0.8450946643717728,
+        "ci95": [
+          -0.8657487091222031,
+          -0.8244191049913945
+        ],
+        "draws": 10000
+      },
+      "no_commit": {
+        "n": 1162,
+        "mean": -0.012048192771084338,
+        "ci95": [
+          -0.0189328743545611,
+          -0.006024096385542169
+        ],
+        "draws": 10000
+      }
+    },
+    "Learned-router_diagnostic_minus_ADMIT": {
+      "EM": {
+        "n": 1162,
+        "mean": 0.0008605851979345956,
+        "ci95": [
+          -0.0051635111876075735,
+          0.0068846815834767644
+        ],
+        "draws": 10000
+      },
+      "F1": {
+        "n": 1162,
+        "mean": 0.0011064666830587658,
+        "ci95": [
+          -0.004245758544381608,
+          0.006458896811736736
+        ],
+        "draws": 10000
+      },
+      "ANLS": {
+        "n": 1162,
+        "mean": 0.0007314974182444061,
+        "ci95": [
+          -0.004302925989672977,
+          0.005550774526678142
+        ],
+        "draws": 10000
+      },
+      "value_supported_EM": {
+        "n": 1162,
+        "mean": 0.0008605851979345956,
+        "ci95": [
+          -0.0051635111876075735,
+          0.0068846815834767644
+        ],
+        "draws": 10000
+      },
+      "calls": {
+        "n": 1162,
+        "mean": 0.49311531841652323,
+        "ci95": [
+          0.463855421686747,
+          0.5215146299483648
+        ],
+        "draws": 10000
+      },
+      "no_commit": {
+        "n": 1162,
+        "mean": 0.008605851979345954,
+        "ci95": [
+          0.0034423407917383822,
+          0.014629948364888123
+        ],
+        "draws": 10000
+      }
+    }
+  },
+  "strict_portability_extension": {
+    "date": "2026-09-28",
+    "status": "main",
+    "terminal_summary": "strict_portability_20260928/TERMINAL_SUMMARY.json",
+    "dataset_summary": "strict_portability_20260928/DATASET_SUMMARY.json",
+    "provenance": "strict_portability_20260928/PROVENANCE.json",
+    "validation": "code/validate_strict_portability.py"
+  },
+  "scoring_revision": {
+    "date": "2026-10-20",
+    "output_generation_unchanged": true,
+    "original_full_trajectory_score_fields": "Historical; corrected metrics recomputed from saved output/refusal indicators.",
+    "ledger": "scoring_correction_20261020.json"
+  },
+  "write_scope_revision": {
+    "date": "2026-10-20",
+    "model_calls_added": 0,
+    "scope": "all reuse-eligible content writes, including the terminal memory write",
+    "audit_artifact": "write_scope_per_qid.jsonl",
+    "audit_sha256": "4956766841163fa7127d60fc28b545c8bea34a9fcf61f7db87e7cb06ccb91b2b",
+    "primary_answer_scores_calls_and_admit_policy_unchanged": true,
+    "final_support_terminal_metadata_normalized": true,
+    "previous_aggregation": "typed trajectories omitted terminal records; the final-only comparator additionally mixed post-repair and Vanilla terminal states",
+    "changed_rows": {
+      "comparator/final_support_retry": 29,
+      "comparator/cavec_paper": 21,
+      "comparator/cavec_h1_hard_refuse": 0,
+      "comparator/cavec_mfc": 0,
+      "component/gate_only": 0,
+      "component/gate_repair": 0,
+      "component/full_admit": 0
+    }
+  },
+  "final_support_contract_revision": {
+    "date": "2026-10-20",
+    "model_calls_added": 0,
+    "policy": "preserve_all_vanilla_memory_output_only_repair",
+    "definition": "Post-hoc support checking and RepairRead update only the output; all Vanilla memory writes, including the pre-repair terminal write, remain unchanged.",
+    "counts": {
+      "typed_rows": 422,
+      "typed_terminal_metadata_changed": 11,
+      "contaminated": 177,
+      "react_contaminated": 37,
+      "typed_contaminated": 122,
+      "legacy_rows": 478,
+      "legacy_contaminated": 55,
+      "legacy_unsupported_binary_terminals": 3,
+      "changed_vs_previous_release": 9,
+      "planrag_contaminated": 101,
+      "autogen_contaminated": 39,
+      "changed_typed_vs_previous_release": 6,
+      "changed_legacy_vs_previous_release": 3
+    },
+    "source_sha256": {
+      "typed_comparator_final_support_retry_900.jsonl": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1",
+      "all_public_writes.jsonl": "123d1a23371a094355ca2fdb98cf23da03bb0c9b341fcd219eebca8d9fc8e7cb",
+      "react_per_qid.jsonl": "a5b7994e203e1a76846f8ebd2f808b4e1201288b6d876d966accec7f29937114",
+      "planrag_per_qid.jsonl": "9c77c26821ceec5d65a87df4865d76492f5a3a3486aabbea9a2c56179122896a",
+      "autogen_per_qid.jsonl": "2055dfc32f82b4b7923538366601450580928e4689fe7dc6ebec312f8bfdcf78"
+    },
+    "compact_artifact": "final_support_memory_contract_20261020.jsonl",
+    "compact_sha256": "b38649788104faa86d01e319c3f3c54391403cdb32a9f165f76310e5e7bdc8d0",
+    "generations_primary_scores_calls_and_intermediate_records_unchanged": true,
+    "normalization": "Derived terminal metadata is normalized to the retained Vanilla state; raw trajectory files remain immutable.",
+    "legacy_support_rule": "Exact-reader substring annotations, with no binary-answer exception.",
+    "normalized_artifact": "typed_comparator_final_support_retry_preserve_vanilla_900.jsonl",
+    "normalized_sha256": "a84e661a779b2876bda7caf336595d88345327d7d2cfee3a2be3aa8966bcbd45",
+    "generation_source": {
+      "artifact_id": "typed_comparator_final_support_retry_900.jsonl",
+      "sha256": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1"
+    }
+  }
+}

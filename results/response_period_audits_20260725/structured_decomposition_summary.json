@@ -1,0 +1,37 @@
+{
+ "description": "Response-period typed multi-value decomposition audit (App. structured_audits). Surface-flagged writes come from the 2,508-write audit population; components are exact spans of the parent value, so a monolithic pass cannot hide a failing component.",
+ "multi_value": {
+  "surface_flagged_writes": 172,
+  "unique_qids": 52,
+  "valid_constructions": 148,
+  "invalid_fail_closed": 24,
+  "invalid_construction_reasons": {
+   "multi_has_lt2": 13,
+   "parse_or_schema": 2,
+   "atomic_not_roundtrip": 9
+  },
+  "valid_atomic": 100,
+  "valid_multi_value": 41,
+  "valid_multi_relation": 7,
+  "valid_multi_writes": 48,
+  "valid_multi_unique_qids": 20,
+  "components": 185,
+  "component_substring_pass": 163,
+  "parents_original_substring_pass": 3,
+  "parents_all_components_pass": 33,
+  "parents_partial_components": 14,
+  "decomposition_recovers_monolithic_rejection": 30,
+  "monolithic_pass_but_component_failure": 0,
+  "component_judge_valid": 176,
+  "component_judge_labels": {
+   "RELATION_SUPPORTED": 116,
+   "VALUE_PRESENT_ONLY": 47,
+   "INSUFFICIENT": 12,
+   "CONTRADICTED": 1
+  },
+  "parents_all_component_judges_valid": 42,
+  "parents_all_relation_supported_qwen25": 11,
+  "parents_mixed_relation_support_qwen25": 28,
+  "parents_no_relation_support_qwen25": 9
+ }
+}

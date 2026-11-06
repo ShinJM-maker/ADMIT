@@ -1,0 +1,41 @@
+{
+ "description": "Response-period TAT-QA derived-value audit on the 145 arithmetic questions of the typed PlanRAG transfer run. Official derivations are replayed with an arithmetic-only parser; the official answer selects only the numeric scale (direct or x100). derived_only: every source operand of the derivation appears in the exact terminal packet but the answer string does not. The online agent and gate received none of the official program, answer, scale, or table mapping.",
+ "derivability": {
+  "definition": "operand-complete means every distinct numeric literal from the official derivation that occurs in the source document also occurs in the exact terminal reader packet; derived-only additionally requires that the gold answer string itself is absent",
+  "all_arithmetic": 145,
+  "scorable_with_source_operands": 145,
+  "operand_complete": 131,
+  "gold_present_in_packet": 15,
+  "derived_only": 117,
+  "derived_only_output_substring_em": 11,
+  "derived_only_output_strict_numeric_correct": 29,
+  "derived_only_strict_correct_terminal_quarantine": 12,
+  "derived_only_strict_correct_any_no_commit": 12,
+  "operand_incomplete": 14,
+  "operand_complete_and_gold_present": 14,
+  "operand_incomplete_and_gold_present": 1
+ },
+ "structural_grounding": {
+  "all_arithmetic": 145,
+  "execution_parsed": 145,
+  "execution_matches_official_answer": 145,
+  "execution_transform_counts": {
+   "direct": 93,
+   "times_100": 52,
+   "divide_100": 0
+  },
+  "execution_unique_transform_counts": {
+   "direct": 93,
+   "times_100": 52,
+   "divide_100": 0
+  },
+  "execution_ambiguous_transform_count": 0,
+  "table_or_table_text": 142,
+  "all_source_operands_mapped_to_table": 135,
+  "unique_coherent_row_or_column_mapping": 124,
+  "exact_packet_table_context_verified": 113,
+  "correct_document_unit_present": 130,
+  "derived_only_strict_match_terminal_quarantine": 12,
+  "target_with_verified_table_context": 12
+ }
+}

@@ -1,0 +1,311 @@
+{
+  "n_questions": 900,
+  "n_records": 10800,
+  "primary_span_minus_window_em": [
+    3.72,
+    2.67,
+    4.81
+  ],
+  "settings": {
+    "fixed": {
+      "arms": {
+        "admit": {
+          "final_em": 8.56,
+          "answered": 43.44,
+          "answer_accuracy": 19.69,
+          "native": 15.01
+        },
+        "admit_span": {
+          "final_em": 15.78,
+          "answered": 48.33,
+          "answer_accuracy": 32.64,
+          "native": 21.31
+        },
+        "admit_window": {
+          "final_em": 10.33,
+          "answered": 41.11,
+          "answer_accuracy": 25.14,
+          "native": 16.13
+        }
+      },
+      "contrasts": {
+        "admit_span-admit_window": {
+          "em_pp": [
+            5.44,
+            3.67,
+            7.33
+          ],
+          "native_pp": [
+            5.17,
+            3.4,
+            6.98
+          ],
+          "accuracy_pp": [
+            7.51,
+            4.15,
+            11.07
+          ]
+        },
+        "admit_window-admit": {
+          "em_pp": [
+            1.78,
+            -0.11,
+            3.67
+          ],
+          "native_pp": [
+            1.12,
+            -0.6,
+            2.81
+          ],
+          "accuracy_pp": [
+            5.44,
+            1.43,
+            9.38
+          ]
+        },
+        "admit_span-admit": {
+          "em_pp": [
+            7.22,
+            5.22,
+            9.33
+          ],
+          "native_pp": [
+            6.29,
+            4.42,
+            8.32
+          ],
+          "accuracy_pp": [
+            12.95,
+            9.27,
+            16.9
+          ]
+        }
+      }
+    },
+    "react": {
+      "arms": {
+        "admit": {
+          "final_em": 10.78,
+          "answered": 42.44,
+          "answer_accuracy": 25.39,
+          "native": 18.34
+        },
+        "admit_span": {
+          "final_em": 16.44,
+          "answered": 49.56,
+          "answer_accuracy": 33.18,
+          "native": 22.42
+        },
+        "admit_window": {
+          "final_em": 14.0,
+          "answered": 44.67,
+          "answer_accuracy": 31.34,
+          "native": 19.85
+        }
+      },
+      "contrasts": {
+        "admit_span-admit_window": {
+          "em_pp": [
+            2.44,
+            1.11,
+            3.89
+          ],
+          "native_pp": [
+            2.56,
+            1.22,
+            3.93
+          ],
+          "accuracy_pp": [
+            1.84,
+            -0.78,
+            4.55
+          ]
+        },
+        "admit_window-admit": {
+          "em_pp": [
+            3.22,
+            1.22,
+            5.11
+          ],
+          "native_pp": [
+            1.51,
+            -0.3,
+            3.31
+          ],
+          "accuracy_pp": [
+            5.95,
+            2.06,
+            9.77
+          ]
+        },
+        "admit_span-admit": {
+          "em_pp": [
+            5.67,
+            3.78,
+            7.56
+          ],
+          "native_pp": [
+            4.08,
+            2.43,
+            5.81
+          ],
+          "accuracy_pp": [
+            7.79,
+            4.21,
+            11.49
+          ]
+        }
+      }
+    },
+    "autogen": {
+      "arms": {
+        "admit": {
+          "final_em": 6.11,
+          "answered": 27.44,
+          "answer_accuracy": 22.27,
+          "native": 15.61
+        },
+        "admit_span": {
+          "final_em": 14.22,
+          "answered": 41.22,
+          "answer_accuracy": 34.5,
+          "native": 20.73
+        },
+        "admit_window": {
+          "final_em": 9.89,
+          "answered": 34.11,
+          "answer_accuracy": 28.99,
+          "native": 17.34
+        }
+      },
+      "contrasts": {
+        "admit_span-admit_window": {
+          "em_pp": [
+            4.33,
+            2.67,
+            5.89
+          ],
+          "native_pp": [
+            3.39,
+            1.9,
+            4.92
+          ],
+          "accuracy_pp": [
+            5.51,
+            1.9,
+            9.1
+          ]
+        },
+        "admit_window-admit": {
+          "em_pp": [
+            3.78,
+            1.89,
+            5.56
+          ],
+          "native_pp": [
+            1.73,
+            0.15,
+            3.31
+          ],
+          "accuracy_pp": [
+            6.72,
+            1.68,
+            11.72
+          ]
+        },
+        "admit_span-admit": {
+          "em_pp": [
+            8.11,
+            6.22,
+            10.0
+          ],
+          "native_pp": [
+            5.12,
+            3.43,
+            6.82
+          ],
+          "accuracy_pp": [
+            12.23,
+            7.76,
+            16.59
+          ]
+        }
+      }
+    },
+    "planrag": {
+      "arms": {
+        "admit": {
+          "final_em": 19.67,
+          "answered": 71.0,
+          "answer_accuracy": 27.7,
+          "native": 21.1
+        },
+        "admit_span": {
+          "final_em": 22.11,
+          "answered": 68.56,
+          "answer_accuracy": 32.25,
+          "native": 24.25
+        },
+        "admit_window": {
+          "final_em": 19.44,
+          "answered": 65.0,
+          "answer_accuracy": 29.91,
+          "native": 21.6
+        }
+      },
+      "contrasts": {
+        "admit_span-admit_window": {
+          "em_pp": [
+            2.67,
+            1.44,
+            3.89
+          ],
+          "native_pp": [
+            2.65,
+            1.5,
+            3.87
+          ],
+          "accuracy_pp": [
+            2.34,
+            0.51,
+            4.15
+          ]
+        },
+        "admit_window-admit": {
+          "em_pp": [
+            -0.22,
+            -1.56,
+            1.22
+          ],
+          "native_pp": [
+            0.5,
+            -0.91,
+            1.92
+          ],
+          "accuracy_pp": [
+            2.21,
+            0.3,
+            4.23
+          ]
+        },
+        "admit_span-admit": {
+          "em_pp": [
+            2.44,
+            1.0,
+            3.89
+          ],
+          "native_pp": [
+            3.14,
+            1.63,
+            4.7
+          ],
+          "accuracy_pp": [
+            4.55,
+            2.45,
+            6.71
+          ]
+        }
+      }
+    }
+  }
+}
