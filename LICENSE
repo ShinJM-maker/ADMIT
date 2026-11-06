@@ -1,10 +1,10 @@
 Apache License 2.0
 
-This supplementary release (reference code, configs, prompts, aggregate
-registries, and compact per-qid metrics) accompanies the NeurIPS 2026 paper of the paper
+This release (reference code, configs, prompts, aggregate registries, and
+compact per-qid metrics) accompanies the NeurIPS 2026 paper
 "ADMIT: Support-Gated Memory-Write Admission for Document QA Agents".
 
-Copyright (c) 2026, ADMIT contributors.
+Copyright (c) 2026 Joongmin Shin, Gyuho Shim, Hyeonseok Moon, and Jaehyung Seo.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this work except in compliance with the License.

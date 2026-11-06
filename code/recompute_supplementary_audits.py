@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Recompute the response-period OCR, derived-value, and audit-scope counts.
+"""Recompute the supplementary OCR, derived-value, and audit-scope counts.
 
 The OCR rates and qid-cluster intervals are recomputed from the per-row file
 with the original seeds. The TAT-QA counts are recounted from the per-case
@@ -22,7 +22,7 @@ import re
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "results" / "response_period_audits_20260725"
+DATA = ROOT / "results" / "supplementary_audits_20260725"
 OPS = {ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul, ast.Div: operator.truediv}
 
 
@@ -148,7 +148,7 @@ def main() -> None:
     print("TAT-QA: 145/145 derivations replayed; 117 derived-only; 12 withheld exact matches, 12 with table context")
     check_scope()
     print("Correction 107/1,758 decisions in 54/900 trajectories; audit log 2,508/2,508 writes, 900/900 outputs; 172 flagged, 148 valid parses")
-    print("Response-period audits: OK")
+    print("Supplementary audits: OK")
 
 
 if __name__ == "__main__":

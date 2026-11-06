@@ -1,14 +1,24 @@
 # ADMIT: Support-Gated Memory-Write Admission for Document QA Agents
 
-Reference admission code and recomputation artifacts for the NeurIPS 2026 paper.
+Code and evaluation artifacts for the NeurIPS 2026 paper
+*ADMIT: Support-Gated Memory-Write Admission for Document QA Agents*.
 
-ADMIT separates answer delivery from memory admission. It checks each proposed
-answer value against the exact OCR/text supplied to the reader, permits one
-RepairRead per candidate, and withholds values that still fail the check.
-The original answer can remain visible as `UNVERIFIED`; automatic memory reuse
-receives only admitted values. This contract guarantees lexical substring
-presence, while answer performance, memory availability, and reader cost are
-measured separately.
+Document QA agents store intermediate answers and reuse them in later steps.
+ADMIT treats **showing an answer** and **storing its value for reuse** as
+separate decisions. At every proposed memory write it
+
+1. extracts `answer_value` from the agent's structured candidate;
+2. records an initial refusal as a non-reusable `STATUS` record, or admits the
+   value when it is a normalized substring of the exact OCR/text the reader saw;
+3. otherwise calls the reader once more on the same question and evidence
+   (**RepairRead**) and checks the repaired value again;
+4. admits the repaired value if it passes, or takes `NO_COMMIT`: the original
+   answer is still shown to the user as `UNVERIFIED`, but memory keeps only a
+   non-reusable `STATUS` record.
+
+Later agent steps read only admitted values. Under this rule, lexical memory
+contamination is zero by construction. Lexical admission checks that a value
+appears in the delivered text; it does not establish semantic correctness.
 
 ## Pipeline and evaluation scope
 
@@ -24,81 +34,123 @@ window control; their records and recomputation scripts are included here.
 Support spans are quoted source evidence. The lexical guarantee applies to the
 admitted answer-value field.
 
-## Contents
+## Repository layout
 
-- `code/admit_admission_engine.py`: model-independent admission interface,
-  strict lexical check, typed statuses, and repair-failure policies.
-- `code/answer_metrics.py`: refusal-aware answer scoring.
-- `code/recompute_*.py`: recomputation of the saved experimental aggregates.
-- `code/validate_*.py`: checks for the admission contract, primary metrics,
-  and all eighteen upstream-pipeline comparisons.
-- `configs/`: execution settings, exact prompt templates, and hashes.
-- `results/`: compact per-question records and aggregate summaries.
-- `examples/quickstart.py`: a small, model-free admission example.
+| Path | Contents |
+|---|---|
+| `code/admit_admission_engine.py` | Reference ADMIT admission boundary (standard library only) |
+| `code/answer_metrics.py` | Refusal-aware substring EM used in the paper |
+| `configs/` | Execution contract, exact prompt templates (`prompts.md`), and their SHA-256 manifest |
+| `results/` | Aggregate registries and compact per-question metrics behind the paper's tables |
+| `code/recompute_*.py`, `code/validate_*.py`, `code/verify_saved_diagnostics.py` | Scripts that recompute the reported numbers from `results/` |
+| `examples/quickstart.py` | Minimal use of the admission engine |
+| `harness/` | Agent harness: ReAct, PlanRAG and AutoGen loops, typed memory records, the ADMIT write hook (`cavec_mfc_hook`), comparators, vLLM reader, evidence packing |
+| `experiments/static/` | Static reader passes and evaluation of ADMIT, comparators, and the leakage-free SupportRouter refit |
+| `experiments/dynamic/` | Dynamic agent runs for all policies and the Table 1 summary |
+| `experiments/portability/` | Upstream-packet and dataset portability runners (DUDE, TAT-QA, MMLongBench-Doc) with official metrics |
+| `experiments/learned_alternatives/` | Learned refusal selector and second-chance verifier (App. D.3) |
+| `scripts/` | Launch scripts for the static and dynamic runs |
+| `inputs/static/` | Frozen retrieval (document and card IDs with scores) and the router's candidate answers |
+| `docs/ARTIFACTS.md` | File-by-file description of the released artifacts |
 
-The release supports reuse of the admission module and verification of saved
-results. It does not include the complete retriever/model-serving pipeline or
-redistribute reader weights and source documents. Fresh end-to-end generation
-is outside this release's scope. Dataset and model licenses remain those of
-their original providers; see `LICENSE`.
+The compact results contain metrics and identifiers only. Document evidence and
+full agent trajectories are not redistributed; regenerating reader outputs
+requires the public datasets and the reader model named in
+`configs/execution_contract.json` (Qwen3-VL-8B-Instruct, greedy decoding).
 
-## Setup and quick start
+## Quick start
 
-Python 3.10 or newer. The admission engine uses only the Python standard library;
-NumPy is used by some recomputation scripts.
+Python 3.10 or later. The engine and the main validator use only the standard
+library; some recompute scripts use NumPy.
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
+pip install -r requirements.txt
 python examples/quickstart.py
 ```
 
-A caller supplies the exact post-truncation reader-visible text and an optional
-repair callback. See the example for successful repair and failed repair.
+```python
+from admit_admission_engine import admit_write, is_factual_memory_record
 
-## Verify the released results
-
-Run from the repository root:
-
-```bash
-python code/validate_bundle.py
-python code/validate_strict_portability.py
-python code/verify_review_diagnostics.py
+decision = admit_write(
+    question="What kind of stick is Eric Boguniecki holding?",
+    commit={"answer_value": "hockey stick"},
+    evidence_packet_text=reader_visible_ocr_text,   # exact post-truncation text
+    repair_read=lambda q, evidence: call_reader(q, evidence, repair_prompt),
+)
+decision.output_value            # shown to the user (UNVERIFIED if not admitted)
+decision.memory_status           # COMMIT, NO_COMMIT, or REFUSAL
+is_factual_memory_record(decision)  # True only for admitted values
 ```
 
-Selected analyses can be recomputed without a GPU or model call:
+`repair_fail_policy` selects the action after a failed repair: `"mfc_ofo"`
+(ADMIT, default), `"hard_refuse"`, or `"fail_open"` (diagnostic comparator).
+In the released files, the runtime tag `FACT`/`COMMIT` corresponds to
+`ADMITTED` in the paper.
+
+## Reproducing the paper's numbers
+
+No model inference is needed. From the repository root:
 
 ```bash
-python code/recompute_window_control.py
-python code/recompute_shared_memory.py
-python code/recompute_injected_value_replay.py
+python code/validate_bundle.py            # main tables, contract, engine, checksums
+python code/validate_strict_portability.py  # upstream and dataset portability (Tables 4-5)
+python code/verify_saved_diagnostics.py   # write-level and gate-span diagnostics
 ```
 
-These scripts check stored summaries by default; scripts exposing `--write`
-can also regenerate them. Bootstrap-based analyses take longer than the basic
-validators.
+| Paper section | Script |
+|---|---|
+| Sec. 6.2, injected-value replay | `recompute_injected_value_replay.py` |
+| Sec. 6.2, support spans; App. B.12-B.13 | `recompute_support_spans.py`, `recompute_anytime_agent.py`, `recompute_window_control.py` |
+| Sec. 6.2, multi-hop search; App. B.14 | `recompute_multihop_final_check.py`, `recompute_multihop_improved_agent.py`, `recompute_frames_contamination.py` |
+| App. B.9-B.10 | `recompute_withheld_accuracy.py`, `recompute_distractor_audit.py` |
+| Where withholding raises answer scores; App. B.15 | `recompute_withholding_gains.py` |
+| Memory shared across questions; App. B.16 | `recompute_shared_memory.py` |
+| App. E-F audits | `recompute_supplementary_audits.py` |
 
-## Interpretation and provenance
+Each script prints the recomputed values and ends with `OK`.
 
-- Zero contamination follows from the lexical admission and consumer contract.
-- Support-span controls compare excerpts around an admitted value with
-  equal-length excerpts from the start of the checked text. Their accuracy
-  gains concern retained source context, separately from admission.
-- The earlier exact-reader audit contains 2,508 proposed writes, including
-  900 terminal writes. Candidate and repair fields belong to one write event.
-  The primary typed-memory comparison is a separate execution with 2,176 ADMIT
-  writes; the counts are not interchangeable.
-- The `LLM chunking` baseline retains the internal artifact key `metachunker`.
-  It uses prompted topic boundaries, rather than the uncertainty-based
-  Meta-Chunking algorithm or MoC. Metric records retain their original keys.
-- Benchmark questions reused during debugging are documented in the execution
-  settings. These comparisons should not be treated as fresh holdout tests.
+## Running the experiments
 
-The paper and its supplementary material provide the full experimental
-interpretation, limits, and dataset citations.
+Running the agents and reader needs a GPU with vLLM (`pip install -r requirements-run.txt`), the
+M3DocVQA questions, and the OCR/text index the agents retrieve from (`chunks.jsonl`, `docs.jsonl`,
+`sec_index_md/` per dataset). Point the code at them with environment variables:
+
+```bash
+export ADMIT_INDEX=/path/to/index          # <index>/M3DocVQA/{chunks.jsonl,docs.jsonl,sec_index_md/}
+export ADMIT_DATA=/path/to/datasets        # <data>/M3DocVQA/val.json
+export ADMIT_READER_MODEL=Qwen/Qwen3-VL-8B-Instruct
+export ADMIT_WORK=$PWD/work                # outputs
+```
+
+| Paper result | Command |
+|---|---|
+| Table 1 and Sec. 6.2-6.3 (dynamic agents, 900 trajectories per policy) | `GPUS="0 1 2 3" bash scripts/run_dynamic.sh` |
+| Static control (Sec. 6.1), SupportRouter and App. D.3 | `GPUS="0 1 2 3" bash scripts/run_static.sh` |
+| Tables 4-5 (portability) | `experiments/portability/run_terminal.py`, `run_datasets.py` |
+
+`run_dynamic.sh` writes `work/dynamic/SUMMARY.json` with substring EM, reader calls per question,
+contamination, and NO_COMMIT rate per policy and agent, plus paired bootstrap differences against
+ADMIT. Policies: `admit` (ADMIT), `fail_open`, `hard_refusal`, `final_support` (Final-support repair),
+and the component arms `gate_only` and `gate_repair`. The harness keeps the internal labels of the
+original runs (`cavec_mfc` = ADMIT, `cavec_paper` = fail-open, `cavec_h1_hard_refuse` = hard refusal).
+
+The portability runners read frozen text packets from the upstream pipelines; because these contain
+document text they are not redistributed. `experiments/portability/prepare_packets.py` rebuilds them
+from each upstream's own outputs (`ADMIT_UPSTREAM_ROOT`), and `fetch_metrics.py` downloads the official
+DUDE, TAT-QA, and MMLongBench-Doc scorers at the commits pinned in `native_metrics_sources.json`.
+
+## Citation
+
+```bibtex
+@inproceedings{shin2026admit,
+  title     = {{ADMIT}: Support-Gated Memory-Write Admission for Document {QA} Agents},
+  author    = {Shin, Joongmin and Shim, Gyuho and Moon, Hyeonseok and Seo, Jaehyung},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2026}
+}
+```
 
 ## License
 
-Apache License 2.0 for the released code, configurations, and original artifacts.
-Third-party dataset/model terms are described in `LICENSE`.
+Apache License 2.0 (see `LICENSE`). Dataset excerpts in `results/` keep the
+licenses of their sources (for example, Wikipedia text under CC BY-SA).
