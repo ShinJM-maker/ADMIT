@@ -1,0 +1,52 @@
+{
+  "tatqa": {
+    "repo": "NExTplusplus/TAT-QA",
+    "commit": "870accc41953dcde885aabeb963d94aabdc0fbc3",
+    "files": {
+      "tatqa_metric.py": {
+        "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/tatqa_metric.py",
+        "sha256": "2aeeac479f89f8c76300af1cc0e8d098eb86af84bc386b38b6ab4af484a6dea8"
+      },
+      "tatqa_utils.py": {
+        "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/tatqa_utils.py",
+        "sha256": "a84bb2f960737cf0a53733637a674cc4b20ef030a2be6a4b21dc2c4356f415ec"
+      },
+      "LICENSE": {
+        "url": "https://raw.githubusercontent.com/NExTplusplus/TAT-QA/870accc41953dcde885aabeb963d94aabdc0fbc3/LICENSE",
+        "sha256": "46e27ffbc49c3fd44a9595c2213f8a5f4319a81b53238e49ce1eec39e7e25662"
+      }
+    }
+  },
+  "dude": {
+    "repo": "Jordy-VL/DUDEeval",
+    "commit": "8bd6deac0f9747e344338e3850f02bf76744d888",
+    "files": {
+      "evaluate_submission.py": {
+        "url": "https://raw.githubusercontent.com/Jordy-VL/DUDEeval/8bd6deac0f9747e344338e3850f02bf76744d888/evaluate_submission.py",
+        "sha256": "df11012257fc9650af0d696be8b171d27ed9eebdc659dd9dcb660233d8806f4d"
+      },
+      "LICENSE": {
+        "url": "https://raw.githubusercontent.com/Jordy-VL/DUDEeval/8bd6deac0f9747e344338e3850f02bf76744d888/LICENSE",
+        "sha256": "d9f984c520481c141d8590a06457c61cede787270e892e8d2b7ce8fa7d51b066"
+      }
+    }
+  },
+  "mmlongbench": {
+    "repo": "mayubo2333/MMLongBench-Doc",
+    "commit": "d73f0dc0be7e0a2ff6a403d5fe65fcd96461f384",
+    "files": {
+      "eval_score.py": {
+        "url": "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/d73f0dc0be7e0a2ff6a403d5fe65fcd96461f384/eval/eval_score.py",
+        "sha256": "cafa268358b08521cfc9a805c67d86732d943677e4408c5751f336123d09631f"
+      },
+      "extract_answer.py": {
+        "url": "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/d73f0dc0be7e0a2ff6a403d5fe65fcd96461f384/eval/extract_answer.py",
+        "sha256": "fa6a747bd6a8e96fb6884eb7201663268a5df700ad71d85db3bc5e04a157722f"
+      },
+      "LICENSE.md": {
+        "url": "https://raw.githubusercontent.com/mayubo2333/MMLongBench-Doc/d73f0dc0be7e0a2ff6a403d5fe65fcd96461f384/LICENSE.md",
+        "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+      }
+    }
+  }
+}

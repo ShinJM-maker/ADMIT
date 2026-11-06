@@ -4,9 +4,9 @@
 Each released record is one question of DUDE, TAT-QA, or MMLongBench-Doc in one
 anytime-document setting (agent: fixed reader, ReAct, AutoGen, PlanRAG) under one
 policy: admit, admit_span (each admitted value stored with the text around its
-first match), or admit_window (the same admission policy, each admitted value augmented with
-an excerpt of the same length taken from the start of the text read at that
-step, without locating the value). Primary: admit_span minus admit_window in final substring EM, each
+first match), or admit_window (the same values, each with an excerpt of the same
+length taken from the start of the text read at that step, without locating the
+value). Primary: admit_span minus admit_window in final substring EM, each
 question's difference averaged over the four settings, 95% bootstrap over
 questions (4,000 draws, seed 0, questions sorted by dataset and qid). Per setting
 the script reports EM, answered rate, answer accuracy (substring EM among

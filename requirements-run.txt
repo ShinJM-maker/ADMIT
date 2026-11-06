@@ -1,0 +1,8 @@
+# Model-running code (harness/, experiments/, scripts/). Versions used for the paper's runs.
+vllm==0.16.0
+torch==2.9.1
+transformers==4.57.6
+numpy>=1.22
+pillow>=10
+lightgbm==4.6.0      # SupportRouter refit (experiments/static/evaluate_static.py)
+scikit-learn==1.7.2  # learned refusal selector and verifier
