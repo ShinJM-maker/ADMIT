@@ -310,8 +310,8 @@ fail-open:
 | ReAct and AutoGen | +5.56 [3.83, 7.33] | +3.17 [1.67, 4.70] | 23.58 to 33.54 (+9.96 [6.59, 13.30]) |
 | PlanRAG | +1.89 [0.44, 3.33] | +2.24 [0.68, 3.82] | 27.84 to 31.87 (+4.03 [1.91, 6.24]) |
 
-The gain comes from the spans: fail-open with spans gains as much, and an
-equal-length excerpt not placed at the value gains less (window control below).
+The gain comes from the spans: fail-open with spans gains as much, and a
+prefix-window control with the same nominal context budget gains less (below).
 Withholding keeps unsupported values out of that memory: ADMIT stores none and
 no final answer repeats one, whereas fail-open stores one in 14.44-35.00% of
 runs and repeats it in 3.89-21.67% of final answers. The summary also gives the
@@ -339,10 +339,13 @@ summary. No model call is made.
 
 ### Window control (2026-11-01)
 
-A control arm stores the same admitted values as ADMIT + spans. Each value gets
-an excerpt of the same length (2 x 220 characters plus the value's length), but
-the excerpt is taken from the start of the text read at that step, without
-locating the value. ADMIT, ADMIT + spans, and this window arm were run together
+The window arm uses the same admission policy as ADMIT + spans. Each admitted
+value gets a prefix of the checked text, capped at 440 characters plus the
+value length. The span arm retains up to 220 characters on either side of the
+matched value. Spans can be shorter at packet boundaries, and ellipsis markers
+also differ: this is the same nominal source-text budget, not exact character-
+or token-length matching. The comparison therefore evaluates excerpt strategies
+under that budget rather than isolating position at identical length. ADMIT, ADMIT + spans, and this window arm were run together
 in all four settings (900 questions each). The primary contrast, its interval,
 and the decision rule were recorded with file hashes before the run. Support
 spans exceed the window in final EM by +3.72 pp [2.67, 4.81], averaging each
@@ -363,7 +366,7 @@ EM). It checks them against
 `results/anytime_window_control_summary_20261101.json`; `--write` regenerates the
 summary. No model call is made.
 
-## Multi-hop search agents: equal accuracy, grounded final answers (2026-11-02)
+## Multi-hop search agents: answer accuracy and lexical memory provenance (2026-11-02)
 
 A search agent answers multi-hop questions in hops. Each hop writes one
 sub-question from the main question and the stored records, retrieves the top
@@ -372,13 +375,16 @@ through the memory policy (fail-open or ADMIT MFC/OFO). The final answer is
 synthesized from the records and the top six cards for the main question and
 passes a fail-open output check. Each policy runs with two supports for that
 check: the main-question cards (default), or those cards plus the stored values
-(memory-aware). A stored value is grounded if it occurs in the text it was read
-from or in an earlier grounded value; a final answer rests on an ungrounded
-value if it contains, or is contained in, one. FRAMES was used for development;
+(memory-aware). Direct-text admission requires the value in its own read
+text; memory-aware admission can also use earlier stored values. In the
+recursive lexical source-trace diagnostic, a stored value is grounded if it
+occurs in its own read text or in a single earlier grounded value. A final
+answer overlaps with an ungrounded value if it contains, or is contained in,
+one; this does not establish causal reliance or semantic support. FRAMES was used for development;
 for the other four settings the arms, analysis script, and file hashes were
 recorded before the run.
 
-| Setting | n | FO+m EM | ADMIT+m EM | ADMIT - FO (pp) | Rests on ungrounded, FO / ADMIT (%) |
+| Setting | n | FO+m EM | ADMIT+m EM | ADMIT - FO (pp) | Overlap with ungrounded, FO / ADMIT (%) |
 |---|---|---|---|---|---|
 | FRAMES (development) | 824 | 29.61 | 28.28 | -1.33 [-2.67, -0.12] | 5.22 / 0 |
 | 2WikiMultihopQA | 750 | 77.07 | 76.93 | -0.13 [-0.67, 0.27] | 0.13 / 0 |
@@ -389,9 +395,12 @@ recorded before the run.
 \* Reader prompt without a refusal clause. Incomplete corpus: one supporting
 article per question is removed from all of its searches (as in MuSiQue's
 unanswerable contrast questions). Averaged over the four confirmation settings,
-ADMIT minus fail-open is +0.19 pp [-0.34, 0.71]; the memory-aware check raises
-ADMIT's EM over the default check by +5.25 pp [4.50, 5.99] (fail-open gains as
-much). On the questions where fail-open's final answer rests on an
+ADMIT minus fail-open is +0.19 pp [-0.44, 0.79]; the memory-aware check raises
+ADMIT's EM over the default check by +5.25 pp [4.48, 6.07] (fail-open gains as
+much). The pooled intervals use 4,000 question bootstrap resamples (seed 0),
+with complete/incomplete MuSiQue results sampled jointly by qid. The other two
+question sets are resampled independently, retaining equal weight across the
+four settings. On the questions where fail-open's final answer overlaps with an
 ungrounded value, fail-open is correct in 9.74% (195 questions, complete corpus)
 and 6.57% (274, incomplete corpus), ADMIT in 20.51% and 12.04%; on the other
 questions fail-open 38.99% and 21.83%, ADMIT 37.72% and 20.05%.

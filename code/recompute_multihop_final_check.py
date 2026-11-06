@@ -11,14 +11,16 @@ synthesized answer before the check, and the stored memory (value, and whether i
 the text it was read from).
 
 A stored value is grounded if it occurs in the text it was read from or in an earlier
-grounded stored value. A final answer rests on an ungrounded value if it is not a refusal
+grounded stored value. A final answer overlaps with an ungrounded value if it is not a refusal
 and it contains, or is contained in, an ungrounded stored value (whitespace and case
 folded). Per setting the script reports each arm's EM and answered rate; ADMIT minus fail-open
-in EM under each check; the share of final answers resting on an ungrounded value; EM of
-both policies (memory-aware check) on the questions where fail-open's final answer rests on an
+in EM under each check; the share of final answers overlapping with an ungrounded value; EM of
+both policies (memory-aware check) on the questions where fail-open's final answer overlaps with an
 ungrounded value and on the other questions; the memory-aware minus default check for ADMIT;
 and the RepairRead replacements under ADMIT's default check. Intervals: 4,000 question resamples, seed 0, questions in qid order; the
-pooled row averages the four confirmation settings with equal weight, resampling within each.
+pooled row averages the four confirmation settings with equal weight. The fresh
+MuSiQue complete/incomplete conditions share questions and are resampled jointly
+by qid; the two other confirmation settings are resampled independently.
 No model call is made. By default the script checks the stored summary; --write regenerates it.
 """
 
@@ -55,10 +57,39 @@ def rests_on_ungrounded(r):
     return int(any(v and (v in a or a in v) for v in ungrounded))
 
 
-def boot(groups, n=4000):
+def boot(groups, n=4000, linked_groups=()):
     rng = random.Random(0)
     mean = lambda gs: sum(sum(g) / len(g) for g in gs) / len(gs)
-    bs = sorted(mean([[rng.choice(g) for _ in g] for g in groups]) for _ in range(n))
+    if not linked_groups:
+        bs = sorted(mean([[rng.choice(g) for _ in g] for g in groups]) for _ in range(n))
+    else:
+        # A resampling unit may contain several conditions of the same questions.
+        # Its groups must already be aligned by qid. Keep condition means equally
+        # weighted, while sharing the sampled question indices within that unit.
+        unit_for = {}
+        for unit in linked_groups:
+            unit = tuple(unit)
+            assert len(unit) > 1 and len(set(unit)) == len(unit)
+            assert all(0 <= i < len(groups) and i not in unit_for for i in unit)
+            assert len({len(groups[i]) for i in unit}) == 1
+            for i in unit:
+                unit_for[i] = unit
+        units, seen = [], set()
+        for i in range(len(groups)):
+            unit = unit_for.get(i, (i,))
+            if unit not in seen:
+                units.append(unit)
+                seen.add(unit)
+        bs = []
+        for _ in range(n):
+            means = [0.0] * len(groups)
+            for unit in units:
+                size = len(groups[unit[0]])
+                indices = [rng.randrange(size) for _ in range(size)]
+                for i in unit:
+                    means[i] = sum(groups[i][j] for j in indices) / size
+            bs.append(sum(means) / len(means))
+        bs.sort()
     return [round(100 * mean(groups), 2), round(100 * bs[int(.025 * n)], 2), round(100 * bs[int(.975 * n) - 1], 2)]
 
 
@@ -103,11 +134,19 @@ def summarize():
             100 * sum(r["final_check"] != "candidate" for r in rows["admit_memory_support"]) / n, 2)
         out[s] = res
     conf = [s for s in order if out[s]["split"] == "confirmation"]
+    shared_settings = ("MuSiQue fresh, complete corpus", "MuSiQue fresh, incomplete corpus")
+    assert all(s in conf for s in shared_settings)
+    assert qs[shared_settings[0]] == qs[shared_settings[1]], "shared conditions must align by qid"
+    linked = (tuple(conf.index(s) for s in shared_settings),)
+
+    def pooled_diff(x, y):
+        return boot([diff(s, x, y, "em") for s in conf], linked_groups=linked)
+
     out["pooled confirmation"] = {
         "settings": conf,
-        "admit_minus_failopen_em_memory_support": boot([diff(s, "admit_memory_support", "failopen_memory_support", "em") for s in conf]),
-        "admit_minus_failopen_em_default": boot([diff(s, "admit", "failopen", "em") for s in conf]),
-        "memory_support_minus_default_admit_em": boot([diff(s, "admit_memory_support", "admit", "em") for s in conf])}
+        "admit_minus_failopen_em_memory_support": pooled_diff("admit_memory_support", "failopen_memory_support"),
+        "admit_minus_failopen_em_default": pooled_diff("admit", "failopen"),
+        "memory_support_minus_default_admit_em": pooled_diff("admit_memory_support", "admit")}
     return out
 
 
@@ -124,7 +163,7 @@ def main():
             continue
         print(f"{s:34s} {r['split']:12s} n {r['questions']:4d} EM: RAG {r['rag']['em']:.2f} FO {r['failopen']['em']:.2f} "
               f"ADMIT {r['admit']['em']:.2f} FO+m {r['failopen_memory_support']['em']:.2f} ADMIT+m {r['admit_memory_support']['em']:.2f} | "
-              f"ADMIT-FO (memory-aware) {f(r['admit_minus_failopen_em_memory_support'])} | rests on ungrounded: "
+              f"ADMIT-FO (memory-aware) {f(r['admit_minus_failopen_em_memory_support'])} | overlap with ungrounded: "
               f"FO+m {r['failopen_memory_support']['rests_on_ungrounded']:.2f} ADMIT+m {r['admit_memory_support']['rests_on_ungrounded']:.2f} | "
               f"memory-aware - default (ADMIT) {f(r['memory_support_minus_default_admit_em'])}")
     if a.write:

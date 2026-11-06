@@ -22,15 +22,16 @@ appears in the delivered text; it does not establish semantic correctness.
 
 ## Pipeline and evaluation scope
 
-The full ADMIT pipeline checks and repairs proposed values, locates a matching
-source span, links the admitted value and excerpt to its evidence pointer, and
-provides the record to later agent steps. Failed admission keeps the value out
-of reusable memory while retaining the original tentative output under MFC/OFO.
+ADMIT checks and repairs proposed memory writes, controlling which values later
+agent steps may reuse. Failed admission keeps the value out of reusable memory
+while retaining the original tentative output under MFC/OFO. Optional support
+spans attach source context; optional refusal repair retries initial refusals.
+Both extensions also apply to fail-open and are evaluated separately.
 
 The standalone engine implements the admission stage. The primary policy
 comparisons use value-only ADMIT to isolate that stage. Separate provenance
-controls compare the span-aware path with value-only memory and an equal-length
-window control; their records and recomputation scripts are included here.
+controls compare the span-aware path with value-only memory and a prefix-window
+control under the same nominal context budget; their records and recomputation scripts are included here.
 Support spans are quoted source evidence. The lexical guarantee applies to the
 admitted answer-value field.
 

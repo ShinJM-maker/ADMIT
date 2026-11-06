@@ -353,18 +353,18 @@
   ],
   "admit_minus_failopen_em_memory_support": [
    0.19,
-   -0.34,
-   0.71
+   -0.44,
+   0.79
   ],
   "admit_minus_failopen_em_default": [
    -0.06,
-   -0.52,
-   0.39
+   -0.57,
+   0.45
   ],
   "memory_support_minus_default_admit_em": [
    5.25,
-   4.5,
-   5.99
+   4.48,
+   6.07
   ]
  }
 }
