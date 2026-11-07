@@ -1649,5 +1649,21 @@
       "artifact_id": "typed_comparator_final_support_retry_900.jsonl",
       "sha256": "061d2c9f1ec1e5b5269dfdacd6370968d8b742a4b5f6a7e66429ba33b8f20bf1"
     }
+  },
+  "abstract_mean_effects": {
+    "date": "2026-11-07",
+    "scope": "Deterministic point-estimate summaries of existing released records; no additional model outputs.",
+    "source": {
+      "artifact_id": "abstract_mean_effects_20261107.json",
+      "sha256": "49aeafd45cad2535c435c4b5c8f59bea82d2dea53d20c1d8ab108e9498b0deb1"
+    },
+    "recompute": "code/recompute_abstract_means.py",
+    "injection_equal_rate_mean_pp": {
+      "ADMIT_minus_failopen": 3.5,
+      "ADMIT_minus_random": 3.33
+    },
+    "source_excerpts_minus_value_only_ADMIT_mean_pp": 5.86,
+    "initial_refusal_rereading_minus_base_ADMIT_mean_pp": 1.11,
+    "averaging": "Pool injection cases within each rate after averaging random seeds per record, then weight the three rates equally. Average source-excerpt contrasts across four matched sequential-reading settings; average refusal-rereading contrasts across three matched dynamic agents."
   }
 }

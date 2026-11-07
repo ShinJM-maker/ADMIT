@@ -1,0 +1,134 @@
+{
+  "metric": "substring EM difference, in percentage points",
+  "input_sha256": {
+    "results/injected_value_replay_portability_20261030.jsonl": "c9bd1360917b99e7629edaa83c933f789139cc2252be6141d7df0178d95533c9",
+    "results/anytime_window_control_20261101.jsonl": "2619130e04f829fae38151564b7a4c1f11b44d6ec90c6596eb0fab9d6a3afba6",
+    "results/refusal_repair_20261106/dynamic_refusal_repair_900.jsonl": "cc7336c5e39f8edf4a2d9c36eaa09dfd3665754d044aaa6882921c5bae7df92f"
+  },
+  "injection": {
+    "estimand": "Equal-weight mean of the three rate-specific pooled paired score differences; random seeds are averaged within each selected record before rate aggregation.",
+    "per_rate": [
+      {
+        "rate": 0.1,
+        "n_cases": 63,
+        "failopen": {
+          "exact_pp": "100/21",
+          "unrounded_pp": 4.761904761904762,
+          "reported_pp": 4.76
+        },
+        "random": {
+          "exact_pp": "200/63",
+          "unrounded_pp": 3.1746031746031744,
+          "reported_pp": 3.17
+        }
+      },
+      {
+        "rate": 0.2,
+        "n_cases": 133,
+        "failopen": {
+          "exact_pp": "500/133",
+          "unrounded_pp": 3.7593984962406015,
+          "reported_pp": 3.76
+        },
+        "random": {
+          "exact_pp": "1300/399",
+          "unrounded_pp": 3.2581453634085213,
+          "reported_pp": 3.26
+        }
+      },
+      {
+        "rate": 0.4,
+        "n_cases": 254,
+        "failopen": {
+          "exact_pp": "250/127",
+          "unrounded_pp": 1.968503937007874,
+          "reported_pp": 1.97
+        },
+        "random": {
+          "exact_pp": "450/127",
+          "unrounded_pp": 3.543307086614173,
+          "reported_pp": 3.54
+        }
+      }
+    ],
+    "admit_minus_failopen": {
+      "exact_pp": "531550/152019",
+      "unrounded_pp": 3.4966023983844123,
+      "reported_pp": 3.5
+    },
+    "admit_minus_random": {
+      "exact_pp": "216650/65151",
+      "unrounded_pp": 3.3253518748752895,
+      "reported_pp": 3.33
+    }
+  },
+  "source_excerpts": {
+    "estimand": "Equal-weight mean across four matched sequential-reading settings; ADMIT with source excerpts minus value-only ADMIT.",
+    "per_setting": [
+      {
+        "setting": "fixed",
+        "n_questions": 900,
+        "exact_pp": "65/9",
+        "unrounded_pp": 7.222222222222222,
+        "reported_pp": 7.22
+      },
+      {
+        "setting": "react",
+        "n_questions": 900,
+        "exact_pp": "17/3",
+        "unrounded_pp": 5.666666666666667,
+        "reported_pp": 5.67
+      },
+      {
+        "setting": "autogen",
+        "n_questions": 900,
+        "exact_pp": "73/9",
+        "unrounded_pp": 8.11111111111111,
+        "reported_pp": 8.11
+      },
+      {
+        "setting": "planrag",
+        "n_questions": 900,
+        "exact_pp": "22/9",
+        "unrounded_pp": 2.4444444444444446,
+        "reported_pp": 2.44
+      }
+    ],
+    "mean": {
+      "exact_pp": "211/36",
+      "unrounded_pp": 5.861111111111111,
+      "reported_pp": 5.86
+    }
+  },
+  "refusal_rereading": {
+    "estimand": "Equal-weight mean across three matched dynamic agent runs; ADMIT with initial-refusal rereading minus ADMIT without this extension.",
+    "per_agent": [
+      {
+        "agent": "react",
+        "n_questions": 300,
+        "exact_pp": "1",
+        "unrounded_pp": 1.0,
+        "reported_pp": 1.0
+      },
+      {
+        "agent": "planrag",
+        "n_questions": 300,
+        "exact_pp": "4/3",
+        "unrounded_pp": 1.3333333333333333,
+        "reported_pp": 1.33
+      },
+      {
+        "agent": "autogen",
+        "n_questions": 300,
+        "exact_pp": "1",
+        "unrounded_pp": 1.0,
+        "reported_pp": 1.0
+      }
+    ],
+    "mean": {
+      "exact_pp": "10/9",
+      "unrounded_pp": 1.1111111111111112,
+      "reported_pp": 1.11
+    }
+  }
+}

@@ -666,3 +666,25 @@ dataset results with the paired qid bootstrap (10,000 resamples, seed 0) and
 checks them against the paper. The runs themselves are
 `experiments/refusal_repair/run_dynamic_rr.py` (pairs in
 `configs/refusal_repair_pairs.json`) and `run_portability_rr.py`.
+
+## Mean effects reported in the abstract (2026-11-07)
+
+`python code/recompute_abstract_means.py` checks the mean score gains in
+`results/abstract_mean_effects_20261107.json` directly against the released
+per-record outcomes, using unrounded observations and exact rational arithmetic.
+No model inference is performed.
+
+- Source-blocked injection: pool selected cases from the three datasets within
+  each rate, average random seeds within a record, then weight the three
+  injection rates equally. Mean ADMIT gains are **3.50 pp** over continued
+  storage and **3.33 pp** over count-matched random withholding. These are
+  means over rates, rather than a pooled mean over rate--question events.
+- Source excerpts: compare ADMIT with excerpts against value-only ADMIT in the
+  four matched sequential-reading settings of the window-control experiment.
+  The equally weighted mean gain is **5.86 pp**; the distinct matched-excerpt
+  versus prefix-window contrast remains **3.72 pp**.
+- Initial-refusal rereading: compare ADMIT with and without this extension in
+  the three matched dynamic agent runs. The mean gain is **1.11 pp**.
+
+The summary records each component contrast, its denominator, its exact
+fractional value, and the input-file hashes. `--write` regenerates the summary.
