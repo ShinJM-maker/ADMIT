@@ -17,7 +17,7 @@ final answers overlap with injected values that differ from the main-question
 reference in up to 43.40% of selected fail-open cases and none of ADMIT's
 (`results/injected_value_replay_*`); this label does not establish the
 semantic correctness of each sub-question answer. Multi-hop final-answer
-overlap with an unsupported stored value is structurally zero under ADMIT and
+overlap with a stored value lacking a lexical source trace is structurally zero under ADMIT and
 reaches 25.80% under fail-open (`results/multihop_final_check_*`); the overlap
 measure does not establish causal reliance. Adding located support spans
 improves final answer scores in separate experiments
@@ -312,7 +312,7 @@ fail-open:
 
 The gain comes from the spans: fail-open with spans gains as much, and a
 prefix-window control with the same nominal context budget gains less (below).
-Withholding keeps unsupported values out of that memory: ADMIT stores none and
+Withholding keeps lexically unsupported values out of that memory: ADMIT stores none and
 no final answer repeats one, whereas fail-open stores one in 14.44-35.00% of
 runs and repeats it in 3.89-21.67% of final answers. The summary also gives the
 answered rate per policy.
@@ -328,8 +328,8 @@ appendix tables, and the decomposition into spans and withholding from:
 - `results/anytime_planrag_20261101.jsonl` (4,500 records: the same questions and
   policies with a PlanRAG agent, plus the number of sub-question reads per step).
 
-Each record stores final substring EM, refusal, the official metric, per-step EM, whether an
-unsupported value was stored, and whether the final answer repeats one.
+Each record stores final substring EM, refusal, the official metric, per-step EM, whether a
+lexically unsupported value was stored, and whether the final answer repeats one.
 Intervals are paired 4,000-draw question bootstraps (seed 0); for answer
 accuracy, each draw takes the difference of the two ratios over the resampled
 questions, and the ReAct and AutoGen figures keep both agents for each
@@ -377,14 +377,14 @@ passes a fail-open output check. Each policy runs with two supports for that
 check: the main-question cards (default), or those cards plus the stored values
 (memory-aware). Direct-text admission requires the value in its own read
 text; memory-aware admission can also use earlier stored values. In the
-recursive lexical source-trace diagnostic, a stored value is grounded if it
-occurs in its own read text or in a single earlier grounded value. A final
-answer overlaps with an ungrounded value if it contains, or is contained in,
-one; this does not establish causal reliance or semantic support. FRAMES was used for development;
+recursive lexical source-trace diagnostic, a stored value has a lexical source
+trace if it occurs in its own read text or in a single earlier value with such
+a trace. A final answer overlaps with a stored value lacking this trace if it
+contains, or is contained in, that value; this does not establish causal reliance or semantic support. FRAMES was used for development;
 for the other four settings the arms, analysis script, and file hashes were
 recorded before the run.
 
-| Setting | n | FO+m EM | ADMIT+m EM | ADMIT - FO (pp) | Overlap with ungrounded, FO / ADMIT (%) |
+| Setting | n | FO+m EM | ADMIT+m EM | ADMIT - FO (pp) | Overlap without a lexical source trace, FO / ADMIT (%) |
 |---|---|---|---|---|---|
 | FRAMES (development) | 824 | 29.61 | 28.28 | -1.33 [-2.67, -0.12] | 5.22 / 0 |
 | 2WikiMultihopQA | 750 | 77.07 | 76.93 | -0.13 [-0.67, 0.27] | 0.13 / 0 |
@@ -400,8 +400,8 @@ ADMIT's EM over the default check by +5.25 pp [4.48, 6.07] (fail-open gains as
 much). The pooled intervals use 4,000 question bootstrap resamples (seed 0),
 with complete/incomplete MuSiQue results sampled jointly by qid. The other two
 question sets are resampled independently, retaining equal weight across the
-four settings. On the questions where fail-open's final answer overlaps with an
-ungrounded value, fail-open is correct in 9.74% (195 questions, complete corpus)
+four settings. On the questions where fail-open's final answer overlaps with a
+stored value lacking a lexical source trace, fail-open is correct in 9.74% (195 questions, complete corpus)
 and 6.57% (274, incomplete corpus), ADMIT in 20.51% and 12.04%; on the other
 questions fail-open 38.99% and 21.83%, ADMIT 37.72% and 20.05%.
 
@@ -426,8 +426,8 @@ non-refusal value has a false direct-text support flag; the final output is
 not appended to memory. This counts stored values, not final-answer overlap.
 `results/frames_memory_contamination_20261106.json` also reports the
 memory-aware variants separately: ADMIT has 6/824 runs (0.73%) with a value
-absent from the current read's text but supported through earlier grounded
-memory. This expanded admission support differs from the default direct-text
+absent from the current read's text but supported through earlier admitted
+values with a lexical source trace. This expanded admission support differs from the default direct-text
 criterion used in the main-text cross-dataset table. No model calls are required.
 
 `results/frames_admit_trace_20261106.jsonl` supplies the 824 matching ADMIT hop
@@ -459,9 +459,9 @@ lowers answer scores are recomputed by
 On selected cases with sources blocked and a reference-different injected
 value present, ADMIT's substring EM exceeds fail-open's by 1.97-4.76 pp and
 random withholding's by 3.17-3.54 pp (every interval against random excludes
-zero); with sources available it exceeds fail-open by 1.59-3.94 pp but not random
-withholding. In multi-hop search, on the fresh MuSiQue questions where
-fail-open's final answer rests on an ungrounded stored value, ADMIT scores 10.77
+zero); with sources available it exceeds fail-open by 1.59-3.94 pp but does not
+consistently exceed random withholding. In multi-hop search, on the fresh MuSiQue questions where
+fail-open's final answer overlaps with a stored value lacking a lexical source trace, ADMIT scores 10.77
 and 5.47 pp higher; on the other questions it scores 1.27 and 1.78 pp lower, and
 on the 43 such FRAMES questions (development) it scores 18.60 pp lower. Intervals
 are 4,000 paired resamples (seed 0). The script checks its output against
